@@ -3,22 +3,22 @@ package Models;
 import java.io.Serializable;
 
 public class GroupSang implements Serializable {
-    private int id_groupe;
-    private String name_groupe;
+    private int idGroupe;
+    private String nameGroupe;
 
-    public int getId_groupe() {
-        return id_groupe;
+    public int getIdGroupe() {
+        return idGroupe;
     }
 
-    public void setId_groupe(int id_groupe) {
-        this.id_groupe = id_groupe;
+    public void setIdGroupe(int idGroupe) {
+        this.idGroupe = idGroupe;
     }
 
-    public String getName_groupe() {
-        return name_groupe;
+    public String getNameGroupe() {
+        return nameGroupe;
     }
 
-    public void setName_groupe(String name_groupe) {
-        this.name_groupe = name_groupe;
+    public void setNameGroupe(String nameGroupe) {
+        this.nameGroupe = nameGroupe;
     }
 }
