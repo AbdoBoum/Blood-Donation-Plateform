@@ -1,6 +1,8 @@
 package Models;
 
-public class GroupSang {
+import java.io.Serializable;
+
+public class GroupSang implements Serializable {
     private int id_groupe;
     private String name_groupe;
 
