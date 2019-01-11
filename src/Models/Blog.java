@@ -12,13 +12,16 @@ public class Blog implements Serializable {
     private Timestamp dateBlog;
     private int idDonateur;
 
-    public Blog(int idBlog, String titreBlog, String contenueBlog, String pathImgBlog, Date dateBlog, int idDonateur) {
-        this.idBlog = idBlog;
+    public Blog(){
+        super();
+    }
+
+    public Blog(String titreBlog, String contenueBlog, String pathImgBlog, int idDonateur, Timestamp dateBlog) {
         this.titreBlog = titreBlog;
         this.contenueBlog = contenueBlog;
         this.pathImgBlog = pathImgBlog;
-        this.dateBlog = dateBlog;
         this.idDonateur = idDonateur;
+        this.dateBlog = dateBlog;
     }
 
     public int getIdBlog() {
@@ -68,4 +71,17 @@ public class Blog implements Serializable {
     public void setIdDonateur(int idDonateur) {
         this.idDonateur = idDonateur;
     }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "idBlog=" + idBlog +
+                ", titreBlog='" + titreBlog + '\'' +
+                ", contenueBlog='" + contenueBlog + '\'' +
+                ", pathImgBlog='" + pathImgBlog + '\'' +
+                ", dateBlog=" + dateBlog +
+                ", idDonateur=" + idDonateur +
+                '}';
+    }
+
 }
