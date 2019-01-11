@@ -1,5 +1,10 @@
 package DAO.Interfaces;
 
-public interface GroupSangDao {
+import Models.GroupSang;
 
+import java.util.List;
+
+public interface GroupSangDao {
+    GroupSang getGroupSang(int idGrp);
+    List<GroupSang> getAllGroups();
 }

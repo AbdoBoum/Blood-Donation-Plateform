@@ -1,7 +1,7 @@
 package Models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Blog implements Serializable {
 
@@ -9,7 +9,7 @@ public class Blog implements Serializable {
     private String titreBlog;
     private String contenueBlog;
     private String pathImgBlog;
-    private Date dateBlog;
+    private Timestamp dateBlog;
     private int idDonateur;
 
     public Blog(int idBlog, String titreBlog, String contenueBlog, String pathImgBlog, Date dateBlog, int idDonateur) {
@@ -53,11 +53,11 @@ public class Blog implements Serializable {
         this.pathImgBlog = pathImgBlog;
     }
 
-    public Date getDateBlog() {
+    public Timestamp getDateBlog() {
         return dateBlog;
     }
 
-    public void setDateBlog(Date dateBlog) {
+    public void setDateBlog(Timestamp dateBlog) {
         this.dateBlog = dateBlog;
     }
 

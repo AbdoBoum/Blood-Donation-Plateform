@@ -1,14 +1,14 @@
 package Models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Demande implements Serializable {
     private int idDemande;
     private int idCentre;
-    private Date dateDemande;
+    private Timestamp dateDemande;
     private String descriptionDemande;
     private String pathImgDemande;
     private boolean isUrgent;
@@ -30,11 +30,11 @@ public class Demande implements Serializable {
         this.idCentre = idCentre;
     }
 
-    public Date getDateDemande() {
+    public Timestamp getDateDemande() {
         return dateDemande;
     }
 
-    public void setDateDemande(Date dateDemande) {
+    public void setDateDemande(Timestamp dateDemande) {
         this.dateDemande = dateDemande;
     }
 

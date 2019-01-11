@@ -1,6 +1,7 @@
 package Controllers;
 
 import DAO.DAOFactory;
+import DAO.Interfaces.GroupSangDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +21,7 @@ public class Servlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
         writer.println("test a wld 3amti");
         DAOFactory daoFactory = DAOFactory.getInstance();
-        try {
-            daoFactory.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        GroupSangDao groupSangDao = daoFactory.getGroupSangDaoImpl();
+        System.out.println(groupSangDao.getGroupSang(1).getNameGroupe());
     }
 }

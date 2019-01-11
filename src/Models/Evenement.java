@@ -2,12 +2,13 @@ package Models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Evenement implements Serializable {
     private int idEvenement;
     private String titreEvenement;
     private String desciptionEvenement;
-    private Date dateEvenement;
+    private Timestamp dateEvenement;
     private String imagePathEvenement;
     private int idVille;
     private int idCentre;
@@ -24,7 +25,7 @@ public class Evenement implements Serializable {
         return desciptionEvenement;
     }
 
-    public Date getDateEvenement() {
+    public Timestamp getDateEvenement() {
         return dateEvenement;
     }
 
@@ -52,7 +53,7 @@ public class Evenement implements Serializable {
         this.desciptionEvenement = desciptionEvenement;
     }
 
-    public void setDateEvenement(Date dateEvenement) {
+    public void setDateEvenement(Timestamp dateEvenement) {
         this.dateEvenement = dateEvenement;
     }
 

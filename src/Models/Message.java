@@ -2,11 +2,12 @@ package Models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Message implements Serializable {
     private int idEmetteur;
     private int idRecepteur;
-    private Date dateMessage;
+    private Timestamp dateMessage;
     private boolean isViewed;
     private String contenueMessage;
 
@@ -18,7 +19,7 @@ public class Message implements Serializable {
         return idRecepteur;
     }
 
-    public Date getDateMessage() {
+    public Timestamp getDateMessage() {
         return dateMessage;
     }
 
@@ -38,7 +39,7 @@ public class Message implements Serializable {
         this.idRecepteur = idRecepteur;
     }
 
-    public void setDateMessage(Date dateMessage) {
+    public void setDateMessage(Timestamp dateMessage) {
         this.dateMessage = dateMessage;
     }
 
