@@ -21,7 +21,7 @@ public class BlogTest {
 //        for(Blog b: blogs){
 //            System.out.println(b.toString());
 //        }
-        
+
 //
 //        DAOFactory daoFactory=DAOFactory.getInstance();
 //        EvenementDao eventDao =daoFactory.getEvenementImpl();
