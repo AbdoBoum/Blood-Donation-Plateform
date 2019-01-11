@@ -45,7 +45,7 @@ public class EvenementDaoImpl implements EvenementDao {
     }
 
     @Override
-    public void setEvenement(Evenement evenement) {
+    public void insertEvenement(Evenement evenement) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{

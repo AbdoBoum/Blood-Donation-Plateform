@@ -46,7 +46,7 @@ public class CentreDaoImpl implements CentreDao {
     }
 
     @Override
-    public void setCentre(Centre centre) {
+    public void insertCentre(Centre centre) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{

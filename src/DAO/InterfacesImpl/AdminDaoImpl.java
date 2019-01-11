@@ -19,7 +19,7 @@ public class AdminDaoImpl implements AdminDao {
     }
 
     @Override
-    public void setAdmin(Admin admin) {
+    public void insertAdmin(Admin admin) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
