@@ -52,49 +52,4 @@ public class DAOFactory {
         return new DonnateurDaoImpl(this);
     }
 
-//
-//    public static void main(String[] args) {
-//
-//
-//        DAOFactory daoFactory=DAOFactory.getInstance();
-//        AdminDao adminDao=daoFactory.getAdminDaoImpl();
-
-
-
-//        Admin admin=adminDao.getAdmin(1);
-//        System.out.println(admin.getIdAdmin()+" "+admin.getNomAdmin()+" "+admin.getPrenomAdmin());
-//        admin.setPrenomAdmin("prenomToto");
-//        adminDao.updateAdmin(admin);
-//        admin=adminDao.getAdmin(1);
-//        System.out.println(admin.getIdAdmin()+" "+admin.getNomAdmin()+" "+admin.getPrenomAdmin());
-//
-//        admin.setPrenomAdmin("asdf");
-//        admin.setNomAdmin("test test");
-//        adminDao.setAdmin(admin);
-
-//        List<Admin> admins=adminDao.getAllAdmins();
-//
-//        for (Admin admino:admins) {
-//            System.out.println(admino.getIdAdmin()+" "+admino.getNomAdmin()+" "+admino.getPrenomAdmin());
-//        }
-
-
-//        CentreDao centreDao =daoFactory.getCentreDaoImp();
-//        Centre centre=new Centre();
-//        centre.setNameCentre("testNameCentre");
-//        centre.setIdVille(1);
-//        centre.setTeleCentre("006060606");
-//        centre.setEmailCentre("gmail@gmail.com");
-//        centre.setIdAdmin(1);
-//        centre.setPasswordCentre("password");
-//        centreDao.setCentre(centre);
-//        Centre cent=centreDao.getCentre(1);
-//        cent.setNameCentre("helloWorld");
-//        centreDao.updateCentre(cent);
-//        System.out.println(cent.getIdCentre()+" "+cent.getIdAdmin()+" "+cent.getNameCentre());
-//        List<Centre> centres=centreDao.getAllCentre();
-//        for (Centre cnt: centres) {
-//            System.out.println(cnt.getIdCentre()+" "+cnt.getIdAdmin()+" "+cnt.getNameCentre());
-//        }
-    }
 }
