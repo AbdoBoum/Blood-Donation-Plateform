@@ -3,8 +3,9 @@ package DAO.Tests;
 import DAO.DAOFactory;
 import DAO.Interfaces.EvenementDao;
 import DAO.InterfacesImpl.BlogDaoImpl;
+import DAO.InterfacesImpl.VilleDaoImpl;
 import Models.Blog;
-import Models.Evenement;
+import Models.Ville;
 
 import java.util.Date;
 import java.util.List;

@@ -37,7 +37,7 @@ public class BlogDaoImpl implements BlogDao {
             statement.setTimestamp(5, blog.getDateBlog());
             statement.executeUpdate();
 
-            /* select the inserted blog to get the id */
+            /* the id is auto_increment so we have to take it from the data base and it will be the last id inserted(max)*/
             statement1 = connection.prepareStatement("select MAX(id_blog) AS MAXID , date_blog AS DateBlog  from Blog");
             resultSet = statement1.executeQuery();
             if(resultSet.next()){
@@ -114,7 +114,6 @@ public class BlogDaoImpl implements BlogDao {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        Blog blog ;
         List<Blog> blogs = new ArrayList<Blog>();
 
         try{
