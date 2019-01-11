@@ -21,7 +21,7 @@ public class DAOFactory {
         }catch (ClassNotFoundException e){
             e.printStackTrace();
         }
-        return new DAOFactory("jdbc:mysql//localhost:3306/blood_donation","root","");
+        return new DAOFactory("jdbc:mysql://localhost:3306/blood_donation","root","");
     }
 
     public Connection getConnection() throws SQLException {
