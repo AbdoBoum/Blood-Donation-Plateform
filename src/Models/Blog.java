@@ -12,6 +12,15 @@ public class Blog implements Serializable {
     private Date dateBlog;
     private int idDonateur;
 
+    public Blog(int idBlog, String titreBlog, String contenueBlog, String pathImgBlog, Date dateBlog, int idDonateur) {
+        this.idBlog = idBlog;
+        this.titreBlog = titreBlog;
+        this.contenueBlog = contenueBlog;
+        this.pathImgBlog = pathImgBlog;
+        this.dateBlog = dateBlog;
+        this.idDonateur = idDonateur;
+    }
+
     public int getIdBlog() {
         return idBlog;
     }
