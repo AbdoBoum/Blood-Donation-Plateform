@@ -10,7 +10,7 @@ public interface BlogDao {
     /* insert a blog*/
     public Blog insertBlog(Blog blog);
 
-    /* fetch a blog by title*/
+    /* fetch a blog by title: may return multiple blogs*/
     public List<Blog> FetchBlogByTitle(String title);
 
     /* fetch a blog by id*/
