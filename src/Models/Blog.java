@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class Blog implements Serializable {
+
     private int idBlog;
     private String titreBlog;
     private String contenueBlog;
