@@ -2,16 +2,20 @@ package DAO.Tests;
 
 import DAO.DAOFactory;
 import DAO.Interfaces.EvenementDao;
+import DAO.Interfaces.StockDao;
 import DAO.InterfacesImpl.BlogDaoImpl;
 import DAO.InterfacesImpl.VilleDaoImpl;
 import Models.Blog;
+import Models.Stock;
 import Models.Ville;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 public class BlogTest {
     public static void main(String[] args){
+
 //        BlogDaoImpl dao = new BlogDaoImpl(DAOFactory.getInstance());
 //        Blog b1 = dao.insertBlog(new Blog("Slider", "Slider is a noob man", "https", 5, new java.sql.Timestamp(new Date().getTime())));
 //        Blog b2 = dao.insertBlog(new Blog("Bodle", "Bodle is a riche man", "httpds", 5, new java.sql.Timestamp(new Date().getTime())));
@@ -85,6 +89,25 @@ public class BlogTest {
 //            System.out.println(cnt.getIdCentre()+" "+cnt.getIdAdmin()+" "+cnt.getNameCentre());
 //        }
 
+
+
+        //        DAOFactory daoFactory=DAOFactory.getInstance();
+//        StockDao stockDao=daoFactory.getStockImpl();
+//
+//        Timestamp tm=new Timestamp(new Date().getTime());
+//        stockDao.insertStock(new Stock(1,1,tm,2));
+//
+//        Stock stck=stockDao.getStockById(1,1,tm);
+////        stck.setQuantiteStock(100);
+//        stockDao.deleteStock(stck);
+//
+//        System.out.println(stck.getIdGroupeSang()+"  "+stck.getDateStock());
+
+//        List<Stock> stocks=stockDao.getStockByIdGroupeSang(1);
+//
+//        for (Stock stock:stocks) {
+//            System.out.println(stock.getIdGroupeSang()+"  "+stock.getDateStock());
+//        }
     }
 
 }

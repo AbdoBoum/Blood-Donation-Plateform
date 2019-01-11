@@ -31,6 +31,8 @@ public class DAOFactory {
         return DriverManager.getConnection(url,username,password);
     }
 
+    public StockDao getStockImpl(){ return new StockDaoImpl(this); }
+
     public EvenementDao getEvenementImpl(){ return new EvenementDaoImpl(this);   }
 
 
