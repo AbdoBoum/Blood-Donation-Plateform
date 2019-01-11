@@ -52,12 +52,12 @@ public class DAOFactory {
         return new DonnateurDaoImpl(this);
     }
 
-
-    public static void main(String[] args) {
-
-
-        DAOFactory daoFactory=DAOFactory.getInstance();
-        AdminDao adminDao=daoFactory.getAdminDaoImpl();
+//
+//    public static void main(String[] args) {
+//
+//
+//        DAOFactory daoFactory=DAOFactory.getInstance();
+//        AdminDao adminDao=daoFactory.getAdminDaoImpl();
 
 
 
