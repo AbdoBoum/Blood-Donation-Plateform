@@ -66,11 +66,12 @@ public class VilleDaoImpl implements VilleDao {
             resultSet = preparedStatement.executeQuery();
             exctractInfos(villes, resultSet);
             preparedStatement.close();
+            return villes;
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        return villes;
+        return null;
     }
 
     @Override
@@ -113,10 +114,11 @@ public class VilleDaoImpl implements VilleDao {
             resultSet = preparedStatement.executeQuery();
             exctractInfos(villes, resultSet);
             preparedStatement.close();
+            return villes;
         }catch (Exception e){
             e.printStackTrace();
         }
-        return villes;
+        return null;
     }
 
     @Override

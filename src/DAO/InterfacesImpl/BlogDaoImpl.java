@@ -68,13 +68,12 @@ public class BlogDaoImpl implements BlogDao {
             statement.setString(1, "%" + title + "%");
             resultSet = statement.executeQuery();
             exctractInfos(blogs, resultSet);
-
-            /* close preparedStatement */
             statement.close();
+            return blogs;
         }catch (Exception e){
             e.printStackTrace();
         }
-        return blogs;
+        return null;
     }
 
     @Override
@@ -127,10 +126,11 @@ public class BlogDaoImpl implements BlogDao {
 
             /* close preparedStatement */
             statement.close();
+            return blogs;
         }catch (Exception e){
             e.printStackTrace();
         }
-        return blogs;
+        return null;
     }
 
     @Override
