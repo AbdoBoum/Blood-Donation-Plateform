@@ -1,6 +1,8 @@
 package DAO;
 
+import DAO.Interfaces.DonnateurDao;
 import DAO.Interfaces.GroupSangDao;
+import DAO.InterfacesImpl.DonnateurDaoImpl;
 import DAO.InterfacesImpl.GroupSangDaoImpl;
 
 import java.sql.Connection;
@@ -33,5 +35,9 @@ public class DAOFactory {
 
     public GroupSangDao getGroupSangDaoImpl(){
         return new GroupSangDaoImpl(this);
+    }
+
+    public DonnateurDao getDonnateurDaoImpl(){
+        return new DonnateurDaoImpl(this);
     }
 }
