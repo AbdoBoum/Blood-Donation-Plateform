@@ -18,7 +18,7 @@ public class Servlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter writer = response.getWriter();
-        writer.println("test a jmo");
+        writer.println("test a wld 3amti");
         DAOFactory daoFactory = DAOFactory.getInstance();
         try {
             daoFactory.getConnection();
