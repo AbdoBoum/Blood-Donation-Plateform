@@ -1,20 +1,11 @@
 package DAO;
 
-import DAO.Interfaces.AdminDao;
-import DAO.Interfaces.CentreDao;
-import DAO.Interfaces.DonnateurDao;
-import DAO.Interfaces.GroupSangDao;
-import DAO.InterfacesImpl.AdminDaoImpl;
-import DAO.InterfacesImpl.CentreDaoImpl;
-import DAO.InterfacesImpl.DonnateurDaoImpl;
-import DAO.InterfacesImpl.GroupSangDaoImpl;
-import Models.Admin;
-import Models.Centre;
+import DAO.Interfaces.*;
+import DAO.InterfacesImpl.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
 
 public class DAOFactory {
     private String url;
@@ -40,6 +31,9 @@ public class DAOFactory {
         return DriverManager.getConnection(url,username,password);
     }
 
+    public EvenementDao getEvenementImpl(){ return new EvenementDaoImpl(this);   }
+
+
     public CentreDao getCentreDaoImpl(){ return new CentreDaoImpl(this);    }
 
     public AdminDao getAdminDaoImpl(){ return new AdminDaoImpl(this);  }
@@ -51,5 +45,6 @@ public class DAOFactory {
     public DonnateurDao getDonnateurDaoImpl(){
         return new DonnateurDaoImpl(this);
     }
+
 
 }

@@ -31,6 +31,7 @@ public class EvenementDaoImpl implements EvenementDao {
             ResultSet rs=preparedStatement.executeQuery();
             if(rs.next()){
                 evenement=new Evenement();
+                evenement.setIdEvenement(rs.getInt("id_evenement"));
                 evenement.setTitreEvenement(rs.getString("titre_evenement"));
                 evenement.setDesciptionEvenement(rs.getString("description_evenement"));
                 evenement.setDateEvenement(rs.getTimestamp("date_evenement"));
@@ -139,6 +140,7 @@ public class EvenementDaoImpl implements EvenementDao {
             evenements=new ArrayList<>();
             while(rs.next()){
                 Evenement evenement=new Evenement();
+                evenement.setIdEvenement(rs.getInt("id_evenement"));
                 evenement.setTitreEvenement(rs.getString("titre_evenement"));
                 evenement.setDesciptionEvenement(rs.getString("description_evenement"));
                 evenement.setDateEvenement(rs.getTimestamp("date_evenement"));
