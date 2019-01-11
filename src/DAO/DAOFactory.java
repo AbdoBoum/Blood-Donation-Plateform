@@ -1,5 +1,8 @@
 package DAO;
 
+import DAO.Interfaces.GroupSangDao;
+import DAO.InterfacesImpl.GroupSangDaoImpl;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,5 +29,9 @@ public class DAOFactory {
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url,username,password);
+    }
+
+    public GroupSangDao getGroupSangDaoImpl(){
+        return new GroupSangDaoImpl(this);
     }
 }

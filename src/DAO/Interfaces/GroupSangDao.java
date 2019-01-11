@@ -1,5 +1,7 @@
 package DAO.Interfaces;
 
-public interface GroupSangDao {
+import Models.GroupSang;
 
+public interface GroupSangDao {
+    GroupSang getGroupSang(int idGrp);
 }
