@@ -8,6 +8,17 @@ public class Notification implements Serializable {
     private String descriptionNotification;
     private boolean isViewed;
 
+    public Notification(){
+        super();
+    }
+
+    public Notification(int idDonnateur, int idDemande, String descriptionNotification, boolean isViewed) {
+        this.idDonnateur = idDonnateur;
+        this.idDemande = idDemande;
+        this.descriptionNotification = descriptionNotification;
+        this.isViewed = isViewed;
+    }
+
     public int getIdDonnateur() {
         return idDonnateur;
     }

@@ -1,24 +1,35 @@
 package Models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Stock implements Serializable {
 
     private int idGroupeSang;
     private int idCentre;
-    private Date dateStock;
+    private Timestamp dateStock;
     private int quantiteStock;
 
     public int getIdGroupeSang() {
         return idGroupeSang;
     }
 
+    public Stock() {
+        super();
+    }
+
+    public Stock(int idGroupeSang, int idCentre, Timestamp dateStock, int quantiteStock) {
+        this.idGroupeSang = idGroupeSang;
+        this.idCentre = idCentre;
+        this.dateStock = dateStock;
+        this.quantiteStock = quantiteStock;
+    }
+
     public int getIdCentre() {
         return idCentre;
     }
 
-    public Date getDateStock() {
+    public Timestamp getDateStock() {
         return dateStock;
     }
 
@@ -34,7 +45,7 @@ public class Stock implements Serializable {
         this.idCentre = idCentre;
     }
 
-    public void setDateStock(Date dateStock) {
+    public void setDateStock(Timestamp dateStock) {
         this.dateStock = dateStock;
     }
 

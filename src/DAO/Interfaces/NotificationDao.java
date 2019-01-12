@@ -10,7 +10,7 @@ public interface NotificationDao {
     public Notification insertNotification(Notification notification);
 
     /* fetch a Notification by id*/
-    public Notification fetchNotificationById(int idNotification);
+    public Notification fetchNotificationById(int idDonnateur, int idDemande);
 
     /* fetch all Notifications*/
     public List<Notification> getAllNotifications();
@@ -18,6 +18,6 @@ public interface NotificationDao {
     /* update a Notification: set status to viewed */
     public Notification updateNotification(Notification notification);
 
-    /* delete  a Notification*/
-    public void deleteNotification(int idNotification);
+    /* delete  a Notification
+    public void deleteNotification(int idNotification);*/
 }

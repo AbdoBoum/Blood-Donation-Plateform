@@ -21,6 +21,4 @@ public interface VilleDao {
     /* delete city*/
     public void deleteVille(int idVille);
 
-    /* update city*/
-    public Ville updateVille(Ville ville);
 }

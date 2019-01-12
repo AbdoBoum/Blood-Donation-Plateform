@@ -6,8 +6,11 @@ public class Ville implements Serializable {
     private int idVille;
     private String nomVille;
 
-    public Ville(int idVille, String nomVille) {
-        this.idVille = idVille;
+    public Ville(){
+        super();
+    }
+
+    public Ville( String nomVille) {
         this.nomVille = nomVille;
     }
 
@@ -25,5 +28,13 @@ public class Ville implements Serializable {
 
     public void setNomVille(String nomVille) {
         this.nomVille = nomVille;
+    }
+
+    @Override
+    public String toString() {
+        return "Ville{" +
+                "idVille=" + idVille +
+                ", nomVille='" + nomVille + '\'' +
+                '}';
     }
 }
