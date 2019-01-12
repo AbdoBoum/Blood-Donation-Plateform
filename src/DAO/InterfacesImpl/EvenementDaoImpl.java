@@ -13,7 +13,7 @@ import java.util.List;
 
 public class EvenementDaoImpl implements EvenementDao {
 
-    DAOFactory daoFactory=null;
+    DAOFactory daoFactory = null;
 
     public EvenementDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;

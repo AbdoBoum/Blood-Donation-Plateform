@@ -19,6 +19,6 @@ public interface VilleDao {
     public List<Ville> getAllVille();
 
     /* delete city*/
-    public void deleteVille(int idVille);
+    public boolean deleteVille(int idVille);
 
 }

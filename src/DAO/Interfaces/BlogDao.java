@@ -23,5 +23,5 @@ public interface BlogDao {
     public Blog updateBlog(Blog blog);
 
     /* delete  a blog*/
-    public void deleteBlog(int idBlog);
+    public boolean deleteBlog(int idBlog);
 }

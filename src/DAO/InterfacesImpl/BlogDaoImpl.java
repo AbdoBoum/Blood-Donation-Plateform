@@ -97,11 +97,9 @@ public class BlogDaoImpl implements BlogDao {
                 blog.setPathImgBlog(resultSet.getString(4));
                 blog.setIdDonateur(resultSet.getInt(5));
                 blog.setDateBlog(resultSet.getTimestamp(6));
+                statement.close();
                 return blog;
             }
-
-            /* close preparedStatement */
-            statement.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -156,7 +154,7 @@ public class BlogDaoImpl implements BlogDao {
     }
 
     @Override
-    public void deleteBlog(int idBlog) {
+    public boolean deleteBlog(int idBlog) {
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -166,10 +164,11 @@ public class BlogDaoImpl implements BlogDao {
             statement.setInt(1, idBlog);
             statement.executeUpdate();
             statement.close();
+            return true;
         }catch (Exception e){
             e.printStackTrace();
         }
-        return;
+        return false;
     }
 
     /* method to extract information from Blog table and put theme into a list*/

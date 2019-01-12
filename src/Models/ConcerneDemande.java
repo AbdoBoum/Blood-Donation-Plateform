@@ -6,6 +6,10 @@ public class ConcerneDemande implements Serializable {
     private int idDemande;
     private int idGroupeSang;
 
+    public ConcerneDemande(){
+        super();
+    }
+
     public ConcerneDemande(int idDemande, int idGroupeSang) {
         this.idDemande = idDemande;
         this.idGroupeSang = idGroupeSang;
@@ -25,5 +29,13 @@ public class ConcerneDemande implements Serializable {
 
     public void setIdGroupeSang(int idGroupeSang) {
         this.idGroupeSang = idGroupeSang;
+    }
+
+    @Override
+    public String toString() {
+        return "ConcerneDemande{" +
+                "idDemande=" + idDemande +
+                ", idGroupeSang=" + idGroupeSang +
+                '}';
     }
 }

@@ -122,7 +122,7 @@ public class VilleDaoImpl implements VilleDao {
     }
 
     @Override
-    public void deleteVille(int idVille) {
+    public boolean deleteVille(int idVille) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -132,10 +132,11 @@ public class VilleDaoImpl implements VilleDao {
             preparedStatement.setInt(1, idVille);
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            return true;
         }catch (Exception e){
             e.printStackTrace();
         }
-        return;
+        return false;
 
     }
 
