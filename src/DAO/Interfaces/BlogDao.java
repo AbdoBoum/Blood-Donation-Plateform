@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface BlogDao {
 
+    final int limit = 6;
+
     /* insert a blog*/
     public Blog insertBlog(Blog blog);
 
@@ -24,4 +26,7 @@ public interface BlogDao {
 
     /* delete  a blog*/
     public boolean deleteBlog(int idBlog);
+
+    /* get 6 blog by page*/
+    public List<Blog> getBlogByPagination(int PageNumber);
 }

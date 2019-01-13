@@ -13,6 +13,19 @@ public class Demande implements Serializable {
     private String pathImgDemande;
     private boolean isUrgent;
     private List<ConcerneDemande> sangGroups = new ArrayList<>();
+    private boolean isActive;
+
+    public void setSangGroups(List<ConcerneDemande> sangGroups) {
+        this.sangGroups = sangGroups;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
 
     public int getIdDemande() {
         return idDemande;
