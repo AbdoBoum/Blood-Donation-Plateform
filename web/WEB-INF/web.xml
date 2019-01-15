@@ -12,7 +12,7 @@
     
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
+        <url-pattern>//</url-pattern>
     </servlet-mapping>
 
     <servlet>
