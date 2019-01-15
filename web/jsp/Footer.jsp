@@ -8,7 +8,7 @@
 
 <footer class="page-footer text-center font-small mt-4 wow fadeIn">
     <div class="pb-4 pt-4">
-        <hr class="my-4">
+
         <div class="pb-4">
             <a href="#"><i class="fa fa-facebook mr-3"></i></a>
             <a href="#"><i class="fa fa-twitter mr-3"></i></a>
