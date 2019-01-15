@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="css/index.css">
 <link rel="stylesheet" href="css/faq.css">
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark top-nav-collapse">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
     <div class="container">
         <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
             <img src="img/logo.png" style="height: 38px; margin-top: -2px;" class="mr-4">
