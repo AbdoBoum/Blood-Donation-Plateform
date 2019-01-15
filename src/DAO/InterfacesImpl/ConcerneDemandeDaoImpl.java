@@ -14,7 +14,7 @@ public class ConcerneDemandeDaoImpl implements ConcerneDemandeDao {
 
     private DAOFactory daoFactory;
 
-    public ConcerneDemandeDaoImpl(DAOFactory daoFactory){
+    public ConcerneDemandeDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
 
@@ -30,7 +30,7 @@ public class ConcerneDemandeDaoImpl implements ConcerneDemandeDao {
             preparedStatement.setInt(2, concerneDemande.getIdGroupeSang());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return concerneDemande;
@@ -49,14 +49,14 @@ public class ConcerneDemandeDaoImpl implements ConcerneDemandeDao {
             preparedStatement.setInt(1, idDemande);
             preparedStatement.setInt(2, idGroupeSang);
             resultSet = preparedStatement.executeQuery();
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 concerneDemande = new ConcerneDemande();
                 concerneDemande.setIdDemande(resultSet.getInt(1));
                 concerneDemande.setIdGroupeSang(resultSet.getInt(2));
                 preparedStatement.close();
                 return concerneDemande;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -70,11 +70,11 @@ public class ConcerneDemandeDaoImpl implements ConcerneDemandeDao {
         ConcerneDemande concerneDemande;
         List<ConcerneDemande> concerneDemandes = new ArrayList<ConcerneDemande>();
 
-        try{
+        try {
             connection = daoFactory.getConnection();
             preparedStatement = connection.prepareStatement("SELECT * from concerne_demande");
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 concerneDemande = new ConcerneDemande();
                 concerneDemande.setIdDemande(resultSet.getInt(1));
                 concerneDemande.setIdGroupeSang(resultSet.getInt(2));
@@ -82,7 +82,7 @@ public class ConcerneDemandeDaoImpl implements ConcerneDemandeDao {
             }
             preparedStatement.close();
             return concerneDemandes;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -101,7 +101,7 @@ public class ConcerneDemandeDaoImpl implements ConcerneDemandeDao {
             preparedStatement.executeUpdate();
             preparedStatement.close();
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;

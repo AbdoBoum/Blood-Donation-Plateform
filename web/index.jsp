@@ -5,6 +5,8 @@
     <title></title>
   </head>
   <body>
-
+    <%@ include file="jsp/Navbar.jsp"%>
+    <br/><br/><br/>
+    <%@ include file="jsp/Footer.jsp"%>
   </body>
 </html>

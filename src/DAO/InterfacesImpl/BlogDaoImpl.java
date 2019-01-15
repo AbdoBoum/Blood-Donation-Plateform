@@ -171,6 +171,11 @@ public class BlogDaoImpl implements BlogDao {
         return false;
     }
 
+    @Override
+    public List<Blog> getBlogByPagination(int PageNumber) {
+        return null;
+    }
+
     /* method to extract information from Blog table and put theme into a list*/
     public void exctractInfos(List<Blog> blogs, ResultSet resultSet) throws SQLException {
         while (resultSet.next()){
