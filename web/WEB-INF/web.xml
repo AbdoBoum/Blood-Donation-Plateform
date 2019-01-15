@@ -12,7 +12,17 @@
     
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
+        <url-pattern>//</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FAQ</servlet-name>
+        <servlet-class>Controllers.FaqServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>FAQ</servlet-name>
+        <url-pattern>/faq</url-pattern>
     </servlet-mapping>
 
 </web-app>

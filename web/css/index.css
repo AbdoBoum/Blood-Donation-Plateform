@@ -1,0 +1,43 @@
+.page-footer, .top-nav-collapse {
+  background-color: #AE1F23 !important;
+}
+
+.md-form input:focus:not([readonly]),
+.md-form textarea:focus:not([readonly]) {
+  box-shadow: 0 1px 0 0 #AE1F23 !important;
+  border-bottom: 1px solid #AE1F23 !important;
+}
+
+.md-form > label.active {
+  color: #AE1F23 !important;
+}
+
+.line-shape {
+  margin-left: calc(50% - 40px);
+  width: 80px;
+  height: 2px;
+  background-color: #777;
+  margin-top: 15px;
+<<<<<<< HEAD
+}
+
+.sticky-footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.dropdown-item:hover {
+  color: white !important;
+  background-color: #AE1F23 !important;
+}
+
+.highcharts-credits {
+  visibility: hidden !important;
+}
+
+.highcharts-container, .card {
+  width: 100% !important;
+=======
+>>>>>>> 108b67fcdb5fb5e3be67e674ccba1725e900402e
+}
