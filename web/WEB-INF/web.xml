@@ -25,4 +25,14 @@
         <url-pattern>/faq</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>BLOG</servlet-name>
+        <servlet-class>Controllers.BlogServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>BLOG</servlet-name>
+        <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+
 </web-app>
