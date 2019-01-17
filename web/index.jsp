@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
   <head>
-    <title></title>
+    <%@ include file="jsp/Header.jsp"%>
   </head>
   <body>
     <%@ include file="jsp/NavbarIndex.jsp"%>
