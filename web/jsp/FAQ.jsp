@@ -9,7 +9,6 @@
 <html>
 <head>
     <%@include file="Header.jsp" %>
-
 </head>
 <body>
 <!--- Navbar -->
