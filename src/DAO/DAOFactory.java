@@ -48,5 +48,9 @@ public class DAOFactory {
         return new DonnateurDaoImpl(this);
     }
 
+    public DemandeDao getDemandeDaoImpl(){
+        return new DemandeDaoImpl(this);
+    }
+
 
 }
