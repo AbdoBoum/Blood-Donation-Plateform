@@ -35,7 +35,6 @@ public class DAOFactory {
 
     public EvenementDao getEvenementImpl(){ return new EvenementDaoImpl(this);   }
 
-
     public CentreDao getCentreDaoImpl(){ return new CentreDaoImpl(this);    }
 
     public AdminDao getAdminDaoImpl(){ return new AdminDaoImpl(this);  }
@@ -48,5 +47,15 @@ public class DAOFactory {
         return new DonnateurDaoImpl(this);
     }
 
+    public BlogDao getBlogDaoImpl(){
+        return new BlogDaoImpl(this);
+    }
 
+    public NotificationDao getNotificationDaoImpl(){
+        return new NotificationDaoImpl(this);
+    }
+
+    public VilleDao getVilleDaoImpl(){
+        return new VilleDaoImpl(this);
+    }
 }
