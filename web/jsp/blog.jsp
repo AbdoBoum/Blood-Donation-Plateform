@@ -17,12 +17,15 @@
 <main>
     <div class="container">
         <br><br><br>
-
+    <div class="row mb-4 col-10">
         <form class="form-inline md-form mr-auto mb-4" action="blog">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="keyword">
             <button class="btn btn-red btn-rounded btn-sm my-0" type="submit">Search</button>
         </form>
 
+        <button type="button" class="btn btn-red m-auto">New Blog</button>
+
+    </div>
         <!--Section: Cards-->
         <section class="text-center">
 
@@ -40,7 +43,7 @@
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://www.healthline.com/hlcmsresource/images/Blood_Donation-1200x549-facebook.jpg"
-                                     allowfullscreen></img>
+                                     allowfullscreen/>
                             </div>
                         </div>
 
@@ -74,7 +77,7 @@
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
-                                     allowfullscreen></img>
+                                     allowfullscreen/>
                             </div>
                         </div>
 
@@ -108,7 +111,7 @@
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://ichef.bbci.co.uk/news/660/cpsprodpb/810A/production/_97043033_gettyimages-539205455.jpg"
-                                     allowfullscreen></img>
+                                     allowfullscreen/>
                             </div>
                         </div>
 
@@ -149,7 +152,7 @@
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
-                                     allowfullscreen></img>
+                                     allowfullscreen/>
                             </div>
                         </div>
 
@@ -183,7 +186,7 @@
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
-                                     allowfullscreen></img>
+                                     allowfullscreen/>
                             </div>
                         </div>
 
@@ -217,7 +220,7 @@
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
-                                     allowfullscreen></img>
+                                     allowfullscreen/>
                             </div>
                         </div>
 
@@ -287,8 +290,9 @@
         <!--Section: Cards-->
 
     </div>
+    <%@include file="Footer.jsp" %>
 </main>
 
-<%@include file="Footer.jsp" %>
+
 </body>
 </html>
