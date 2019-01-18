@@ -17,14 +17,16 @@
 <main>
     <div class="container">
         <br><br><br>
-    <div class="row mb-4 col-10">
-        <form class="form-inline md-form mr-auto mb-4" action="blog">
+    <div class="row mb-4">
+        <div class="col-6">
+        <form class="form-inline md-form mr-auto" action="blog">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="keyword">
             <button class="btn btn-red btn-rounded btn-sm my-0" type="submit">Search</button>
         </form>
-
-        <button type="button" class="btn btn-red m-auto">New Blog</button>
-
+        </div>
+        <div class="col-6">
+        <button type="button" class="btn btn-red  md-form ml-auto ${empty sessionScope.donnateur ? 'disabled': ''}">New Blog</button>
+        </div>
     </div>
         <!--Section: Cards-->
         <section class="text-center">
