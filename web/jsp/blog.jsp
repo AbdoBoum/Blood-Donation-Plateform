@@ -19,7 +19,7 @@
         <br><br><br>
 
         <form class="form-inline md-form mr-auto mb-4" action="blog">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="motCle">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="keyword">
             <button class="btn btn-red btn-rounded btn-sm my-0" type="submit">Search</button>
         </form>
 
@@ -36,7 +36,7 @@
                     <div class="card">
 
                         <!--Card image-->
-                        <div class="view overlay">
+                        <div class="overlay">
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://www.healthline.com/hlcmsresource/images/Blood_Donation-1200x549-facebook.jpg"
@@ -70,7 +70,7 @@
                     <div class="card">
 
                         <!--Card image-->
-                        <div class="view overlay">
+                        <div class="overlay">
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
@@ -104,7 +104,7 @@
                     <div class="card">
 
                         <!--Card image-->
-                        <div class="view overlay">
+                        <div class="overlay">
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://ichef.bbci.co.uk/news/660/cpsprodpb/810A/production/_97043033_gettyimages-539205455.jpg"
@@ -145,7 +145,7 @@
                     <div class="card">
 
                         <!--Card image-->
-                        <div class="view overlay">
+                        <div class="overlay">
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
@@ -179,7 +179,7 @@
                     <div class="card">
 
                         <!--Card image-->
-                        <div class="view overlay">
+                        <div class="overlay">
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
@@ -213,7 +213,7 @@
                     <div class="card">
 
                         <!--Card image-->
-                        <div class="view overlay">
+                        <div class="overlay">
                             <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                 <img class="embed-responsive-item"
                                      src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"

@@ -20,13 +20,13 @@ public class AddBlog extends HttpServlet {
     private BlogDao blog;
     private DAOFactory daoFactory;
     private Blog _blog;
-    //private Donnateur donnateur;
+    private Donnateur donnateur;
 
     private String isInserted;
 
     public static String SUCCESS_MSG = "succes";
     public static String FAILURE_MSG = "failure";
-    public static String EMPTY_FIELD = "empty";
+    public static String EMPTY_FIELD = "empty.";
 
     @Override
     public void init() throws ServletException {
@@ -56,9 +56,9 @@ public class AddBlog extends HttpServlet {
 
             part.write(savePath + File.separator);
 
-            _blog = new Blog(); //_blog.setIdDonateur(donnateur.getIdDonnateur());
+            _blog = new Blog(); _blog.setIdDonateur(donnateur.getIdDonnateur());
             _blog.setIdDonateur((int) Math.random());
-            _blog.setTitreBlog(title);
+            //_blog.setTitreBlog(title);
             _blog.setContenueBlog(description);
             _blog.setPathImgBlog(savePath);
             _blog.setDateBlog(new java.sql.Timestamp(new Date().getTime()));
@@ -75,15 +75,12 @@ public class AddBlog extends HttpServlet {
             }
 
         }
-
-
-        this.getServletContext().getRequestDispatcher("/jsp/blog.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //HttpSession session = request.getSession();
-        //donnateur = (Donnateur) session.getAttribute("donnateur");
+        HttpSession session = request.getSession();
+        donnateur = (Donnateur) session.getAttribute("donnateur");
 
     }
 

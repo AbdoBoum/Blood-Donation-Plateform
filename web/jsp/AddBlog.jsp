@@ -23,24 +23,31 @@
     <div class="section-title text-center wow zoomIn mt-5 font-weight-bold">
         <h1 class="h1-responsive">Create Blog</h1>
     </div>
-    <c:if test="${!empty isInserted}">
+
+    <!-- Test if user is connected-->
+    <c:if test="${not empty sessionScope.donnateur}">
+        <c:if test="${not empty isInserted}">
         <c:choose>
             <c:when test="${isInserted == 'succes'}">
-                <h5 class="h5 text-center  mt-4">
-                    <div class="alert alert-success">Blog Inserted .</div>
+                <h5 class='h5 text-center  mt-4'>
+                    <div class='alert alert-success'>Blog inserted</div>
                 </h5>
             </c:when>
             <c:when test="${isInserted == 'failure'}">
                 <h5 class="h5 text-center mt-4">
-                    <div class="alert alert-danger">Something goes wrong .</div>
+                    <div class="alert alert-danger">Something goes wrong</div>
                 </h5>
             </c:when>
             <c:otherwise>
                 <h5 class="h5 text-center mt-4">
-                    <div class="alert alert-danger">Please complete all fields .</div>
+                    <div class="alert alert-danger">Please complete all fields</div>
                 </h5>
             </c:otherwise>
         </c:choose>
+    </c:if>
+    </c:if>
+    <c:if test="${empty sessionScope.donnateur}">
+        <c:redirect url="login.jsp"></c:redirect>
     </c:if>
     <form action="addBlog" method="post" enctype="multipart/form-data">
 
