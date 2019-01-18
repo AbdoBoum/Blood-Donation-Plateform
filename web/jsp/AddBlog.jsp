@@ -15,13 +15,33 @@
 <body>
 <%@include file="Navbar.jsp" %>
 
+
 <div class="container col-md-8">
 
     <br><br>
 
     <div class="section-title text-center wow zoomIn mt-5 font-weight-bold">
-        <h1>Create Blog</h1>
+        <h1 class="h1-responsive">Create Blog</h1>
     </div>
+    <c:if test="${!empty isInserted}">
+        <c:choose>
+            <c:when test="${isInserted == 'succes'}">
+                <h5 class="h5 text-center  mt-4">
+                    <div class="alert alert-success">Blog Inserted .</div>
+                </h5>
+            </c:when>
+            <c:when test="${isInserted == 'failure'}">
+                <h5 class="h5 text-center mt-4">
+                    <div class="alert alert-danger">Something goes wrong .</div>
+                </h5>
+            </c:when>
+            <c:otherwise>
+                <h5 class="h5 text-center mt-4">
+                    <div class="alert alert-danger">Please complete all fields .</div>
+                </h5>
+            </c:otherwise>
+        </c:choose>
+    </c:if>
     <form action="addBlog" method="post" enctype="multipart/form-data">
 
         <!-- Title input -->
