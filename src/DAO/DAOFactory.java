@@ -47,7 +47,11 @@ public class DAOFactory {
         return new DonnateurDaoImpl(this);
     }
 
-    public BlogDao getBlogDaoImpl(){
+    public DemandeDao getDemandeDaoImpl(){
+        return new DemandeDaoImpl(this);
+    }
+
+    public BlogDao getBlogDaoImpl() {
         return new BlogDaoImpl(this);
     }
 
