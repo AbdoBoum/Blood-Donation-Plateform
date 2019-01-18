@@ -21,7 +21,11 @@ public class AddBlog extends HttpServlet {
     private DAOFactory daoFactory;
     private Blog _blog;
     private Donnateur donnateur;
-    private boolean isInserted;
+
+    private String isInserted;
+
+    public static String SUCCESS_MSG = "succes";
+    public static String FAILURE_MSG = "failure";
 
     @Override
     public void init() throws ServletException {
@@ -56,12 +60,12 @@ public class AddBlog extends HttpServlet {
             _blog.setDateBlog(new java.sql.Timestamp(new Date().getTime())); _blog.setIdDonateur((int) Math.random());
 
             if (blog.insertBlog(_blog) != null) {
-                isInserted = true;
+                isInserted = SUCCESS_MSG;
                 request.setAttribute("isInserted", isInserted);
                 this.getServletContext().getRequestDispatcher("/jsp/Addblog.jsp").forward(request, response);
             }
             else {
-                isInserted = false;
+                isInserted = FAILURE_MSG;
                 request.setAttribute("isInserted", isInserted);
                 this.getServletContext().getRequestDispatcher("/jsp/Addblog.jsp").forward(request, response);
             }

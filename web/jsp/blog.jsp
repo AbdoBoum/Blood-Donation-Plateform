@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <%@include file="Navbar.jsp" %>
+<%@include file="Navbar.jsp" %>
 
-    <main>
+<main>
     <div class="container">
         <br><br><br>
 
@@ -289,6 +289,6 @@
     </div>
 </main>
 
-    <%@include file="Footer.jsp" %>
+<%@include file="Footer.jsp" %>
 </body>
 </html>
