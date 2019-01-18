@@ -27,12 +27,22 @@
 
     <servlet>
         <servlet-name>BLOG</servlet-name>
-        <servlet-class>Controllers.BlogServlet</servlet-class>
+        <servlet-class>Controllers.Blog.BlogServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>BLOG</servlet-name>
         <url-pattern>/blog</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddBlog</servlet-name>
+        <servlet-class>Controllers.Blog.AddBlog</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddBlog</servlet-name>
+        <url-pattern>/addBlog</url-pattern>
     </servlet-mapping>
 
 </web-app>

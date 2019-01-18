@@ -42,6 +42,7 @@ public class BlogDaoImpl implements BlogDao {
             resultSet = statement1.executeQuery();
             if(resultSet.next()){
                 blog.setIdBlog(resultSet.getInt("MAXID"));
+                return blog;
             }
 
             /* close preparedStatement */
@@ -50,7 +51,7 @@ public class BlogDaoImpl implements BlogDao {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return blog;
+        return null;
     }
 
     @Override
