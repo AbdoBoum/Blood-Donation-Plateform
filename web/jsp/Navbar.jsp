@@ -41,19 +41,20 @@
                 </li>
             </ul>
             <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item mr-1">
-                    <a href="#"
+                <!-- to set button invisible if the user is connected -->
+                <li class="nav-item mr-1 ${not empty sessionScope.donnateur ? 'invisible': ''}">
+                    <a href="/login"
                        class="nav-link border border-light rounded"
                        target="_blank">
                         <i class="fas fa-sign-in-alt mr-2"></i>Sign in
                     </a>
                 </li>
-                <li class="nav-item mr-1">
+                <li class="nav-item mr-1 ${not empty sessionScope.donnateur ? 'invisible': ''}">
                     <a class="nav-link border-light">
                         or
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ${not empty sessionScope.donnateur ? 'invisible': ''}">
                     <a href="#"
                        class="nav-link border border-light rounded"
                        target="_blank">
