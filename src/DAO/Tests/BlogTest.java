@@ -5,6 +5,7 @@ import DAO.Interfaces.EvenementDao;
 import DAO.Interfaces.StockDao;
 import DAO.InterfacesImpl.BlogDaoImpl;
 import DAO.InterfacesImpl.VilleDaoImpl;
+import Helper.Utile;
 import Models.Blog;
 import Models.Stock;
 import Models.Ville;
@@ -22,6 +23,7 @@ public class BlogTest {
 //            System.out.println(b.toString());
 //       }
 
+            System.out.println(Utile.stringToSha256("test"));
 //
 //        DAOFactory daoFactory=DAOFactory.getInstance();
 //        EvenementDao eventDao =daoFactory.getEvenementImpl();

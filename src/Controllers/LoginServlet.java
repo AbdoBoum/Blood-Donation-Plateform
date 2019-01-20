@@ -3,6 +3,7 @@ package Controllers;
 import DAO.DAOFactory;
 import DAO.Interfaces.BlogDao;
 import DAO.Interfaces.DonnateurDao;
+import Helper.Utile;
 import Models.Blog;
 import Models.Donnateur;
 
@@ -32,7 +33,7 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        donnateur = donnateurDao.getDonnateur(email, password);
+        donnateur = donnateurDao.getDonnateur(email, Utile.stringToSha256(password));
 
         if(donnateur != null){
             HttpSession session = request.getSession();

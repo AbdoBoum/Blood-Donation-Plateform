@@ -26,7 +26,7 @@
         </div>
 
 
-        <div class="col-6">
+        <div class="col-md-6 text-right mt-3">
 
                 <a class="btn btn-red ${empty sessionScope.donnateur ? 'disabled': ''}" href="addBlog">New Blog</a>
 
