@@ -57,12 +57,9 @@ public class AddBlog extends HttpServlet {
             part.write(savePath + File.separator);
 
             _blog = new Blog(); _blog.setIdDonateur(donnateur.getIdDonnateur());
-            _blog.setIdDonateur((int) Math.random());
-            //_blog.setTitreBlog(title);
-            _blog.setContenueBlog(description);
+            _blog.setTitreBlog(title); _blog.setContenueBlog(description);
             _blog.setPathImgBlog(savePath);
             _blog.setDateBlog(new java.sql.Timestamp(new Date().getTime()));
-            _blog.setIdDonateur((int) Math.random());
 
             if (blog.insertBlog(_blog) != null) {
                 isInserted = SUCCESS_MSG;
@@ -78,7 +75,7 @@ public class AddBlog extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
         HttpSession session = request.getSession();
         donnateur = (Donnateur) session.getAttribute("donnateur");
 

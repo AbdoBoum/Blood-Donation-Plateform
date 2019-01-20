@@ -44,8 +44,7 @@
                 <!-- to set button invisible if the user is connected -->
                 <li class="nav-item mr-1 ${not empty sessionScope.donnateur ? 'invisible': ''}">
                     <a href="/login"
-                       class="nav-link border border-light rounded"
-                       target="_blank">
+                       class="nav-link border border-light rounded">
                         <i class="fas fa-sign-in-alt mr-2"></i>Sign in
                     </a>
                 </li>
@@ -56,8 +55,7 @@
                 </li>
                 <li class="nav-item ${not empty sessionScope.donnateur ? 'invisible': ''}">
                     <a href="#"
-                       class="nav-link border border-light rounded"
-                       target="_blank">
+                       class="nav-link border border-light rounded">
                         <i class="fas fa-user-plus mr-2"></i>Sign up
                     </a>
                 </li>

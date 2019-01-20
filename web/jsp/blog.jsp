@@ -24,9 +24,14 @@
             <button class="btn btn-red btn-rounded btn-sm my-0" type="submit">Search</button>
         </form>
         </div>
+
+
         <div class="col-6">
-        <button type="button" class="btn btn-red  md-form ml-auto ${empty sessionScope.donnateur ? 'disabled': ''}">New Blog</button>
+
+                <a class="btn btn-red ${empty sessionScope.donnateur ? 'disabled': ''}" href="addBlog">New Blog</a>
+
         </div>
+
     </div>
         <!--Section: Cards-->
         <section class="text-center">
@@ -91,7 +96,7 @@
                             <p class="card-text">Don’t let these misconceptions stop you from becoming a hero – one bag
                                 of blood can save three lives
                                 .</p>
-                            <a href="#" target="_blank" class="btn btn-red btn-md">Read More
+                            <a href="#" class="btn btn-red btn-md">Read More
                                 <i class="fa fa-play ml-2"></i>
                             </a>
                         </div>
@@ -166,7 +171,7 @@
                             <p class="card-text">Don’t let these misconceptions stop you from becoming a hero – one bag
                                 of blood can save three lives
                                 .</p>
-                            <a href="#" target="_blank" class="btn btn-red btn-md">Read More
+                            <a href="#" class="btn btn-red btn-md">Read More
                                 <i class="fa fa-play ml-2"></i>
                             </a>
                         </div>
