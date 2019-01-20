@@ -6,9 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/faq.css">
-
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
     <div class="container">
         <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
@@ -43,7 +40,7 @@
                     <a class="nav-link" href="/contact">Contact us</a>
                 </li>
             </ul>
-            <ul class="navbar-nav nav-flex-icons ${not empty sessionScope.donnateur ? 'invisible': ''}">
+            <ul class="navbar-nav nav-flex-icons">
                 <li class="nav-item mr-1 ${not empty sessionScope.donnateur ? 'invisible': ''}">
                     <a href="/login"
                        class="nav-link border border-light rounded">
@@ -55,12 +52,22 @@
                         or
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ${not empty sessionScope.donnateur ? 'invisible': ''}">
                     <a href="/login"
                        class="nav-link border border-light rounded">
-                        <i class="fas fa-user-plus mr-2"></i>Sign up
+                        <i class="fas fa-user-plus"></i>Sign up
                     </a>
                 </li>
+                <li class="nav-item dropdown ${empty sessionScope.donnateur ? 'invisible' : ''}">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="fas fa-user"></i> Profile </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                        <a class="dropdown-item" href="#">My account</a>
+                        <a class="dropdown-item" href="logout">Log out</a>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>

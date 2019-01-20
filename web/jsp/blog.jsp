@@ -5,7 +5,7 @@
   Time: 20:18
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 <html>
 <head>
     <%@include file="Header.jsp" %>
@@ -17,11 +17,11 @@
 <main>
     <div class="container">
         <br><br><br>
-    <div class="row mb-4">
+    <div class="row mb-4 mt-1">
         <div class="col-6">
         <form class="form-inline md-form mr-auto" action="blog">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="keyword">
-            <button class="btn btn-red btn-rounded btn-sm my-0" type="submit">Search</button>
+            <button class="btn btn-red btn-rounded btn-md my-0" type="submit">Search</button>
         </form>
         </div>
 

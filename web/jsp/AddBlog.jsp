@@ -47,7 +47,7 @@
     </c:if>
     </c:if>
     <c:if test="${empty sessionScope.donnateur}">
-        <c:redirect url="login.jsp"></c:redirect>
+        <c:redirect url="login"></c:redirect>
     </c:if>
     <form action="addBlog" method="post" enctype="multipart/form-data">
 

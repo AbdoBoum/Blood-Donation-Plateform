@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Login;
 
 import DAO.DAOFactory;
 import DAO.Interfaces.BlogDao;
