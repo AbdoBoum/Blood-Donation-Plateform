@@ -17,7 +17,7 @@
 <main>
     <div class="container">
         <br><br><br>
-    <div class="row mb-4 mt-1">
+    <div class="row mb-4 mt-3">
         <div class="col-6">
         <form class="form-inline md-form mr-auto" action="blog">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="keyword">
