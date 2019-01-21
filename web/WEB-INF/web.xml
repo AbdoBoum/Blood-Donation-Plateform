@@ -4,12 +4,12 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_4_0.xsd"
            version="4">
-    
+
     <servlet>
         <servlet-name>Test</servlet-name>
         <servlet-class>Controllers.Servlet</servlet-class>
     </servlet>
-    
+
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>//</url-pattern>
@@ -35,6 +35,20 @@
         <url-pattern>/blog</url-pattern>
     </servlet-mapping>
 
+
+    <!--- add demande servlet -->
+    <servlet>
+        <servlet-name>AddDemande</servlet-name>
+        <servlet-class>Controllers.AddDemandeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddDemande</servlet-name>
+        <url-pattern>/addDemande</url-pattern>
+    </servlet-mapping>
+
+    <!--- end add demande servlet -->
+
     <servlet>
         <servlet-name>AddBlog</servlet-name>
         <servlet-class>Controllers.Blog.AddBlog</servlet-class>
@@ -54,11 +68,30 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>affEvent</servlet-name>
-        <servlet-class>Controllers.Event.AffEvent</servlet-class>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>Controllers.Login.LoginServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>affEvent</servlet-name>
-        <url-pattern>/affEvent</url-pattern>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>Controllers.Login.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+  <servlet>
+    <servlet-name>affEvent</servlet-name>
+    <servlet-class>Controllers.Event.AffEvent</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>affEvent</servlet-name>
+    <url-pattern>/affEvent</url-pattern>
+  </servlet-mapping>
 </web-app>

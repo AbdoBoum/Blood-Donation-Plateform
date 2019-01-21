@@ -28,5 +28,5 @@ public interface BlogDao {
     public boolean deleteBlog(int idBlog);
 
     /* get 6 blog by page*/
-    public List<Blog> getBlogByPagination(int PageNumber);
+    public List<Blog> getBlogByPagination(int start, int total);
 }

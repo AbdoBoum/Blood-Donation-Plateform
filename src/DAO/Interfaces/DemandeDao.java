@@ -8,11 +8,18 @@ import java.util.List;
 
 public interface DemandeDao {
     boolean addDemande(Demande demande);
+
     List<Demande> getAllDemands();
-    List<Demande> getDemandsFiltred(boolean etatDemande, boolean isUrgent, int idGroupSang, Date date , String idVille);
+
+    List<Demande> getDemandsFiltred(boolean etatDemande, boolean isUrgent, int idGroupSang, Date date, String idVille);
+
     List<Demande> getAllDemandsOfCenter(int idCentre);
+
     boolean editDemande(boolean etatDemande);
+
     boolean deleteDemande(int idDemande);
+
     List<ConcerneDemande> getAllGroupesConcerned(int idDemande);
+
     boolean setAllGroupsConcerned(Demande demande);
 }

@@ -173,8 +173,23 @@ public class BlogDaoImpl implements BlogDao {
     }
 
     @Override
-    public List<Blog> getBlogByPagination(int PageNumber) {
-        return null;
+    public List<Blog> getBlogByPagination(int start, int total) {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Blog> blogs = new ArrayList<>();
+
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("SELECT  * FROM blog limit " + (start -1) + "," + total);
+            resultSet = preparedStatement.executeQuery();
+            exctractInfos(blogs, resultSet);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return blogs;
     }
 
     /* method to extract information from Blog table and put theme into a list*/

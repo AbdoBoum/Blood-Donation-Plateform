@@ -6,9 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/faq.css">
-
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
     <div class="container">
         <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
@@ -44,25 +41,33 @@
                 </li>
             </ul>
             <ul class="navbar-nav nav-flex-icons">
-                <li class="nav-item mr-1">
-                    <a href="#"
-                       class="nav-link border border-light rounded"
-                       target="_blank">
+                <li class="nav-item mr-1 ${not empty sessionScope.donnateur ? 'invisible': ''}">
+                    <a href="/login"
+                       class="nav-link border border-light rounded">
                         <i class="fas fa-sign-in-alt mr-2"></i>Sign in
                     </a>
                 </li>
-                <li class="nav-item mr-1">
+                <li class="nav-item mr-1 ${not empty sessionScope.donnateur ? 'invisible': ''}">
                     <a class="nav-link border-light">
                         or
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#"
-                       class="nav-link border border-light rounded"
-                       target="_blank">
-                        <i class="fas fa-user-plus mr-2"></i>Sign up
+                <li class="nav-item ${not empty sessionScope.donnateur ? 'invisible': ''}">
+                    <a href="/login"
+                       class="nav-link border border-light rounded">
+                        <i class="fas fa-user-plus"></i>Sign up
                     </a>
                 </li>
+                <li class="nav-item dropdown ${empty sessionScope.donnateur ? 'invisible' : ''}">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">
+                        <i class="fas fa-user"></i> Profile </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                        <a class="dropdown-item" href="#">My account</a>
+                        <a class="dropdown-item" href="logout">Log out</a>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>

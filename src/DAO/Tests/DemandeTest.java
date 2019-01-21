@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 public class DemandeTest {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         DAOFactory daoFactory = DAOFactory.getInstance();
         DemandeDao demandeDao = daoFactory.getDemandeDaoImpl();
         Demande demande = new Demande();
@@ -29,7 +29,6 @@ public class DemandeTest {
         concerneDemande.setIdGroupeSang(1);
         demande.addGroupeSang(concerneDemande);
         System.err.println(demandeDao.addDemande(demande));
-
 
     }
 }

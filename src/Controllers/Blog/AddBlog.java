@@ -21,7 +21,12 @@ public class AddBlog extends HttpServlet {
     private DAOFactory daoFactory;
     private Blog _blog;
     private Donnateur donnateur;
-    private boolean isInserted;
+
+    private String isInserted;
+
+    public static String SUCCESS_MSG = "succes";
+    public static String FAILURE_MSG = "failure";
+    public static String EMPTY_FIELD = "empty.";
 
     @Override
     public void init() throws ServletException {
@@ -39,42 +44,38 @@ public class AddBlog extends HttpServlet {
 
         String fileName = extractFileName(part);
 
-        String savePath = "C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img\\" + File.separator + fileName;
 
-        File fileSaveDirectory = new File(savePath);
+        if (title.trim().isEmpty() || description.trim().isEmpty() || part.getSize() == 0) {
+            isInserted = EMPTY_FIELD;
+            request.setAttribute("isInserted", isInserted);
+            this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
+        } else {
+            String savePath = "C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img\\" + File.separator + fileName;
 
-        part.write(savePath + File.separator);
+            File fileSaveDirectory = new File(savePath);
 
+            part.write(savePath + File.separator);
 
-        if (title.trim().isEmpty() || description.trim().isEmpty() ) {
-
-        }
-        else {
             _blog = new Blog(); _blog.setIdDonateur(donnateur.getIdDonnateur());
-           // _blog.setIdDonateur((int) Math.random());
-            _blog.setTitreBlog(title); _blog.setContenueBlog(description); _blog.setPathImgBlog(savePath);
-            _blog.setDateBlog(new java.sql.Timestamp(new Date().getTime())); _blog.setIdDonateur((int) Math.random());
+            _blog.setTitreBlog(title); _blog.setContenueBlog(description);
+            _blog.setPathImgBlog(savePath);
+            _blog.setDateBlog(new java.sql.Timestamp(new Date().getTime()));
 
             if (blog.insertBlog(_blog) != null) {
-                isInserted = true;
+                isInserted = SUCCESS_MSG;
                 request.setAttribute("isInserted", isInserted);
-                this.getServletContext().getRequestDispatcher("/jsp/Addblog.jsp").forward(request, response);
-            }
-            else {
-                isInserted = false;
+                this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
+            } else {
+                isInserted = FAILURE_MSG;
                 request.setAttribute("isInserted", isInserted);
-                this.getServletContext().getRequestDispatcher("/jsp/Addblog.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
             }
 
         }
-
-
-
-        this.getServletContext().getRequestDispatcher("/jsp/blog.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
         HttpSession session = request.getSession();
         donnateur = (Donnateur) session.getAttribute("donnateur");
 
