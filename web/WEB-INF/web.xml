@@ -35,4 +35,17 @@
         <url-pattern>/blog</url-pattern>
     </servlet-mapping>
 
+    <!--- add demande servlet -->
+    <servlet>
+        <servlet-name>AddDemande</servlet-name>
+        <servlet-class>Controllers.AddDemandeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddDemande</servlet-name>
+        <url-pattern>/addDemande</url-pattern>
+    </servlet-mapping>
+
+    <!--- end add demande servlet -->
+
 </web-app>
