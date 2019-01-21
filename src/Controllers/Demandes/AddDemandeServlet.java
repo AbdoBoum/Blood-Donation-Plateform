@@ -50,9 +50,6 @@ public class AddDemandeServlet extends HttpServlet {
 
         Part part = request.getPart("inputFile");
 
-        System.out.println(grps[0]+" grps "+grps[1]);
-        System.out.println(part.getSize()+" part");
-        System.out.println(title+" title");
 
         if(title.isEmpty() || description.isEmpty() || part.getSize()==0 || grps ==null || grps.length == 0){
             isInserted = Utile.EMPTY_FIELD;
