@@ -44,5 +44,21 @@
         <servlet-name>AddBlog</servlet-name>
         <url-pattern>/addBlog</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>addEvent</servlet-name>
+        <servlet-class>Controllers.AddEvent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addEvent</servlet-name>
+        <url-pattern>/addEvent</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>affEvent</servlet-name>
+        <servlet-class>Controllers.Event.AffEvent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>affEvent</servlet-name>
+        <url-pattern>/affEvent</url-pattern>
+    </servlet-mapping>
 </web-app>
