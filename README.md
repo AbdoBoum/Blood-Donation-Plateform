@@ -15,6 +15,6 @@ Authors:
 Supervised by: 
 <ul>
 	<li>
-		a href="https://www.linkedin.com/in/mahmoud-el-hamlaoui-466b8617/">Mahmoud El Hamlaoui</a>
+		<a href="https://www.linkedin.com/in/mahmoud-el-hamlaoui-466b8617/">Mahmoud El Hamlaoui</a>
 	</li>
 </ul>
