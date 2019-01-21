@@ -50,7 +50,7 @@ public class AddBlog extends HttpServlet {
             request.setAttribute("isInserted", isInserted);
             this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
         } else {
-            String savePath = "C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img\\" + File.separator + fileName;
+            String savePath = "F:\\JEE2019_Groupe4-3\\web\\img\\" + File.separator + fileName;
 
             File fileSaveDirectory = new File(savePath);
 
