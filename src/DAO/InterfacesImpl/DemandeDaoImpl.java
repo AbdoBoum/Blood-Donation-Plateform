@@ -21,19 +21,19 @@ public class DemandeDaoImpl implements DemandeDao {
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement prs = connection.prepareStatement(query);
-            prs.setTimestamp(1,demande.getDateDemande());
-            prs.setString(2,demande.getPathImgDemande());
-            prs.setString(3,demande.getDescriptionDemande());
-            prs.setBoolean(4,demande.isActive());
-            prs.setBoolean(5,demande.isUrgent());
-            prs.setInt(6,demande.getIdCentre());
+            prs.setTimestamp(1, demande.getDateDemande());
+            prs.setString(2, demande.getPathImgDemande());
+            prs.setString(3, demande.getDescriptionDemande());
+            prs.setBoolean(4, demande.isActive());
+            prs.setBoolean(5, demande.isUrgent());
+            prs.setInt(6, demande.getIdCentre());
 
             prs.execute();
             prs.close();
-            if(setAllGroupsConcerned(demande))
+            if (setAllGroupsConcerned(demande))
                 return true;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
@@ -76,17 +76,17 @@ public class DemandeDaoImpl implements DemandeDao {
             Connection connection = daoFactory.getConnection();
             String getsql = "SELECT id_demande FROM demande WHERE date_demande=?";
             PreparedStatement statement = connection.prepareStatement(getsql);
-            statement.setTimestamp(1,demande.getDateDemande());
+            statement.setTimestamp(1, demande.getDateDemande());
             ResultSet resultSet = statement.executeQuery();
-            System.out.println("debug : "+resultSet.toString());
-            if(resultSet.next()){
+            System.out.println("debug : " + resultSet.toString());
+            if (resultSet.next()) {
                 System.out.println("concerne demande");
-                for(ConcerneDemande concerneDemande : demande.getSangGroups()){
+                for (ConcerneDemande concerneDemande : demande.getSangGroups()) {
                     concerneDemande.setIdDemande(resultSet.getInt("id_demande"));
                     String query = "INSERT INTO concerne_demande(id_demande,id_groupeSang) VALUES(?,?);";
                     PreparedStatement prs = connection.prepareStatement(query);
-                    prs.setInt(1,concerneDemande.getIdDemande());
-                    prs.setInt(2,concerneDemande.getIdGroupeSang());
+                    prs.setInt(1, concerneDemande.getIdDemande());
+                    prs.setInt(2, concerneDemande.getIdGroupeSang());
                     prs.execute();
                     prs.close();
                 }
@@ -94,7 +94,7 @@ public class DemandeDaoImpl implements DemandeDao {
             connection.close();
             return true;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;

@@ -7,6 +7,7 @@ public class Utile {
 
     public static String stringToSha256(String base) {
         try{
+            base = "@lorem!^$" + base + "@ipsum77";
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(base.getBytes("UTF-8"));
             StringBuffer hexString = new StringBuffer();
@@ -16,7 +17,7 @@ public class Utile {
                 if(hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }
-            System.out.println("Hash : " + hexString.toString());
+            //System.out.println("Hash : " + hexString.toString());
             return hexString.toString();
         } catch(Exception ex){
             throw new RuntimeException(ex);
