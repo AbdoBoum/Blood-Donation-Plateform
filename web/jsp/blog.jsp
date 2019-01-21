@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 <%--
   Created by IntelliJ IDEA.
   User: ABDERRAHIM
@@ -5,7 +7,6 @@
   Time: 20:18
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8"  %>
 <html>
 <head>
     <%@include file="Header.jsp" %>
@@ -28,7 +29,7 @@
 
         <div class="col-md-6 text-right mt-3">
 
-                <a class="btn btn-red ${empty sessionScope.donnateur ? 'disabled': ''}" href="addBlog">New Blog</a>
+                <a class="btn btn-red ${empty sessionScope.donnateur ? 'invisible': ''}" href="addBlog">New Blog</a>
 
         </div>
 

@@ -79,4 +79,14 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Contact</servlet-name>
+        <servlet-class>Controllers.Contact</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Contact</servlet-name>
+        <url-pattern>/contact</url-pattern>
+    </servlet-mapping>
+
 </web-app>

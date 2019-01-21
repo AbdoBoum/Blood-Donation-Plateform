@@ -45,7 +45,7 @@ public class AddBlog extends HttpServlet {
         if (title.trim().isEmpty() || description.trim().isEmpty() || part.getSize() == 0) {
             isInserted = Utile.EMPTY_FIELD;
         } else {
-            String savePath = "F:\\JEE2019_Groupe4-3\\web\\img\\" + File.separator + fileName;
+            String savePath = "C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img" + File.separator + fileName;
 
             File fileSaveDirectory = new File(savePath);
 
