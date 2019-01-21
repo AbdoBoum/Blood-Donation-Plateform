@@ -39,7 +39,7 @@
     <!--- add demande servlet -->
     <servlet>
         <servlet-name>AddDemande</servlet-name>
-        <servlet-class>Controllers.AddDemandeServlet</servlet-class>
+        <servlet-class>Controllers.Demandes.AddDemandeServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
