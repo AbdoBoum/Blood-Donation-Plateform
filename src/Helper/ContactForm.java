@@ -17,8 +17,8 @@ public class ContactForm {
 
     String emailHost = "smtp.gmail.com";
     String emailPort = "587"; // SMTP port
-    String fromUser = "gmail email here"; // your gmail id
-    String fromUserEmailPassword = "password here";
+    String fromUser = "boum.abderrahim"; // your gmail id
+    String fromUserEmailPassword = "boum@hdi98";
     String[] toEmails = { "abderrahim_boumahdi@hotmail.com" };
 
     public void setMailServerProperties() {
@@ -38,7 +38,6 @@ public class ContactForm {
         }
         emailMessage.setSubject(emailSubject);
         emailMessage.setContent(emailBody, "text/html");// for a html email
-        // emailMessage.setText(emailBody);// for a text email
 
     }
 

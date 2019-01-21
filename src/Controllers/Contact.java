@@ -16,30 +16,26 @@ public class Contact extends HttpServlet {
 
         String message = null;
         String status = null;
-        if (request.getParameter("submit") != null) {
-            ContactForm javaEmail = new ContactForm();
-            javaEmail.setMailServerProperties();
-            String emailSubject = "";
-            String emailBody = "";
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String subject = request.getParameter("subject");
+        String msg = request.getParameter("message");
+        String emailBody = "";
 
-            if (request.getParameter("name") != null) {
-                emailBody = "Sender Name: " + request.getParameter("name")
-                        + "<br>";
-            }
-            if (request.getParameter("email") != null) {
-                emailBody = emailBody + "Sender Email: "
-                        + request.getParameter("email") + "<br>";
-            }
-            if (request.getParameter("message") != null) {
-                emailBody = emailBody + "Message: " + request.getParameter("message")
-                        + "<br>";
-            }
+        ContactForm javaEmail;
+
+        if (!name.trim().equals("") && !email.trim().equals("") && !subject.trim().equals("") && !msg.trim().equals("")) {
+
+            javaEmail = new ContactForm();
+            javaEmail.setMailServerProperties();
+            emailBody = "Sender Name: " + name
+                    + "<br>" + "Sender Email: " + email
+                    + "<br>" + "Subject: " + subject
+                    + "<br>" + "Message: " + msg
+                    + "<br>";
+
             try {
-                javaEmail.createEmailMessage(emailSubject, emailBody);
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
-            try {
+                javaEmail.createEmailMessage(subject, emailBody);
                 javaEmail.sendEmail();
                 status = "success";
                 message = "Email sent Successfully!";
@@ -47,6 +43,15 @@ public class Contact extends HttpServlet {
                 status = "error";
                 message = "Error in Sending Email!";
             }
+            request.setAttribute("status", status);
+            request.setAttribute("message", message);
+            this.getServletContext().getRequestDispatcher("/jsp/contactUs.jsp").forward(request, response);
+        }else {
+            status = "error";
+            message = "Please complete all fields";
+            request.setAttribute("status", status);
+            request.setAttribute("message", message);
+            this.getServletContext().getRequestDispatcher("/jsp/contactUs.jsp").forward(request, response);
         }
 
 
