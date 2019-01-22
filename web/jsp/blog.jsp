@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8"  language="java" %>
 <%--
   Created by IntelliJ IDEA.
   User: ABDERRAHIM
@@ -37,222 +37,53 @@
         <!--Section: Cards-->
         <section class="text-center">
 
-            <!--Grid row-->
-            <div class="row mb-4 wow fadeIn">
+            <c:forEach var="i" begin="0" end="1" step="1">
 
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-12 mb-3">
+                <c:if test="${ i == 1}" >
+                    <c:set var="i" value="${i+2}"></c:set>
+                </c:if>
 
-                    <!--Card-->
-                    <div class="card">
+                <!--Grid row-->
+                <div class="row mb-4 wow fadeIn">
 
-                        <!--Card image-->
-                        <div class="overlay">
-                            <div class="embed-responsive embed-responsive-16by9 rounded-top">
-                                <img class="embed-responsive-item"
-                                     src="https://www.healthline.com/hlcmsresource/images/Blood_Donation-1200x549-facebook.jpg"
-                                     allowfullscreen/>
+                <c:forEach var="j" begin="0" end="2">
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-12 mb-3">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <!--Card image-->
+                            <div class="overlay">
+                                <div class="embed-responsive embed-responsive-16by9 rounded-top">
+                                    <img class="embed-responsive-item"
+                                         src="${blogs[i + j].getPathImgBlog().substring(55)}"
+                                         allowfullscreen/>
+                                </div>
                             </div>
-                        </div>
 
-                        <!--Card content-->
-                        <div class="card-body">
-                            <!--Title-->
-                            <h4 class="card-title">Benefits of Donating Blood</h4>
-                            <!--Text-->
-                            <p class="card-text">There’s no end to the benefits of donating blood for those who need
-                                it.According to the American Red Cross,
-                                one donation can save as many as three lives</p>
-                            <a href="#" target="_blank" class="btn btn-red btn-md">Read More
-                                <i class="fa fa-play ml-2"></i>
-                            </a>
+                            <!--Card content-->
+                            <div class="card-body ">
+                                <!--Title-->
+                                <h4 class="card-title">${blogs[i + j].getTitreBlog().substring(0, (blogs[i + j].getTitreBlog().length() < 48) ? blogs[i + j].getTitreBlog().length(): 48)}</h4>
+                                <!--Text-->
+                                <p class="card-text">${blogs[j].getContenueBlog().substring(0, (blogs[i + j].getContenueBlog().length() < 150) ? blogs[i + j].getContenueBlog().length(): 150)}</p>
+                                <a href="#" class="btn btn-red btn-md">Read More
+                                    <i class="fa fa-play ml-2"></i>
+                                </a>
+                            </div>
+
                         </div>
+                        <!--/.Card-->
 
                     </div>
-                    <!--/.Card-->
+                    <!--Grid column-->
 
-                </div>
-                <!--Grid column-->
+                </c:forEach>
 
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-6 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                        <!--Card image-->
-                        <div class="overlay">
-                            <div class="embed-responsive embed-responsive-16by9 rounded-top">
-                                <img class="embed-responsive-item"
-                                     src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
-                                     allowfullscreen/>
-                            </div>
-                        </div>
-
-                        <!--Card content-->
-                        <div class="card-body">
-                            <!--Title-->
-                            <h4 class="card-title">Busting blood donation myths</h4>
-                            <!--Text-->
-                            <p class="card-text">Don’t let these misconceptions stop you from becoming a hero – one bag
-                                of blood can save three lives
-                                .</p>
-                            <a href="#" class="btn btn-red btn-md">Read More
-                                <i class="fa fa-play ml-2"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                    <!--/.Card-->
-
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-6 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                        <!--Card image-->
-                        <div class="overlay">
-                            <div class="embed-responsive embed-responsive-16by9 rounded-top">
-                                <img class="embed-responsive-item"
-                                     src="https://ichef.bbci.co.uk/news/660/cpsprodpb/810A/production/_97043033_gettyimages-539205455.jpg"
-                                     allowfullscreen/>
-                            </div>
-                        </div>
-
-                        <!--Card content-->
-                        <div class="card-body">
-                            <!--Title-->
-                            <h4 class="card-title">Blood donation rules ease for gay</h4>
-                            <!--Text-->
-                            <p class="card-text">Changes making it easier for gay and bisexual men to give blood have
-                                been announced by the Scottish government.
-
-                            </p>
-                            <a href="#" target="_blank" class="btn btn-red btn-md">Read More
-                                <i class="fa fa-play ml-2"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                    <!--/.Card-->
-
-                </div>
-                <!--Grid column-->
-
-            </div>
-            <!--Grid row-->
-
-            <!--Grid row-->
-            <div class="row mb-4 wow fadeIn">
-
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-12 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                        <!--Card image-->
-                        <div class="overlay">
-                            <div class="embed-responsive embed-responsive-16by9 rounded-top">
-                                <img class="embed-responsive-item"
-                                     src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
-                                     allowfullscreen/>
-                            </div>
-                        </div>
-
-                        <!--Card content-->
-                        <div class="card-body">
-                            <!--Title-->
-                            <h4 class="card-title">Busting blood donation myths</h4>
-                            <!--Text-->
-                            <p class="card-text">Don’t let these misconceptions stop you from becoming a hero – one bag
-                                of blood can save three lives
-                                .</p>
-                            <a href="#" class="btn btn-red btn-md">Read More
-                                <i class="fa fa-play ml-2"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                    <!--/.Card-->
-
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-6 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                        <!--Card image-->
-                        <div class="overlay">
-                            <div class="embed-responsive embed-responsive-16by9 rounded-top">
-                                <img class="embed-responsive-item"
-                                     src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
-                                     allowfullscreen/>
-                            </div>
-                        </div>
-
-                        <!--Card content-->
-                        <div class="card-body">
-                            <!--Title-->
-                            <h4 class="card-title">Busting blood donation myths</h4>
-                            <!--Text-->
-                            <p class="card-text">Don’t let these misconceptions stop you from becoming a hero – one bag
-                                of blood can save three lives
-                                .</p>
-                            <a href="#" target="_blank" class="btn btn-red btn-md">Read More
-                                <i class="fa fa-play ml-2"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                    <!--/.Card-->
-
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-4 col-md-6 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                        <!--Card image-->
-                        <div class="overlay">
-                            <div class="embed-responsive embed-responsive-16by9 rounded-top">
-                                <img class="embed-responsive-item"
-                                     src="https://d1f5w6fv2lvk5u.cloudfront.net/tmc/wp-content/uploads/2017/06/29033601/iStock-690302872.jpg"
-                                     allowfullscreen/>
-                            </div>
-                        </div>
-
-                        <!--Card content-->
-                        <div class="card-body">
-                            <!--Title-->
-                            <h4 class="card-title">Busting blood donation myths</h4>
-                            <!--Text-->
-                            <p class="card-text">Don’t let these misconceptions stop you from becoming a hero – one bag
-                                of blood can save three lives
-                                .</p>
-                            <a href="#" target="_blank" class="btn btn-red btn-md">Read More
-                                <i class="fa fa-play ml-2"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                    <!--/.Card-->
-
-                </div>
-                <!--Grid column-->
-
-            </div>
-            <!--Grid row-->
+             </div>
+             <!--Grid row-->
+            </c:forEach>
 
             <!--Pagination-->
             <nav class="d-flex justify-content-center wow fadeIn">
