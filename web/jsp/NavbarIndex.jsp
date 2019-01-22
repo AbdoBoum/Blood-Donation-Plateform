@@ -61,7 +61,7 @@
                 <li class="nav-item dropdown ${empty sessionScope.donnateur ? 'invisible' : ''}">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">
-                        <i class="fas fa-user"></i> Profile </a>
+                        <i class="fas fa-user"></i> ${sessionScope.donnateur.getNomDonnateur()} </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
                         <a class="dropdown-item" href="#">My account</a>
                         <a class="dropdown-item" href="logout">Log out</a>
