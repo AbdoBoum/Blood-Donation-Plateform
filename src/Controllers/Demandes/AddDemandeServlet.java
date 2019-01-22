@@ -57,6 +57,8 @@ public class AddDemandeServlet extends HttpServlet {
             Demande demande = new Demande();
             Centre centre = (Centre)request.getSession().getAttribute("centre");
             demande.setIdCentre(centre.getIdCentre());
+            demande.setTitleDemande(title);
+            demande.setIdVilleDemande(ville.getIdVille());
             demande.setDateDemande(new Timestamp(System.currentTimeMillis()));
             demande.setDescriptionDemande(description);
             demande.setActive(true);
