@@ -17,7 +17,7 @@
         </div>
         <div class="footer-copyright py-3">
             © 2018 Copyright.
-            <a href="#">
+            <a href="/">
                 Blood Brothers
             </a>
         </div>

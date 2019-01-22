@@ -62,16 +62,19 @@
         </div>
 
         <!-- Image input -->
-        <div class="input-group mt-5">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="imgInput" name="imgInput"
-                       aria-describedby="imgInput">
-                <label class="custom-file-label" for="imgInput">Choose file</label>
+        <div class="input-group mt-4">
+            <div class="form-group">
+                <label for="inputFile">Image</label>
+                <input name="imgInpute" type="file" class="form-control-file" id="inputFile" aria-describedby="fileHelp">
+                <!--<small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>-->
             </div>
         </div>
 
         <!-- Submit -->
-        <button type="submit" class="btn btn-red my-1 mt-5">Submit</button>
+        <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 mt-4 mb-5 waves-effect" name="imgInput"
+                type="submit" style="border-color: #D92228 !important; color: #D92228 !important;">
+            Submit
+        </button>
 
     </form>
 </div>

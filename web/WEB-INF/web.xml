@@ -92,7 +92,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>affEvent</servlet-name>
-    <url-pattern>/affEvent</url-pattern>
+    <url-pattern>/agenda</url-pattern>
   </servlet-mapping>
 
     <servlet>
@@ -104,16 +104,20 @@
         <servlet-name>Contact</servlet-name>
         <url-pattern>/contact</url-pattern>
     </servlet-mapping>
+
+    <servlet>
     <servlet-name>donnateurCrud</servlet-name>
     <servlet-class>Controllers.Donnateur.DonnateurCrudServlet</servlet-class>
 </servlet>
-<servlet>
+
 <servlet-mapping>
     <servlet-name>donnateurCrud</servlet-name>
     <url-pattern>/addDonnateur</url-pattern>
 </servlet-mapping>
+
 <servlet-mapping>
     <servlet-name>donnateurCrud</servlet-name>
     <url-pattern>/updateDonnateur</url-pattern>
 </servlet-mapping>
+
 </web-app>

@@ -69,7 +69,7 @@ public class AddEvent extends HttpServlet {
 
 
         if (titreEvent.trim().isEmpty() || descEvent.trim().isEmpty() ) {
-            this.getServletContext().getRequestDispatcher("/jsp/AddEvent.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request, response);
         }
         else {
             Evenement event=new Evenement();
@@ -89,7 +89,7 @@ public class AddEvent extends HttpServlet {
             else {
                 boolean isInserted = false;
                 request.setAttribute("isInserted", isInserted);
-                this.getServletContext().getRequestDispatcher("/jsp/AddEvent.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request, response);
             }
 
         }
@@ -97,7 +97,7 @@ public class AddEvent extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/jsp/AddEvent.jsp").forward(request,response);
+        this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request,response);
 
     }
 

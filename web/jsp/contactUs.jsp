@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ABDERRAHIM
@@ -86,7 +87,9 @@
                 </div>
 
             </form>
-
+            <c:if test="${not empty message}">
+                    <div class='alert ${status == 'success' ? 'alert-success' : 'alert-danger'}'>${message}</div>
+            </c:if>
             <div class="status"></div>
         </div>
         <!--Grid column-->

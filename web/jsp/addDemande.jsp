@@ -12,7 +12,7 @@
     <%@include file="Header.jsp" %>
     <style>
         .form-group.required .control-label:after {
-            content:"*";
+            content:" *";
             color:red;
         }
     </style>
@@ -57,7 +57,7 @@
             <form action="addDemande" method="post" enctype="multipart/form-data">
                 <div class="form-group required">
                     <label for="titleInput" class='control-label'>Demand Title</label>
-                    <input type="text" name="titleInput" class="form-control" id="titleInput" placeholder="Demand Title">
+                    <input type="text" name="titleInput" class="form-control" id="titleInput" placeholder="">
                     <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                 </div>
                 <div class="form-group required">
