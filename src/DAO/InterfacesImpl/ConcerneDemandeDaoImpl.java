@@ -3,10 +3,12 @@ package DAO.InterfacesImpl;
 import DAO.DAOFactory;
 import DAO.Interfaces.ConcerneDemandeDao;
 import Models.ConcerneDemande;
+import Models.Demande;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,73 +21,58 @@ public class ConcerneDemandeDaoImpl implements ConcerneDemandeDao {
     }
 
     @Override
-    public ConcerneDemande insertConcerneDemande(ConcerneDemande concerneDemande) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        try {
-            connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("INSERT into concerne_demande values (?, ?)");
-            preparedStatement.setInt(1, concerneDemande.getIdDemande());
-            preparedStatement.setInt(2, concerneDemande.getIdGroupeSang());
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-        } catch (Exception e) {
+    public List<ConcerneDemande> getAllGroupesConcerned(int idDemande) {
+        String concerne = "SELECT * FROM concerne_demande WHERE id_demande=?";
+        try{
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(concerne);
+            preparedStatement.setInt(1,idDemande);
+            ResultSet result = preparedStatement.executeQuery();
+            List<ConcerneDemande> concerneDemandeList = new ArrayList<>();
+            while(result.next()){
+                ConcerneDemande concerneDemande = new ConcerneDemande();
+                concerneDemande.setIdDemande(idDemande);
+                concerneDemande.setIdGroupeSang(result.getInt("id_groupeSang"));
+                concerneDemandeList.add(concerneDemande);
+            }
+            return concerneDemandeList;
+        }catch (SQLException e){
             e.printStackTrace();
         }
-        return concerneDemande;
+
+        return null;
     }
 
     @Override
-    public ConcerneDemande getConcerneDemande(int idDemande, int idGroupeSang) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        ConcerneDemande concerneDemande;
+    public boolean setAllGroupsConcerned(Demande demande) {
 
         try {
-            connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("SELECT * from concerne_demande where id_demande = ? and id_groupeSang = ?");
-            preparedStatement.setInt(1, idDemande);
-            preparedStatement.setInt(2, idGroupeSang);
-            resultSet = preparedStatement.executeQuery();
+            Connection connection = daoFactory.getConnection();
+            String getsql = "SELECT id_demande FROM demande WHERE date_demande=?";
+            PreparedStatement statement = connection.prepareStatement(getsql);
+            statement.setTimestamp(1, demande.getDateDemande());
+            ResultSet resultSet = statement.executeQuery();
+            System.out.println("debug : " + resultSet.toString());
             if (resultSet.next()) {
-                concerneDemande = new ConcerneDemande();
-                concerneDemande.setIdDemande(resultSet.getInt(1));
-                concerneDemande.setIdGroupeSang(resultSet.getInt(2));
-                preparedStatement.close();
-                return concerneDemande;
+                System.out.println("concerne demande");
+                for (ConcerneDemande concerneDemande : demande.getSangGroups()) {
+                    concerneDemande.setIdDemande(resultSet.getInt("id_demande"));
+                    String query = "INSERT INTO concerne_demande(id_demande,id_groupeSang) VALUES(?,?);";
+                    PreparedStatement prs = connection.prepareStatement(query);
+                    prs.setInt(1, concerneDemande.getIdDemande());
+                    prs.setInt(2, concerneDemande.getIdGroupeSang());
+                    prs.execute();
+                    prs.close();
+                }
             }
-        } catch (Exception e) {
+            connection.close();
+            return true;
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
-    }
+        return false;
 
-    @Override
-    public List<ConcerneDemande> getAllConcerneDemande() {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        ConcerneDemande concerneDemande;
-        List<ConcerneDemande> concerneDemandes = new ArrayList<ConcerneDemande>();
-
-        try {
-            connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("SELECT * from concerne_demande");
-            resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                concerneDemande = new ConcerneDemande();
-                concerneDemande.setIdDemande(resultSet.getInt(1));
-                concerneDemande.setIdGroupeSang(resultSet.getInt(2));
-                concerneDemandes.add(concerneDemande);
-            }
-            preparedStatement.close();
-            return concerneDemandes;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @Override

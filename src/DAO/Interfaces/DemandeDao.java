@@ -15,11 +15,8 @@ public interface DemandeDao {
 
     List<Demande> getAllDemandsOfCenter(int idCentre);
 
-    boolean editDemande(boolean etatDemande);
+    boolean editDemande(Demande demande);
 
     boolean deleteDemande(int idDemande);
 
-    List<ConcerneDemande> getAllGroupesConcerned(int idDemande);
-
-    boolean setAllGroupsConcerned(Demande demande);
 }

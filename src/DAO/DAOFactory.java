@@ -62,4 +62,8 @@ public class DAOFactory {
     public VilleDao getVilleDaoImpl(){
         return new VilleDaoImpl(this);
     }
+
+    public ConcerneDemandeDao getConcerneDemandeDao(){
+        return new ConcerneDemandeDaoImpl(this);
+    }
 }

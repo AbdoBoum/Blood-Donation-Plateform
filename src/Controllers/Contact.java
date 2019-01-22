@@ -2,7 +2,7 @@ package Controllers;
 
 import Helper.ContactForm;
 
-import javax.mail.MessagingException;
+//import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +18,7 @@ public class Contact extends HttpServlet {
         String status = null;
         if (request.getParameter("submit") != null) {
             ContactForm javaEmail = new ContactForm();
-            javaEmail.setMailServerProperties();
+          //  javaEmail.setMailServerProperties();
             String emailSubject = "";
             String emailBody = "";
 
@@ -34,19 +34,7 @@ public class Contact extends HttpServlet {
                 emailBody = emailBody + "Message: " + request.getParameter("message")
                         + "<br>";
             }
-            try {
-                javaEmail.createEmailMessage(emailSubject, emailBody);
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
-            try {
-                javaEmail.sendEmail();
-                status = "success";
-                message = "Email sent Successfully!";
-            } catch (MessagingException me) {
-                status = "error";
-                message = "Error in Sending Email!";
-            }
+
         }
 
 

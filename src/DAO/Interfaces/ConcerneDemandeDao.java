@@ -1,18 +1,15 @@
 package DAO.Interfaces;
 
 import Models.ConcerneDemande;
+import Models.Demande;
+
 import java.util.List;
 
 public interface ConcerneDemandeDao {
 
-    /* insert ConcerneDemande*/
-    public ConcerneDemande insertConcerneDemande(ConcerneDemande concerneDemande);
+    boolean setAllGroupsConcerned(Demande demande);
 
-    /* fetch ConcerneDemande by id*/
-    public ConcerneDemande getConcerneDemande(int idDemande, int idGroupeSang);
-
-    /* get all ConcerneDemande: will return all cities*/
-    public List<ConcerneDemande> getAllConcerneDemande();
+    List<ConcerneDemande> getAllGroupesConcerned(int idDemande );
 
     /* delete ConcerneDemande */
     public boolean deleteConcerneDemande(int idDemande, int idGroupeSang);
