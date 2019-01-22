@@ -6,6 +6,8 @@ import Helper.Utile;
 import Models.Donnateur;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DonnateurDaoImpl implements DonnateurDao {
     private DAOFactory daoFactory;
@@ -113,6 +115,58 @@ public class DonnateurDaoImpl implements DonnateurDao {
     }
 
     @Override
+    public List<Donnateur> getAllDonnateurs() {
+        try {
+            Connection connection = daoFactory.getConnection();
+            Statement statement=connection.createStatement();
+            ResultSet result =statement.executeQuery("SELECT * FROM donnateur;");
+            List<Donnateur> donnateurList = new ArrayList<>();
+            while(result.next()){
+                Donnateur donnateur = new Donnateur();
+                donnateur.setIdDonnateur(result.getInt("id_donnateur"));
+                donnateur.setCinDonnateur(result.getString("cin_donnateur"));
+                donnateur.setEmailDonnateur(result.getString("email_donnateur"));
+                donnateur.setNomDonnateur(result.getString("nom_donnateur"));
+                donnateur.setPrenomDonnateur(result.getString("prenom_donnateur"));
+                donnateur.setIdVilleDonnateur(result.getInt("id_ville"));
+                donnateur.setIdGroupeSangDonnateur(result.getInt("id_groupeSang"));
+                donnateur.setTeleDonnateur(result.getString("tele_donnateur"));
+                donnateurList.add(donnateur);
+            }
+            return donnateurList;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Donnateur> getDonnateursByCity(int idVille) {
+        try {
+            Connection connection = daoFactory.getConnection();
+            Statement statement=connection.createStatement();
+            ResultSet result =statement.executeQuery("SELECT * FROM donnateur WHERE id_ville='"+idVille+"';");
+            List<Donnateur> donnateurList = new ArrayList<>();
+            while(result.next()){
+                Donnateur donnateur = new Donnateur();
+                donnateur.setIdDonnateur(result.getInt("id_donnateur"));
+                donnateur.setCinDonnateur(result.getString("cin_donnateur"));
+                donnateur.setEmailDonnateur(result.getString("email_donnateur"));
+                donnateur.setNomDonnateur(result.getString("nom_donnateur"));
+                donnateur.setPrenomDonnateur(result.getString("prenom_donnateur"));
+                donnateur.setIdVilleDonnateur(result.getInt("id_ville"));
+                donnateur.setIdGroupeSangDonnateur(result.getInt("id_groupeSang"));
+                donnateur.setTeleDonnateur(result.getString("tele_donnateur"));
+                donnateurList.add(donnateur);
+            }
+            return donnateurList;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public boolean updateDonnateur(Donnateur donnateur) {
         String query = "UPDATE donnateur SET email_donnateur = ?, password_donnateur = ?, id_ville = ?, " +
                     "tele_donnateur = ?, id_groupeSang = ? WHERE id_donnateur=? ;";
@@ -133,4 +187,5 @@ public class DonnateurDaoImpl implements DonnateurDao {
         }
         return result;
     }
+
 }

@@ -1,7 +1,9 @@
 package Helper;
 
-import Models.GroupSang;
-import Models.Ville;
+import DAO.DAOFactory;
+import DAO.Interfaces.CentreDao;
+import DAO.Interfaces.GroupSangDao;
+import Models.*;
 
 import javax.servlet.http.Part;
 import java.security.MessageDigest;
@@ -58,5 +60,23 @@ public class Utile {
             }
         }
         return "";
+    }
+
+    public static String createMessageFromDemand(Demande demande){
+        String message = "New blood demand have been added, ";
+        if(demande.isUrgent()){
+            message+="and it's urgent, ";
+        }
+        DAOFactory daoFactory = DAOFactory.getInstance();
+        CentreDao centreDao = daoFactory.getCentreDaoImpl();
+        GroupSangDao groupSangDao = daoFactory.getGroupSangDaoImpl();
+        Centre centre = centreDao.getCentre(demande.getIdCentre());
+        message+="centre : "+centre.getNameCentre()+", Address : "+centre.getAdresseCentre();
+        message+=", blood groups : ";
+        for(ConcerneDemande concerneDemande : demande.getSangGroups()){
+            message+=""+groupSangDao.getGroupSang(concerneDemande.getIdGroupeSang()).getNameGroupe()+";";
+        }
+        message = message.substring(0,message.length()-1)+".";
+        return message;
     }
 }
