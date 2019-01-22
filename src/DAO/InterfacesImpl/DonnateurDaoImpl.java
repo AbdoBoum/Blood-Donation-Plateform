@@ -69,6 +69,30 @@ public class DonnateurDaoImpl implements DonnateurDao {
     }
 
     @Override
+    public Donnateur getDonnateur(int id){
+        try {
+            Connection connection = daoFactory.getConnection();
+            Statement statement=connection.createStatement();
+            ResultSet result =statement.executeQuery("SELECT * FROM donnateur WHERE id_donnateur='"+id+"';");
+            if(result.next()){
+                Donnateur donnateur = new Donnateur();
+                donnateur.setIdDonnateur(result.getInt("id_donnateur"));
+                donnateur.setCinDonnateur(result.getString("cin_donnateur"));
+                donnateur.setEmailDonnateur(result.getString("email_donnateur"));
+                donnateur.setNomDonnateur(result.getString("nom_donnateur"));
+                donnateur.setPrenomDonnateur(result.getString("prenom_donnateur"));
+                donnateur.setIdVilleDonnateur(result.getInt("id_ville"));
+                donnateur.setIdGroupeSangDonnateur(result.getInt("id_groupeSang"));
+                donnateur.setTeleDonnateur(result.getString("tele_donnateur"));
+                return donnateur;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public boolean removeDonnateur(String email) {
         String query = "DELETE FROM donnateur WHERE email_donnateur=? ;";
         boolean result = false;

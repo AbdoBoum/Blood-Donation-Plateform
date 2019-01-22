@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface EvenementDao {
     public Evenement getEvenementById(int idEvenement);
-    public void insertEvenement(Evenement evenement);
-    public void updateEvenement(Evenement evenement);
+    public boolean insertEvenement(Evenement evenement);
+    public boolean updateEvenement(Evenement evenement);
     public Evenement getEvenementByTitle(String title);
-    public void deleteEvenement(int idEvenement);
+    public boolean deleteEvenement(int idEvenement);
     public List<Evenement> getAllEvenement();
 }

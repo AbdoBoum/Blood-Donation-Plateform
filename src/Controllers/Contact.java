@@ -2,7 +2,7 @@ package Controllers;
 
 import Helper.ContactForm;
 
-import javax.mail.MessagingException;
+//import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,42 +16,25 @@ public class Contact extends HttpServlet {
 
         String message = null;
         String status = null;
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String subject = request.getParameter("subject");
-        String msg = request.getParameter("message");
-        String emailBody = "";
+        if (request.getParameter("submit") != null) {
+            ContactForm javaEmail = new ContactForm();
+          //  javaEmail.setMailServerProperties();
+            String emailSubject = "";
+            String emailBody = "";
 
-        ContactForm javaEmail;
-
-        if (!name.trim().equals("") && !email.trim().equals("") && !subject.trim().equals("") && !msg.trim().equals("")) {
-
-            javaEmail = new ContactForm();
-            javaEmail.setMailServerProperties();
-            emailBody = "Sender Name: " + name
-                    + "<br>" + "Sender Email: " + email
-                    + "<br>" + "Subject: " + subject
-                    + "<br>" + "Message: " + msg
-                    + "<br>";
-
-            try {
-                javaEmail.createEmailMessage(subject, emailBody);
-                javaEmail.sendEmail();
-                status = "success";
-                message = "Email sent Successfully!";
-            } catch (MessagingException me) {
-                status = "error";
-                message = "Error in Sending Email!";
+            if (request.getParameter("name") != null) {
+                emailBody = "Sender Name: " + request.getParameter("name")
+                        + "<br>";
             }
-            request.setAttribute("status", status);
-            request.setAttribute("message", message);
-            this.getServletContext().getRequestDispatcher("/jsp/contactUs.jsp").forward(request, response);
-        }else {
-            status = "error";
-            message = "Please complete all fields";
-            request.setAttribute("status", status);
-            request.setAttribute("message", message);
-            this.getServletContext().getRequestDispatcher("/jsp/contactUs.jsp").forward(request, response);
+            if (request.getParameter("email") != null) {
+                emailBody = emailBody + "Sender Email: "
+                        + request.getParameter("email") + "<br>";
+            }
+            if (request.getParameter("message") != null) {
+                emailBody = emailBody + "Message: " + request.getParameter("message")
+                        + "<br>";
+            }
+
         }
 
 

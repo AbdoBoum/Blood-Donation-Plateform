@@ -18,6 +18,11 @@ public class DemandeTest {
     public static void main(String[] args) {
         DAOFactory daoFactory = DAOFactory.getInstance();
         DemandeDao demandeDao = daoFactory.getDemandeDaoImpl();
+
+        //add demand test
+
+        /*
+
         Demande demande = new Demande();
         demande.setActive(true);
         demande.setDateDemande(new Timestamp(System.currentTimeMillis()));
@@ -29,6 +34,36 @@ public class DemandeTest {
         concerneDemande.setIdGroupeSang(1);
         demande.addGroupeSang(concerneDemande);
         System.err.println(demandeDao.addDemande(demande));
+
+        */
+
+        //getAllDemands Test
+
+        /*
+        System.err.println("All demands : "+demandeDao.getAllDemands());
+        */
+
+        //edit demand test
+
+        /*
+
+        Demande demande = new Demande();
+        demande.setActive(true);
+        demande.setIdDemande(10);
+        demande.setTitleDemande("title update test");
+        demande.setDateDemande(new Timestamp(System.currentTimeMillis()));
+        demande.setDescriptionDemande("first demande test");
+        demande.setPathImgDemande("path//test");
+        demande.setUrgent(false);
+        demande.setIdCentre(1);
+        ConcerneDemande concerneDemande = new ConcerneDemande();
+        concerneDemande.setIdGroupeSang(1);
+        //demande.addGroupeSang(concerneDemande);
+        System.err.println(demandeDao.editDemande(demande));
+
+        */
+
+
 
     }
 }

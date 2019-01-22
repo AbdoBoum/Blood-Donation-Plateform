@@ -46,7 +46,7 @@ public class EvenementDaoImpl implements EvenementDao {
     }
 
     @Override
-    public void insertEvenement(Evenement evenement) {
+    public boolean insertEvenement(Evenement evenement) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
@@ -59,14 +59,17 @@ public class EvenementDaoImpl implements EvenementDao {
             preparedStatement.setInt(5,evenement.getIdVille());
             preparedStatement.setInt(6,evenement.getIdCentre());
             preparedStatement.executeUpdate();
+            return true;
 
         }catch (SQLException e){
             e.printStackTrace();
+            return false;
         }
+
     }
 
     @Override
-    public void updateEvenement(Evenement evenement) {
+    public boolean updateEvenement(Evenement evenement) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
@@ -81,9 +84,11 @@ public class EvenementDaoImpl implements EvenementDao {
             preparedStatement.setInt(7,evenement.getIdEvenement());
 
             preparedStatement.executeUpdate();
+            return true;
 
         }catch (SQLException e){
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -113,7 +118,7 @@ public class EvenementDaoImpl implements EvenementDao {
     }
 
     @Override
-    public void deleteEvenement(int idEvenement) {
+    public boolean deleteEvenement(int idEvenement) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
@@ -121,9 +126,11 @@ public class EvenementDaoImpl implements EvenementDao {
             preparedStatement=connection.prepareStatement("DELETE from evenement WHERE id_evenement=?");
             preparedStatement.setInt(1,idEvenement);
             preparedStatement.executeUpdate();
+            return true;
 
         }catch(SQLException e){
             e.printStackTrace();
+            return false;
         }
     }
 

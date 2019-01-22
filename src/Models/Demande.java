@@ -77,10 +77,6 @@ public class Demande implements Serializable {
         isUrgent = urgent;
     }
 
-    public void addGroupeSang(ConcerneDemande concerneDemande){
-        this.sangGroups.add(concerneDemande);
-    }
-
     public List<ConcerneDemande> getSangGroups() {
         return sangGroups;
     }

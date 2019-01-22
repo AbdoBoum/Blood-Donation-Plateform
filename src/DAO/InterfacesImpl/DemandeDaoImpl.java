@@ -1,18 +1,22 @@
 package DAO.InterfacesImpl;
 
 import DAO.DAOFactory;
+import DAO.Interfaces.ConcerneDemandeDao;
 import DAO.Interfaces.DemandeDao;
 import Models.ConcerneDemande;
 import Models.Demande;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DemandeDaoImpl implements DemandeDao {
     private DAOFactory daoFactory;
+    private ConcerneDemandeDao concerneDemandeDao;
 
     public DemandeDaoImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
+        concerneDemandeDao = daoFactory.getConcerneDemandeDao();
     }
 
     @Override
@@ -32,7 +36,7 @@ public class DemandeDaoImpl implements DemandeDao {
 
             prs.execute();
             prs.close();
-            if (setAllGroupsConcerned(demande))
+            if (concerneDemandeDao.setAllGroupsConcerned(demande))
                 return true;
 
         } catch (SQLException e) {
@@ -43,6 +47,32 @@ public class DemandeDaoImpl implements DemandeDao {
 
     @Override
     public List<Demande> getAllDemands() {
+        String query = "SELECT * FROM demande WHERE isActive=? ORDER BY date_demande DESC";
+        try {
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement prs = connection.prepareStatement(query);
+            prs.setBoolean(1,true);
+            ResultSet resultSet = prs.executeQuery();
+            List<Demande> demandeList = new ArrayList<>();
+            while (resultSet.next()){
+                Demande demande = new Demande();
+                demande.setIdDemande(resultSet.getInt("id_demande"));
+                demande.setIdVilleDemande(resultSet.getInt("id_ville"));
+                demande.setTitleDemande(resultSet.getString("titre_demande"));
+                demande.setDescriptionDemande(resultSet.getString("description_demande"));
+                demande.setUrgent(resultSet.getBoolean("is_urgent"));
+                demande.setPathImgDemande(resultSet.getString("imagePath_demande"));
+                demande.setActive(true);
+                demande.setIdCentre(resultSet.getInt("id_centre"));
+                demande.setDateDemande(resultSet.getTimestamp("date_demande"));
+                demande.setSangGroups(concerneDemandeDao.getAllGroupesConcerned(demande.getIdDemande()));
+                demandeList.add(demande);
+
+            }
+            return demandeList;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -57,7 +87,24 @@ public class DemandeDaoImpl implements DemandeDao {
     }
 
     @Override
-    public boolean editDemande(boolean etatDemande) {
+    public boolean editDemande(Demande demande) {
+        String editQuery = "UPDATE demande SET date_demande=?, imagePath_demande=?, description_demande=?, isActive=?, is_urgent=?, titre_demande=?, id_ville=? WHERE id_demande=?;";
+        try {
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(editQuery);
+            preparedStatement.setTimestamp(1,demande.getDateDemande());
+            preparedStatement.setString(2,demande.getPathImgDemande());
+            preparedStatement.setString(3,demande.getDescriptionDemande());
+            preparedStatement.setBoolean(4,demande.isActive());
+            preparedStatement.setBoolean(5,demande.isUrgent());
+            preparedStatement.setString(6,demande.getTitleDemande());
+            preparedStatement.setInt(7,demande.getIdVilleDemande());
+            preparedStatement.setInt(8,demande.getIdDemande());
+            preparedStatement.execute();
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -66,40 +113,5 @@ public class DemandeDaoImpl implements DemandeDao {
         return false;
     }
 
-    @Override
-    public List<ConcerneDemande> getAllGroupesConcerned(int idDemande) {
-        return null;
-    }
 
-    @Override
-    public boolean setAllGroupsConcerned(Demande demande) {
-
-        try {
-            Connection connection = daoFactory.getConnection();
-            String getsql = "SELECT id_demande FROM demande WHERE date_demande=?";
-            PreparedStatement statement = connection.prepareStatement(getsql);
-            statement.setTimestamp(1, demande.getDateDemande());
-            ResultSet resultSet = statement.executeQuery();
-            System.out.println("debug : " + resultSet.toString());
-            if (resultSet.next()) {
-                System.out.println("concerne demande");
-                for (ConcerneDemande concerneDemande : demande.getSangGroups()) {
-                    concerneDemande.setIdDemande(resultSet.getInt("id_demande"));
-                    String query = "INSERT INTO concerne_demande(id_demande,id_groupeSang) VALUES(?,?);";
-                    PreparedStatement prs = connection.prepareStatement(query);
-                    prs.setInt(1, concerneDemande.getIdDemande());
-                    prs.setInt(2, concerneDemande.getIdGroupeSang());
-                    prs.execute();
-                    prs.close();
-                }
-            }
-            connection.close();
-            return true;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-
-    }
 }
