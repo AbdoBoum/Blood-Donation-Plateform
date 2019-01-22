@@ -1,4 +1,4 @@
-package Controllers;
+package Controllers.Event;
 
 import DAO.DAOFactory;
 import DAO.Interfaces.EvenementDao;
