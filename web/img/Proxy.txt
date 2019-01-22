@@ -1,0 +1,79 @@
+Add Proxy : 
+
+-------------- 
+windows
+
+
+set http_proxy=10.23.201.11:3128
+
+set https_proxy=10.23.201.11:3128
+
+
+--------- 
+debian
+export http_proxy=http://10.23.201.11:3128
+
+export https_proxy=http://10.23.201.11:3128
+
+
+---------- 
+npm
+
+npm config set proxy http://10.23.201.11:3128
+
+npm config set https-proxy http://10.23.201.11:3128
+
+
+---------
+git 
+
+git config --global http.proxy http://10.23.201.11:3128
+--- gradle 
+
+export GRADLE_OPTS=-Dhttp.proxyHost=http://10.23.201.11 -Dhttp.proxyPort=3128 -Dhttps.proxyHost=http://10.23.201.11 -Dhttps.proxyPort=3128
+
+export GRADLE_OPTS='-Dhttp.proxyHost=http://10.23.201.11 -Dhttp.proxyPort=3128 \
+-Dhttps.proxyHost=http://10.23.201.11 -Dhttps.proxyPort=3128'
+
+-Dhttps.proxyHost=10.23.201.11
+-Dhttps.proxyPort=3128
+
+
+
+
+
+
+
+Remove proxy : 
+
+git config --global --unset http.proxy
+
+git config --global --unset https.proxy
+
+
+npm config rm proxy
+
+npm config rm https-proxy
+unset HTTP_PROXY
+unset HTTPS_PROXY
+unset http_proxy
+unset https_proxy
+unset GRADLE_OPTS
+
+Check Proxy : 
+git config --global --get http.proxy
+npm get https-proxy
+npm get proxy
+echo $http_proxy
+
+
+--
+npm uninstall -g @angular/cli
+npm uninstall --save-dev @angular/cli
+npm cache clean
+npm install -g @angular/cli@latest
+npm install --save-dev @angular/cli@latest
+
+
+
+
