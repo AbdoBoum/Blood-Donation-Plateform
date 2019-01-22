@@ -14,6 +14,8 @@ public class Demande implements Serializable {
     private boolean isUrgent;
     private List<ConcerneDemande> sangGroups = new ArrayList<>();
     private boolean isActive;
+    private String titleDemande;
+    private int idVilleDemande;
 
     public void setSangGroups(List<ConcerneDemande> sangGroups) {
         this.sangGroups = sangGroups;
@@ -81,5 +83,21 @@ public class Demande implements Serializable {
 
     public List<ConcerneDemande> getSangGroups() {
         return sangGroups;
+    }
+
+    public String getTitleDemande() {
+        return titleDemande;
+    }
+
+    public void setTitleDemande(String titleDemande) {
+        this.titleDemande = titleDemande;
+    }
+
+    public int getIdVilleDemande() {
+        return idVilleDemande;
+    }
+
+    public void setIdVilleDemande(int idVilleDemande) {
+        this.idVilleDemande = idVilleDemande;
     }
 }

@@ -17,7 +17,7 @@ public class DemandeDaoImpl implements DemandeDao {
 
     @Override
     public boolean addDemande(Demande demande) {
-        String query = "INSERT INTO Demande(date_demande,imagePath_demande,description_demande,isActive,is_urgent,id_centre) VALUES(?,?,?,?,?,?);";
+        String query = "INSERT INTO Demande(date_demande,imagePath_demande,description_demande,isActive,is_urgent,id_centre,titre_demande,id_ville) VALUES(?,?,?,?,?,?,?,?);";
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement prs = connection.prepareStatement(query);
@@ -27,6 +27,8 @@ public class DemandeDaoImpl implements DemandeDao {
             prs.setBoolean(4, demande.isActive());
             prs.setBoolean(5, demande.isUrgent());
             prs.setInt(6, demande.getIdCentre());
+            prs.setString(7,demande.getTitleDemande());
+            prs.setInt(8,demande.getIdVilleDemande());
 
             prs.execute();
             prs.close();

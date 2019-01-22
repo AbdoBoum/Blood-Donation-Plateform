@@ -36,7 +36,7 @@
         <c:choose>
             <c:when test="${isInserted == 'succes'}">
                 <h5 class='h5 text-center  mt-4'>
-                    <div class='alert alert-success'>Blog inserted</div>
+                    <div class='alert alert-success'>Demand inserted</div>
                 </h5>
             </c:when>
             <c:when test="${isInserted == 'failure'}">
