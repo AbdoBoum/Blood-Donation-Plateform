@@ -42,25 +42,30 @@ public class DonnateurCrudServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        VilleDao villeDao=daoFactory.getVilleDaoImpl();
+        List<Ville> villes=villeDao.getAllVille();
+        request.setAttribute("villes",villes);
+        GroupSangDao groupSangDao=daoFactory.getGroupSangDaoImpl();
+        List<GroupSang> groupeSangs=groupSangDao.getAllGroups();
+        request.setAttribute("sangs", groupeSangs);
         if(!request.getParameterMap().containsKey("update")){
-            VilleDao villeDao=daoFactory.getVilleDaoImpl();
-            List<Ville> villes=villeDao.getAllVille();
-            request.setAttribute("villes",villes);
-            GroupSangDao groupSangDao=daoFactory.getGroupSangDaoImpl();
-            List<GroupSang> groupeSangs=groupSangDao.getAllGroups();
-            request.setAttribute("sangs", groupeSangs);
 
             this.getServletContext().getRequestDispatcher("/jsp/Donnateur/addDonnateur.jsp").forward(request,response);
-        }else{
-            String id_donnateur=request.getParameter("update");
 
-            int id=Integer.parseInt(id_donnateur);
+        }else{
+
+            String idDonnateur=request.getParameter("update");
+            int id=Integer.parseInt(idDonnateur);
             Donnateur donnateur=donnateurDao.getDonnateur(id);
+
             if(donnateur!=null){
+
                 request.setAttribute("donnateur", donnateur);
+                this.getServletContext().getRequestDispatcher("/jsp/Donnateur/updateDonnateur.jsp");
+
             }else{
                 //todo
-                //rediraction vers formulaire medification
+                //rediraction vers formulaire modification
             }
         }
     }
@@ -77,7 +82,7 @@ public class DonnateurCrudServlet extends HttpServlet {
         if(donnateurDao.updateDonnateur(donnateur)){
 
         }else{
-            
+
         }
 
     }
