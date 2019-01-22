@@ -49,8 +49,10 @@
             <div class="row mb-4 wow fadeIn">
 
                 <c:forEach var="j" begin="0" end="2">
+
+                    <c:if test="${not empty blogs[i + j]}">
                     <!--Grid column-->
-                    <div class="col-lg-4 col-md-12 mb-3">
+                    <div class="col-lg-4 col-md-12 mb-3 ">
 
                         <!--Card-->
                         <div class="card">
@@ -80,7 +82,7 @@
 
                     </div>
                     <!--Grid column-->
-
+                    </c:if>
                 </c:forEach>
 
             </div>

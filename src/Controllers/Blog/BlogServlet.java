@@ -34,7 +34,7 @@ public class BlogServlet extends HttpServlet {
 
 
         int CurrentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-        List<Blog> blogs = blog.getBlogByPagination(CurrentPage * 6, 6);
+        List<Blog> blogs = blog.getBlogByPagination((CurrentPage - 1) * 6, 6);
         request.setAttribute("blogs", blogs);
         pagination pg = new pagination(totalBlogs, 6, 5, CurrentPage);
         request.setAttribute("pg", pg);
