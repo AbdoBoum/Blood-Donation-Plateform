@@ -26,8 +26,8 @@ public class DonnateurTest {
         System.out.println("add donnateur : "+donnateurDao.addDonnateur(donnateur));
         System.out.println("get donnateur : "+donnateurDao.getDonnateur(donnateur.getEmailDonnateur(),donnateur.getPasswordDonnateur()).getCinDonnateur());
         donnateur.setIdGroupeSangDonnateur(5);
-        System.out.println("update donnateur : "+donnateurDao.updateDonnateurGroupSang(donnateur));
-        System.out.println("remove donnateur : "+donnateurDao.removeDonnateur(donnateur.getEmailDonnateur()));
+       // System.out.println("update donnateur : "+donnateurDao.updateDonnateurGroupSang(donnateur));
+       // System.out.println("remove donnateur : "+donnateurDao.removeDonnateur(donnateur.getEmailDonnateur()));
 
     }
 }

@@ -17,11 +17,11 @@ import java.util.List;
 public class BlogTest {
     public static void main(String[] args){
 
-//        BlogDaoImpl dao = new BlogDaoImpl(DAOFactory.getInstance());
-//        List<Blog> blogs = dao.getBlogByPagination(2, 4);
-//        for(Blog b: blogs){
-//            System.out.println(b.toString());
-//       }
+        BlogDaoImpl dao = new BlogDaoImpl(DAOFactory.getInstance());
+        List<Blog> blogs = dao.getBlogByPagination(2, 5);
+        for(Blog b: blogs){
+            System.out.println(b.toString());
+       }
 
             System.out.println(Utile.stringToSha256("test"));
 //

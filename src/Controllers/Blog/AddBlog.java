@@ -2,6 +2,7 @@ package Controllers.Blog;
 
 import DAO.DAOFactory;
 import DAO.Interfaces.BlogDao;
+import Helper.Utile;
 import Models.Blog;
 import Models.Donnateur;
 
@@ -24,10 +25,6 @@ public class AddBlog extends HttpServlet {
 
     private String isInserted;
 
-    public static String SUCCESS_MSG = "succes";
-    public static String FAILURE_MSG = "failure";
-    public static String EMPTY_FIELD = "empty.";
-
     @Override
     public void init() throws ServletException {
         super.init();
@@ -42,15 +39,13 @@ public class AddBlog extends HttpServlet {
 
         Part part = request.getPart("imgInput");
 
-        String fileName = extractFileName(part);
+        String fileName = Utile.extractFileName(part);
 
 
         if (title.trim().isEmpty() || description.trim().isEmpty() || part.getSize() == 0) {
-            isInserted = EMPTY_FIELD;
-            request.setAttribute("isInserted", isInserted);
-            this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
+            isInserted = Utile.EMPTY_FIELD;
         } else {
-            String savePath = "C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img\\" + File.separator + fileName;
+            String savePath = "C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img" + File.separator + fileName;
 
             File fileSaveDirectory = new File(savePath);
 
@@ -62,16 +57,14 @@ public class AddBlog extends HttpServlet {
             _blog.setDateBlog(new java.sql.Timestamp(new Date().getTime()));
 
             if (blog.insertBlog(_blog) != null) {
-                isInserted = SUCCESS_MSG;
-                request.setAttribute("isInserted", isInserted);
-                this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
+                isInserted = Utile.SUCCESS_MSG;
             } else {
-                isInserted = FAILURE_MSG;
-                request.setAttribute("isInserted", isInserted);
-                this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
+                isInserted = Utile.FAILURE_MSG;
             }
 
         }
+        request.setAttribute("isInserted", isInserted);
+        this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,16 +75,6 @@ public class AddBlog extends HttpServlet {
     }
 
 
-    private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
 
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length() - 1);
-            }
-        }
-        return "";
-    }
 
 }

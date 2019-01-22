@@ -182,7 +182,7 @@ public class BlogDaoImpl implements BlogDao {
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("SELECT  * FROM blog limit " + (start -1) + "," + total);
+            preparedStatement = connection.prepareStatement("SELECT  * FROM blog order by date_blog DESC limit " + (start -1) + "," + total);
             resultSet = preparedStatement.executeQuery();
             exctractInfos(blogs, resultSet);
         }catch (Exception e){
