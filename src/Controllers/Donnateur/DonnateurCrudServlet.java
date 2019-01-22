@@ -74,7 +74,11 @@ public class DonnateurCrudServlet extends HttpServlet {
         donnateur.setEmailDonnateur(request.getParameter("email"));
         donnateur.setTeleDonnateur(request.getParameter("telephone"));
         donnateur.setIdVilleDonnateur(Integer.parseInt(request.getParameter("ville")));
-        //todo update donnateur dao
+        if(donnateurDao.updateDonnateur(donnateur)){
+
+        }else{
+            
+        }
 
     }
     private void deleteDonnteur(HttpServletRequest request,HttpServletResponse response) throws IOException {
