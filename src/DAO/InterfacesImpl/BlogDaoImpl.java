@@ -182,7 +182,7 @@ public class BlogDaoImpl implements BlogDao {
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("SELECT  * FROM blog order by date_blog DESC limit " + (start -1) + "," + total);
+            preparedStatement = connection.prepareStatement("SELECT  * FROM blog order by date_blog DESC limit " + start  + "," + total);
             resultSet = preparedStatement.executeQuery();
             exctractInfos(blogs, resultSet);
         }catch (Exception e){
@@ -190,6 +190,28 @@ public class BlogDaoImpl implements BlogDao {
         }
 
         return blogs;
+    }
+
+    @Override
+    public int CountBlogs() {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        int countBlogs = 0;
+
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("SELECT  count(id_blog) AS NBLOGS FROM blog");
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                countBlogs = Integer.parseInt(resultSet.getString("NBLOGS"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return countBlogs;
     }
 
     /* method to extract information from Blog table and put theme into a list*/

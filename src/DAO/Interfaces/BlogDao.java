@@ -29,4 +29,7 @@ public interface BlogDao {
 
     /* get 6 blog by page*/
     public List<Blog> getBlogByPagination(int start, int total);
+
+    /* to get number of blogs */
+    public int CountBlogs();
 }

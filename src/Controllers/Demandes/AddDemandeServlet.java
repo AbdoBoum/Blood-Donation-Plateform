@@ -2,10 +2,8 @@ package Controllers.Demandes;
 
 import Controllers.Blog.AddBlog;
 import DAO.DAOFactory;
-import DAO.Interfaces.CentreDao;
-import DAO.Interfaces.DemandeDao;
-import DAO.Interfaces.GroupSangDao;
-import DAO.Interfaces.VilleDao;
+import DAO.Interfaces.*;
+import Helper.SendSMS;
 import Helper.Utile;
 import Models.*;
 
@@ -25,6 +23,7 @@ public class AddDemandeServlet extends HttpServlet {
     private CentreDao centreDao;
     private VilleDao villeDao;
     private GroupSangDao groupSangDao;
+    private DonnateurDao donnateurDao;
     private DAOFactory daoFactory;
     private List<Ville> villes;
     private List<GroupSang> groupSangList;
@@ -38,6 +37,7 @@ public class AddDemandeServlet extends HttpServlet {
         villeDao = daoFactory.getVilleDaoImpl();
         groupSangDao = daoFactory.getGroupSangDaoImpl();
         centreDao = daoFactory.getCentreDaoImpl();
+        donnateurDao = daoFactory.getDonnateurDaoImpl();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -80,6 +80,19 @@ public class AddDemandeServlet extends HttpServlet {
 
             if(demandeDao.addDemande(demande)){
                 isInserted = Utile.SUCCESS_MSG;
+                String message = Utile.createMessageFromDemand(demande);
+                List<Donnateur> donnateurList;
+                if(demande.isUrgent()){
+                    donnateurList = donnateurDao.getAllDonnateurs();
+                }else{
+                    donnateurList = donnateurDao.getDonnateursByCity(demande.getIdVilleDemande());
+                }
+                try {
+                    Runnable sendSMS = new SendSMS(donnateurList,message);
+                    new Thread(sendSMS).start();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }else{
                 isInserted = Utile.FAILURE_MSG;
             }
