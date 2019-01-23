@@ -53,7 +53,7 @@
                     </a>
                 </li>
                 <li class="nav-item ${not empty sessionScope.donnateur ? 'invisible': ''}">
-                    <a href="/login"
+                    <a href="/addDonnateur"
                        class="nav-link border border-light rounded">
                         <i class="fas fa-user-plus"></i>Sign up
                     </a>
