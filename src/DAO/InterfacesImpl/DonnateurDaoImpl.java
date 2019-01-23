@@ -80,12 +80,13 @@ public class DonnateurDaoImpl implements DonnateurDao {
                 Donnateur donnateur = new Donnateur();
                 donnateur.setIdDonnateur(result.getInt("id_donnateur"));
                 donnateur.setCinDonnateur(result.getString("cin_donnateur"));
-                donnateur.setEmailDonnateur(result.getString("email_donnateur"));
                 donnateur.setNomDonnateur(result.getString("nom_donnateur"));
                 donnateur.setPrenomDonnateur(result.getString("prenom_donnateur"));
+                donnateur.setEmailDonnateur(result.getString("email_donnateur"));
+                donnateur.setPasswordDonnateur(result.getString("password_donnateur"));
+                donnateur.setTeleDonnateur(result.getString("tele_donnateur"));
                 donnateur.setIdVilleDonnateur(result.getInt("id_ville"));
                 donnateur.setIdGroupeSangDonnateur(result.getInt("id_groupeSang"));
-                donnateur.setTeleDonnateur(result.getString("tele_donnateur"));
                 return donnateur;
             }
         }catch (SQLException e){
@@ -168,24 +169,21 @@ public class DonnateurDaoImpl implements DonnateurDao {
 
     @Override
     public boolean updateDonnateur(Donnateur donnateur) {
-        String query = "UPDATE donnateur SET email_donnateur = ?, password_donnateur = ?, id_ville = ?, " +
-                    "tele_donnateur = ?, id_groupeSang = ? WHERE id_donnateur=? ;";
-        boolean result = false;
         try {
-            Connection connection = daoFactory.getConnection();
-            PreparedStatement prs = connection.prepareStatement(query);
-            prs.setString(1, donnateur.getEmailDonnateur());
-            prs.setString(2, donnateur.getPasswordDonnateur());
-            prs.setInt(3, donnateur.getIdVilleDonnateur());
-            prs.setString(4, donnateur.getTeleDonnateur());
-            prs.setInt(5, donnateur.getIdGroupeSangDonnateur());
-            prs.setInt(6, donnateur.getIdDonnateur());
-            prs.executeUpdate();
-            result = true;
-        } catch (SQLException e) {
+            Connection connection=daoFactory.getConnection();
+            PreparedStatement preparedStatement=connection.prepareStatement("UPDATE donnateur SET email_donnateur=?, password_donnateur=?, tele_donnateur=?, id_ville=?, id_groupeSang=? WHERE id_donnateur=?");
+            preparedStatement.setString(1,donnateur.getEmailDonnateur());
+            preparedStatement.setString(2,donnateur.getPasswordDonnateur());
+            preparedStatement.setString(3,donnateur.getTeleDonnateur());
+            preparedStatement.setInt(4,donnateur.getIdVilleDonnateur());
+            preparedStatement.setInt(5,donnateur.getIdGroupeSangDonnateur());
+            preparedStatement.setInt(6,donnateur.getIdDonnateur());
+            preparedStatement.executeUpdate();
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
             return false;
         }
-        return result;
     }
 
 }

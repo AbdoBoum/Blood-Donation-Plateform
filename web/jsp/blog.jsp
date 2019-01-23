@@ -20,7 +20,7 @@
         <br><br><br>
         <div class="row mb-4 mt-3">
             <div class="col-6">
-                <form class="form-inline md-form mr-auto invisible" action="blog">
+                <form class="form-inline md-form mr-auto d-none" action="blog">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
                            name="keyword">
                     <button class="btn btn-red btn-rounded btn-md my-0" type="submit">Search</button>
@@ -71,8 +71,8 @@
                                 <!--Title-->
                                 <h4 class="card-title">${blogs[i + j].getTitreBlog().substring(0, (blogs[i + j].getTitreBlog().length() < 48) ? blogs[i + j].getTitreBlog().length(): 48)}</h4>
                                 <!--Text-->
-                                <p class="card-text">${blogs[j].getContenueBlog().substring(0, (blogs[i + j].getContenueBlog().length() < 150) ? blogs[i + j].getContenueBlog().length(): 150)}</p>
-                                <a href="#" class="btn btn-red btn-md">Read More
+                                <p class="card-text">${blogs[i + j].getContenueBlog().substring(0, (blogs[i + j].getContenueBlog().length() < 150) ? blogs[i + j].getContenueBlog().length(): 150)}</p>
+                                <a href="blog?id=${blogs[i + j].getIdBlog()}&article=${blogs[i + j].getTitreBlog().replace(" ", "_").toLowerCase()}" class="btn btn-red btn-md">Read More
                                     <i class="fa fa-play ml-2"></i>
                                 </a>
                             </div>
@@ -136,9 +136,10 @@
     <!--Section: Cards-->
 
     </div>
-    <%@include file="Footer.jsp" %>
+
 </main>
 
+<%@include file="Footer.jsp" %>
 
 </body>
 </html>

@@ -46,6 +46,34 @@ public class CentreDaoImpl implements CentreDao {
     }
 
     @Override
+    public Centre getCentre(String email, String password) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Centre centre = null;
+        try{
+            connection=daoFactory.getConnection();
+            preparedStatement=connection.prepareStatement("SELECT * from centre WHERE email_centre=? AND password_centre  = ?");
+            preparedStatement.setString(1,email);
+            preparedStatement.setString(2,password);
+            ResultSet rs=preparedStatement.executeQuery();
+            if(rs.next()){
+                centre=new Centre();
+                centre.setIdCentre(rs.getInt("id_centre"));
+                centre.setNameCentre(rs.getString("nom_centre"));
+                centre.setEmailCentre(rs.getString("email_centre"));
+                centre.setPasswordCentre(rs.getString("password_centre"));
+                centre.setAdresseCentre(rs.getString("addresse_centre"));
+                centre.setTeleCentre(rs.getString("tele_centre"));
+                centre.setIdAdmin(rs.getInt("id_admin"));
+                centre.setIdVille(rs.getInt("id_ville"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return centre;
+    }
+
+    @Override
     public void insertCentre(Centre centre) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
