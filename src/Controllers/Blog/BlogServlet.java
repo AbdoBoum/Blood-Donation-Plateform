@@ -39,6 +39,6 @@ public class BlogServlet extends HttpServlet {
         pagination pg = new pagination(totalBlogs, 6, 5, CurrentPage);
         request.setAttribute("pg", pg);
         this.getServletContext().getRequestDispatcher("/jsp/blog.jsp").forward(request, response);
-
     }
+
 }
