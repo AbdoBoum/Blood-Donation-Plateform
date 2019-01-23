@@ -105,13 +105,8 @@ public class AddDemandeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Centre centre = centreDao.getCentre(1);
         villes = villeDao.getAllVille();
         groupSangList = groupSangDao.getAllGroups();
-        if(centre != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("centre", centre);
-        }
         request.setAttribute("villes",villes);
         request.setAttribute("groupSangList",groupSangList);
         this.getServletContext().getRequestDispatcher("/jsp/addDemande.jsp").forward(request, response);

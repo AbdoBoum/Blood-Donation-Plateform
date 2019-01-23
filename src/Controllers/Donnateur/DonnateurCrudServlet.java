@@ -57,7 +57,7 @@ public class DonnateurCrudServlet extends HttpServlet {
         request.setAttribute("sangs", groupeSangs);
 
         if(!request.getParameterMap().containsKey("update")){
-            
+
             this.getServletContext().getRequestDispatcher("/jsp/signUpDonnateur.jsp").forward(request,response);
 
         }else{
