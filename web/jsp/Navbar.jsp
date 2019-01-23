@@ -25,7 +25,7 @@
                     <a class="nav-link" href="/blog">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/forum">Forum</a>
+                    <a class="nav-link" href="/requestq">Requests</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/agenda">Agenda</a>

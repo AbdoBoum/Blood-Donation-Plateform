@@ -23,7 +23,7 @@
         <!-- Default form login -->
 
 
-        <h5 class="card-header danger-color-dark white-text text-center py-4">
+        <h5 class="card-header white-text text-center py-4" style="background: #AE1F23">
             <strong>Sign in</strong>
         </h5>
         <div class="card-body">
@@ -51,7 +51,7 @@
                 </div>
 
                 <!-- Sign in button -->
-                <button class="btn btn-red btn-block my-4" type="submit">Sign in</button>
+                <button class="btn btn-block my-4" style="background: #AE1F23" type="submit">Sign in</button>
 
                 <!-- Register -->
                 <p>Not a member?

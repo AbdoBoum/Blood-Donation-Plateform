@@ -61,7 +61,7 @@
                             <div class="overlay">
                                 <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                     <img class="embed-responsive-item"
-                                         src="${blogs[i + j].getPathImgBlog().substring(25)}"
+                                         src="${blogs[i + j].getPathImgBlog().substring(55)}"
                                          allowfullscreen/>
                                 </div>
                             </div>
