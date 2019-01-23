@@ -7,6 +7,7 @@ import Models.*;
 
 import javax.servlet.http.Part;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Utile {
@@ -14,6 +15,11 @@ public class Utile {
     public static final String SUCCESS_MSG = "succes";
     public static final String FAILURE_MSG = "failure";
     public static final String EMPTY_FIELD = "empty.";
+    public static final String[] bloodDonationQuotes = {"Don’t let mosquitoes get your blood first.",
+            "Blood is a life, pass it on!", "The blood is red gold in time of saving a life.",
+            "Heroes come in all types and sizes.", "Be a blood donor, be a Hero – A real one.",
+            "There is no great joy than saving a soul.", "A bottle of blood saved my life, was it yours.",
+            "Blood can circulate forever if you keep donating it."};
 
 
     public static String stringToSha256(String base) {

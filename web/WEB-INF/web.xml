@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_4_0.xsd"
-           version="4">
+         version="4">
 
     <servlet>
         <servlet-name>Test</servlet-name>
@@ -86,14 +86,14 @@
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
-  <servlet>
-    <servlet-name>affEvent</servlet-name>
-    <servlet-class>Controllers.Event.AffEvent</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>affEvent</servlet-name>
-    <url-pattern>/agenda</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>affEvent</servlet-name>
+        <servlet-class>Controllers.Event.AffEvent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>affEvent</servlet-name>
+        <url-pattern>/agenda</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>Contact</servlet-name>
@@ -106,16 +106,16 @@
     </servlet-mapping>
 
     <servlet>
-    <servlet-name>donnateurCrud</servlet-name>
-    <servlet-class>Controllers.Donnateur.DonnateurCrudServlet</servlet-class>
-</servlet>
+        <servlet-name>donnateurCrud</servlet-name>
+        <servlet-class>Controllers.Donnateur.DonnateurCrudServlet</servlet-class>
+    </servlet>
 
-<servlet-mapping>
-    <servlet-name>donnateurCrud</servlet-name>
-    <url-pattern>/addDonnateur</url-pattern>
-    <url-pattern>/updateDonnateur</url-pattern>
-    <url-pattern>/managementDonnateur</url-pattern>
-</servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>donnateurCrud</servlet-name>
+        <url-pattern>/addDonnateur</url-pattern>
+        <url-pattern>/updateDonnateur</url-pattern>
+        <url-pattern>/managementDonnateur</url-pattern>
+    </servlet-mapping>
+    
 
 </web-app>

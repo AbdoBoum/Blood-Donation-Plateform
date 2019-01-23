@@ -72,7 +72,7 @@
                                 <h4 class="card-title">${blogs[i + j].getTitreBlog().substring(0, (blogs[i + j].getTitreBlog().length() < 48) ? blogs[i + j].getTitreBlog().length(): 48)}</h4>
                                 <!--Text-->
                                 <p class="card-text">${blogs[i + j].getContenueBlog().substring(0, (blogs[i + j].getContenueBlog().length() < 150) ? blogs[i + j].getContenueBlog().length(): 150)}</p>
-                                <a href="blog?id=${blogs[i + j].getIdBlog()}&article=${blogs[i + j].getTitreBlog().replace(" ", "_").toLowerCase()}" class="btn btn-red btn-md">Read More
+                                <a href="blog?id=${blogs[i + j].getIdBlog()}" class="btn btn-red btn-md">Read More
                                     <i class="fa fa-play ml-2"></i>
                                 </a>
                             </div>
