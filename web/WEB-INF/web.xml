@@ -113,11 +113,9 @@
 <servlet-mapping>
     <servlet-name>donnateurCrud</servlet-name>
     <url-pattern>/addDonnateur</url-pattern>
+    <url-pattern>/updateDonnateur</url-pattern>
+    <url-pattern>/managementDonnateur</url-pattern>
 </servlet-mapping>
 
-<servlet-mapping>
-    <servlet-name>donnateurCrud</servlet-name>
-    <url-pattern>/updateDonnateur</url-pattern>
-</servlet-mapping>
 
 </web-app>

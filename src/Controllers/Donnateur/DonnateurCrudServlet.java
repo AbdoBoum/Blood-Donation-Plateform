@@ -20,6 +20,7 @@ import java.util.List;
 public class DonnateurCrudServlet extends HttpServlet {
     private DAOFactory daoFactory;
     private DonnateurDao donnateurDao;
+    private final String managementLink="/managementDonnateur";
 
     @Override
     public void init() throws ServletException {
@@ -42,12 +43,19 @@ public class DonnateurCrudServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(managementLink.equals(request.getServletPath())){
+            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request,response);
+        }else{
+
         VilleDao villeDao=daoFactory.getVilleDaoImpl();
         List<Ville> villes=villeDao.getAllVille();
+
         request.setAttribute("villes",villes);
         GroupSangDao groupSangDao=daoFactory.getGroupSangDaoImpl();
         List<GroupSang> groupeSangs=groupSangDao.getAllGroups();
+
         request.setAttribute("sangs", groupeSangs);
+
         if(!request.getParameterMap().containsKey("update")){
 
             this.getServletContext().getRequestDispatcher("/jsp/Donnateur/addDonnateur.jsp").forward(request,response);
@@ -57,47 +65,60 @@ public class DonnateurCrudServlet extends HttpServlet {
             String idDonnateur=request.getParameter("update");
             int id=Integer.parseInt(idDonnateur);
             Donnateur donnateur=donnateurDao.getDonnateur(id);
-
             if(donnateur!=null){
-
                 request.setAttribute("donnateur", donnateur);
-                this.getServletContext().getRequestDispatcher("/jsp/Donnateur/updateDonnateur.jsp");
+                this.getServletContext().getRequestDispatcher("/jsp/Donnateur/updateDonnateur.jsp").forward(request,response);
 
             }else{
                 //todo
                 //rediraction vers formulaire modification
+                System.out.println("else is executed");
             }
         }
+        }
     }
-    private void updateDonnateur(HttpServletRequest request,HttpServletResponse response){
-        int id=Integer.parseInt(request.getParameter("id"));
+    private void updateDonnateur(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        int id=Integer.parseInt(request.getParameter("id").trim());
         Donnateur donnateur=donnateurDao.getDonnateur(id);
-        donnateur.setNomDonnateur(request.getParameter("nom"));
-        donnateur.setPrenomDonnateur(request.getParameter("prenom"));
-        donnateur.setIdGroupeSangDonnateur(Integer.parseInt(request.getParameter("groupSang")));
-        donnateur.setCinDonnateur(request.getParameter("cin"));
         donnateur.setEmailDonnateur(request.getParameter("email"));
-        donnateur.setTeleDonnateur(request.getParameter("telephone"));
-        donnateur.setIdVilleDonnateur(Integer.parseInt(request.getParameter("ville")));
-        if(donnateurDao.updateDonnateur(donnateur)){
+        donnateur.setTeleDonnateur(request.getParameter("tele"));
+        donnateur.setIdVilleDonnateur(Integer.parseInt(request.getParameter("ville").trim()));
+        donnateur.setIdGroupeSangDonnateur(Integer.parseInt(request.getParameter("groupSang").trim()));
 
+        System.out.println(donnateur.getIdDonnateur()+"  "+donnateur.getIdVilleDonnateur()+"  "+donnateur.getIdGroupeSangDonnateur());
+        System.out.println(donnateur.getEmailDonnateur()+"  "+donnateur.getPasswordDonnateur()+"  "+donnateur.getTeleDonnateur());
+
+        boolean update=donnateurDao.updateDonnateur(donnateur);
+
+        if(update){
+            String msg="The donnateur has been updated !!";
+            request.setAttribute("flashMessageSuccess", msg);
+            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request,response);
         }else{
-
+            String msg="The donnateur has been updated !!";
+            request.setAttribute("flashMessageFaild", msg);
+            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request,response);
         }
 
     }
-    private void deleteDonnteur(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    private void deleteDonnteur(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 
         String email=request.getParameter("email");
-        if(donnateurDao.removeDonnateur(email)){
-            response.sendRedirect("jsp/home.jsp");
-        }else{
-            response.sendRedirect("jsp/home.jsp");
 
+        System.out.println("in delete Donnateur");
+        if(donnateurDao.removeDonnateur(email)){
+            System.out.println("in success deleting");
+            request.setAttribute("flashMessageSuccess", "The donnateur has been deleted !!");
+            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request,response);
+        }else{
+            System.out.println("echec deleting");
+            request.setAttribute("flashMessageFaild", "Erreur of deleting donnateur !!");
+            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request,response);
         }
 
     }
-    private void addDonnateur(HttpServletRequest request,HttpServletResponse response) throws IOException {
+    private void addDonnateur(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 
         Donnateur donnateur=new Donnateur();
         donnateur.setNomDonnateur(request.getParameter("nom"));
@@ -107,11 +128,14 @@ public class DonnateurCrudServlet extends HttpServlet {
         donnateur.setPasswordDonnateur(Helper.Utile.stringToSha256(request.getParameter("password")));
         donnateur.setTeleDonnateur(request.getParameter("tele"));
         donnateur.setIdVilleDonnateur(Integer.parseInt(request.getParameter("ville").trim()));
-        donnateur.setIdGroupeSangDonnateur(Integer.parseInt(request.getParameter("groupeSang").trim()));
+        donnateur.setIdGroupeSangDonnateur(Integer.parseInt(request.getParameter("groupSang").trim()));
         if(donnateurDao.addDonnateur(donnateur)){
-            //response.sendRedirect("jsp/Donnateur/addDonnateur.jsp");
+            System.out.println("donateur has been added");
+            request.setAttribute("flashMessageSuccess", "Donnateur has been added!!");
+            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request,response);
         }else{
-            this.getServletContext().getRequestDispatcher("jsp/Donnateur/addDonnateur.jsp");
+            request.setAttribute("flashMessageFaild", "Error adding Donnateur!!");
+            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request,response);
         }
     }
 }
