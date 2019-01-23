@@ -50,7 +50,7 @@ public class DonnateurCrudServlet extends HttpServlet {
             List<GroupSang> groupeSangs=groupSangDao.getAllGroups();
             request.setAttribute("sangs", groupeSangs);
 
-            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/addDonnateur.jsp").forward(request,response);
+            this.getServletContext().getRequestDispatcher("/jsp/signUpDonnateur.jsp").forward(request,response);
         }else{
             String id_donnateur=request.getParameter("update");
 

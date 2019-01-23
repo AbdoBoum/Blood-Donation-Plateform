@@ -16,8 +16,12 @@
             color:red;
         }
         .form-control:focus {
-            border-color: #c70039;
+            border-color: #AE1F23;
             box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+        }
+        select option:hover {
+            background-color: #AE1F23;
+            color: white;
         }
     </style>
 </head>

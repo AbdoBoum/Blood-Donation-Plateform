@@ -71,7 +71,7 @@ public class AddDemandeServlet extends HttpServlet {
             }
             demande.setSangGroups(concerneDemandeList);
             String fileName = Utile.extractFileName(part);
-            String savePath = "C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img" + File.separator + fileName;
+            String savePath = "F:\\JEE2019_Groupe4-3\\web\\img" + File.separator + fileName;
 
             File fileSaveDirectory = new File(savePath);
 
