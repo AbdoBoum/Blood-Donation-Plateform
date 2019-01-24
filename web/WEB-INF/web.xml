@@ -36,7 +36,7 @@
     </servlet-mapping>
 
 
-    <!--- add demande servlet -->
+    <!--- add request servlet -->
     <servlet>
         <servlet-name>AddDemande</servlet-name>
         <servlet-class>Controllers.Demandes.AddDemandeServlet</servlet-class>
@@ -44,10 +44,24 @@
 
     <servlet-mapping>
         <servlet-name>AddDemande</servlet-name>
-        <url-pattern>/addDemande</url-pattern>
+        <url-pattern>/addRequest</url-pattern>
     </servlet-mapping>
 
-    <!--- end add demande servlet -->
+    <!--- end of add request servlet -->
+
+    <!--- get requests servlet -->
+    <servlet>
+        <servlet-name>requests</servlet-name>
+        <servlet-class>Controllers.Demandes.RequestsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>requests</servlet-name>
+        <url-pattern>/request</url-pattern>
+    </servlet-mapping>
+
+    <!--- end of add get requests servlet -->
+
 
     <servlet>
         <servlet-name>AddBlog</servlet-name>

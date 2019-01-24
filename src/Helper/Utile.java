@@ -3,10 +3,12 @@ package Helper;
 import DAO.DAOFactory;
 import DAO.Interfaces.CentreDao;
 import DAO.Interfaces.GroupSangDao;
+import DAO.Interfaces.VilleDao;
 import Models.*;
 
 import javax.servlet.http.Part;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Utile {
@@ -78,5 +80,29 @@ public class Utile {
         }
         message = message.substring(0,message.length()-1)+".";
         return message;
+    }
+
+    public static RequestPagination createRequestClass(Demande demande){
+        DAOFactory daoFactory = DAOFactory.getInstance();
+        GroupSangDao groupSangDao = daoFactory.getGroupSangDaoImpl();
+        VilleDao villeDao = daoFactory.getVilleDaoImpl();
+        CentreDao centreDao = daoFactory.getCentreDaoImpl();
+
+        RequestPagination requestPagination = new RequestPagination();
+        requestPagination.setTitleRequest(demande.getTitleDemande());
+        requestPagination.setDateRequest(demande.getDateDemande());
+        requestPagination.setPathImgRequest(demande.getPathImgDemande());
+        requestPagination.setIdRequest(demande.getIdDemande());
+        requestPagination.setUrgent(demande.isUrgent());
+        requestPagination.setDescriptionRequest(demande.getDescriptionDemande());
+        Centre centre = centreDao.getCentre(demande.getIdCentre());
+        requestPagination.setNameVilleRequest(centre.getAdresseCentre()+", "+villeDao.getVilleById(demande.getIdVilleDemande()).getNomVille());
+        requestPagination.setCenterName(centre.getNameCentre());
+        String s ="";
+        for(ConcerneDemande concerneDemande : demande.getSangGroups()){
+            s+=groupSangDao.getGroupSang(concerneDemande.getIdGroupeSang()).getNameGroupe()+" ;";
+        }
+        requestPagination.setSangGroups(s.substring(0,s.length()-1));
+        return requestPagination;
     }
 }

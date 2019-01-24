@@ -19,4 +19,8 @@ public interface DemandeDao {
 
     boolean deleteDemande(int idDemande);
 
+    List<Demande> getRequestsByPagination(int start , int total);
+
+    int countRequests();
+
 }

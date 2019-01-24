@@ -53,22 +53,7 @@ public class DemandeDaoImpl implements DemandeDao {
             PreparedStatement prs = connection.prepareStatement(query);
             prs.setBoolean(1,true);
             ResultSet resultSet = prs.executeQuery();
-            List<Demande> demandeList = new ArrayList<>();
-            while (resultSet.next()){
-                Demande demande = new Demande();
-                demande.setIdDemande(resultSet.getInt("id_demande"));
-                demande.setIdVilleDemande(resultSet.getInt("id_ville"));
-                demande.setTitleDemande(resultSet.getString("titre_demande"));
-                demande.setDescriptionDemande(resultSet.getString("description_demande"));
-                demande.setUrgent(resultSet.getBoolean("is_urgent"));
-                demande.setPathImgDemande(resultSet.getString("imagePath_demande"));
-                demande.setActive(true);
-                demande.setIdCentre(resultSet.getInt("id_centre"));
-                demande.setDateDemande(resultSet.getTimestamp("date_demande"));
-                demande.setSangGroups(concerneDemandeDao.getAllGroupesConcerned(demande.getIdDemande()));
-                demandeList.add(demande);
-
-            }
+            List<Demande> demandeList = exctractInfos(resultSet);
             return demandeList;
         }catch (SQLException e){
             e.printStackTrace();
@@ -111,6 +96,63 @@ public class DemandeDaoImpl implements DemandeDao {
     @Override
     public boolean deleteDemande(int idDemande) {
         return false;
+    }
+
+    @Override
+    public List<Demande> getRequestsByPagination(int start, int total) {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Demande> requests = new ArrayList<>();
+
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("SELECT  * FROM demande order by date_demande DESC limit " + start  + "," + total);
+            resultSet = preparedStatement.executeQuery();
+            requests = exctractInfos(resultSet);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return requests;
+    }
+
+    private List<Demande> exctractInfos(ResultSet resultSet) throws SQLException{
+        List<Demande> demandeList = new ArrayList<>();
+        while (resultSet.next()){
+            Demande demande = new Demande();
+            demande.setIdDemande(resultSet.getInt("id_demande"));
+            demande.setIdVilleDemande(resultSet.getInt("id_ville"));
+            demande.setTitleDemande(resultSet.getString("titre_demande"));
+            demande.setDescriptionDemande(resultSet.getString("description_demande"));
+            demande.setUrgent(resultSet.getBoolean("is_urgent"));
+            demande.setPathImgDemande(resultSet.getString("imagePath_demande"));
+            demande.setActive(true);
+            demande.setIdCentre(resultSet.getInt("id_centre"));
+            demande.setDateDemande(resultSet.getTimestamp("date_demande"));
+            demande.setSangGroups(concerneDemandeDao.getAllGroupesConcerned(demande.getIdDemande()));
+            demandeList.add(demande);
+
+        }
+        return demandeList;
+
+    }
+
+    @Override
+    public int countRequests() {
+        int requestsCount = 0;
+        try {
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT  count(id_demande) AS nbrRequests FROM demande");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                requestsCount = Integer.parseInt(resultSet.getString("nbrRequests"));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return requestsCount;
     }
 
 
