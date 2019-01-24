@@ -44,15 +44,19 @@ public class AddDonnateur extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        if(session.getAttribute("donnateur")==null){
+            VilleDao villeDao=daoFactory.getVilleDaoImpl();
+            List<Ville> villes=villeDao.getAllVille();
+            request.setAttribute("villes",villes);
+            GroupSangDao groupSangDao=daoFactory.getGroupSangDaoImpl();
+            List<GroupSang> groupeSangs=groupSangDao.getAllGroups();
+            request.setAttribute("sangs", groupeSangs);
+            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/addDonnateur.jsp").forward(request,response);
+        }else{
+            response.sendRedirect("/");
 
-        VilleDao villeDao=daoFactory.getVilleDaoImpl();
-        List<Ville> villes=villeDao.getAllVille();
-        request.setAttribute("villes",villes);
-        GroupSangDao groupSangDao=daoFactory.getGroupSangDaoImpl();
-        List<GroupSang> groupeSangs=groupSangDao.getAllGroups();
-        request.setAttribute("sangs", groupeSangs);
-        this.getServletContext().getRequestDispatcher("/jsp/Donnateur/addDonnateur.jsp").forward(request,response);
-
+        }
     }
 
 

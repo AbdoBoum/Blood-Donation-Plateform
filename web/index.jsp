@@ -6,6 +6,7 @@
   </head>
   <body>
     <%@ include file="jsp/NavbarIndex.jsp"%>
+    <%@ include file="jsp/Donnateur/SubNavbarDonnateur.jsp"%>
     <div class="view"
          style="background-image: url('./img/home-bg.png'); background-repeat: no-repeat; background-size: cover;">
       <div class="mask rgba-black-light d-flex justify-content-center align-items-center">

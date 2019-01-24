@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-grid.min.css" rel="stylesheet">
+<link href="css/bootstrap-reboot.min.css" rel="stylesheet">
 <link href="css/mdb.min.css" rel="stylesheet">
 <link href="css/style.min.css" rel="stylesheet">
 <style type="text/css">
