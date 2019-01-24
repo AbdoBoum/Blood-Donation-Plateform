@@ -36,9 +36,7 @@
                             <a class="dropdown-item" href="#">Separated link</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Donor management</a>
-                    </li>
+
                 </ul>
 
             </div>
