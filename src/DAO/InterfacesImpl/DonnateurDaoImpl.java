@@ -96,6 +96,22 @@ public class DonnateurDaoImpl implements DonnateurDao {
     }
 
     @Override
+    public boolean findDonnateurByMail(String mail) {
+        try {
+            Connection connection = daoFactory.getConnection();
+            Statement statement=connection.createStatement();
+            ResultSet result =statement.executeQuery("SELECT * FROM donnateur WHERE email_donnateur='"+mail+"';");
+            if(result.next()){
+                return true;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+
+    @Override
     public boolean removeDonnateur(String email) {
         String query = "DELETE FROM donnateur WHERE email_donnateur=? ;";
         boolean result = false;

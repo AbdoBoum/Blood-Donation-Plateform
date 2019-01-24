@@ -9,6 +9,7 @@ public interface DonnateurDao {
 
     Donnateur getDonnateur(String email, String password);
     Donnateur getDonnateur(int id);
+    boolean findDonnateurByMail(String mail);
     boolean removeDonnateur(String email);
     List<Donnateur> getAllDonnateurs();
     List<Donnateur> getDonnateursByCity(int idVille);

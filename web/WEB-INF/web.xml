@@ -112,10 +112,34 @@
 
 <servlet-mapping>
     <servlet-name>donnateurCrud</servlet-name>
-    <url-pattern>/addDonnateur</url-pattern>
-    <url-pattern>/updateDonnateur</url-pattern>
     <url-pattern>/managementDonnateur</url-pattern>
 </servlet-mapping>
+    <servlet>
+        <servlet-name>addDonnateur</servlet-name>
+        <servlet-class>Controllers.Donnateur.AddDonnateur</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addDonnateur</servlet-name>
+        <url-pattern>/addDonnateur</url-pattern>
+        <url-pattern>/signeUpDonnateur</url-pattern>
+    </servlet-mapping>
 
+    <servlet>
+        <servlet-name>updateDonnateur</servlet-name>
+        <servlet-class>Controllers.Donnateur.UpdateDonnateur</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>updateDonnateur</servlet-name>
+        <url-pattern>/updateDonnateur</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>deleteDonnateur</servlet-name>
+        <servlet-class>Controllers.Donnateur.DeleteDonnateur</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteDonnateur</servlet-name>
+        <url-pattern>/deleteDonnateur</url-pattern>
+    </servlet-mapping>
 </web-app>

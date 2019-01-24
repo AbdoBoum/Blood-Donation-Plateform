@@ -55,7 +55,7 @@
                 </li>
 
                 <li class="nav-item ${(not empty sessionScope.donnateur) || (not empty sessionScope.centre) ? 'd-none': ''}">
-                    <a href="/addDonnateur" class="nav-link border border-light rounded">
+                    <a href="/signeUpDonnateur" class="nav-link border border-light rounded">
                         <i class="fas fa-user-plus "></i>Sign up
                     </a>
                 </li>

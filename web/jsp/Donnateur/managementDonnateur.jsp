@@ -9,6 +9,20 @@
 <html>
 <head>
     <%@include file="../Header.jsp"%>
+    <style>
+        .form-group.required .control-label:after {
+            content:" *";
+            color:red;
+        }
+        .form-control:focus {
+            border-color: #AE1F23;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+        }
+        select option:hover {
+            background: #AE1F23;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -63,10 +77,12 @@
             </div>
             <form method="get" action="/updateDonnateur">
             <div class="modal-body mx-3">
-                <div>
-                    <!-- Nom input -->
-                    <label for="id" class="mt-4">Id Donnateur</label>
-                    <input type="text" id="id" name="update" class="form-control ">
+                <div class="row ">
+                    <div class="form-group required col-sm-12">
+                        <label for="id" class='control-label'>Id Donnateur</label>
+                        <input type="text" name="id" class="form-control" id="id" placeholder="Identifiant donnateur">
+                        <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
                 </div>
 
             </div>
@@ -88,13 +104,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="/managementDonnateur">
+            <form method="post" action="/deleteDonnateur">
                 <div class="modal-body mx-3">
                     <div>
                         <!-- Nom input -->
                         <label for="email" class="mt-4">Email Donnateur</label>
                         <input type="email" id="email" name="email" class="form-control "/>
-                        <input type="hidden" name="delete" value="true"/>
                     </div>
 
                 </div>
