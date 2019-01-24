@@ -27,6 +27,26 @@
 <main class="mt-5 pt-5">
     <div class="container">
 
+        <!--Search-->
+        <div class="row mb-2 mt-2">
+            <div class="col-6">
+                <form class="form-inline md-form mr-auto " action="blog">
+                    <input class="form-control mr-sm-2 my-0" type="text" placeholder="Search" aria-label="Search"
+                           name="keyword">
+                    <button class="btn btn-red btn-rounded btn-md my-0" type="submit">Search</button>
+                </form>
+            </div>
+            <!--Search-->
+
+            <!--Add blog-->
+            <div class="col-md-6 text-right mt-3">
+
+                <a class="btn btn-red ${empty sessionScope.donnateur ? 'invisible': ''}" href="addBlog">New Blog</a>
+
+            </div>
+            <!--Add blog-->
+        </div>
+
         <!--Section: Post-->
         <section class="mt-4">
 
