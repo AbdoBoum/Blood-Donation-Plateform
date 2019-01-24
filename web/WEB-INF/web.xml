@@ -25,6 +25,7 @@
         <url-pattern>/faq</url-pattern>
     </servlet-mapping>
 
+    <!--- Blog servlets -->
     <servlet>
         <servlet-name>BLOG</servlet-name>
         <servlet-class>Controllers.Blog.BlogServlet</servlet-class>
@@ -34,6 +35,17 @@
         <servlet-name>BLOG</servlet-name>
         <url-pattern>/blog</url-pattern>
     </servlet-mapping>
+    <!--- //// -->
+    <servlet>
+        <servlet-name>AddBlog</servlet-name>
+        <servlet-class>Controllers.Blog.AddBlog</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddBlog</servlet-name>
+        <url-pattern>/addBlog</url-pattern>
+    </servlet-mapping>
+    <!--- Blog servlet -->
 
 
     <!--- add demande servlet -->
@@ -49,15 +61,6 @@
 
     <!--- end add demande servlet -->
 
-    <servlet>
-        <servlet-name>AddBlog</servlet-name>
-        <servlet-class>Controllers.Blog.AddBlog</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>AddBlog</servlet-name>
-        <url-pattern>/addBlog</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>addEvent</servlet-name>
         <servlet-class>Controllers.Event.AddEvent</servlet-class>
@@ -105,17 +108,6 @@
         <url-pattern>/contact</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>donnateurCrud</servlet-name>
-        <servlet-class>Controllers.Donnateur.DonnateurCrudServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>donnateurCrud</servlet-name>
-        <url-pattern>/addDonnateur</url-pattern>
-        <url-pattern>/updateDonnateur</url-pattern>
-        <url-pattern>/managementDonnateur</url-pattern>
-    </servlet-mapping>
 
     <servlet>
       <servlet-name>donnateurCrud</servlet-name>
@@ -126,20 +118,23 @@
       <servlet-name>donnateurCrud</servlet-name>
       <url-pattern>/managementDonnateur</url-pattern>
   </servlet-mapping>
+
       <servlet>
           <servlet-name>addDonnateur</servlet-name>
           <servlet-class>Controllers.Donnateur.AddDonnateur</servlet-class>
       </servlet>
+
       <servlet-mapping>
           <servlet-name>addDonnateur</servlet-name>
           <url-pattern>/addDonnateur</url-pattern>
-          <url-pattern>/signeUpDonnateur</url-pattern>
+          <url-pattern>/registre</url-pattern>
       </servlet-mapping>
 
       <servlet>
           <servlet-name>updateDonnateur</servlet-name>
           <servlet-class>Controllers.Donnateur.UpdateDonnateur</servlet-class>
       </servlet>
+
     <servlet-mapping>
         <servlet-name>updateDonnateur</servlet-name>
         <url-pattern>/updateDonnateur</url-pattern>
@@ -149,6 +144,7 @@
         <servlet-name>deleteDonnateur</servlet-name>
         <servlet-class>Controllers.Donnateur.DeleteDonnateur</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>deleteDonnateur</servlet-name>
         <url-pattern>/deleteDonnateur</url-pattern>

@@ -24,7 +24,7 @@
           <a  href="/login" class="btn btn-outline-white btn-lg ${not empty sessionScope.donnateur ? 'invisible': ''}">
             Sign in
           </a>
-          <a  href="/login" class="btn btn-outline-white btn-lg ${not empty sessionScope.donnateur ? 'invisible': ''}">
+          <a  href="/registre" class="btn btn-outline-white btn-lg ${not empty sessionScope.donnateur ? 'invisible': ''}">
             Sign up
           </a>
         </div>

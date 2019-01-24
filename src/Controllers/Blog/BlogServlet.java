@@ -55,7 +55,7 @@ public class BlogServlet extends HttpServlet {
                 blogs = blog.getBlogByPagination(1, 3);
                 request.setAttribute("blogs", blogs);
                 request.setAttribute("article", _blog);
-                request.setAttribute("author", !blog.getBlogAuthor(id).isEmpty() ? blog.getBlogAuthor(id).isEmpty() : "Author deleted");
+                request.setAttribute("author", (!blog.getBlogAuthor(id).isEmpty()) ? blog.getBlogAuthor(id) : "Author deleted");
                 request.setAttribute("quote", Utile.bloodDonationQuotes[new Random().nextInt(Utile.bloodDonationQuotes.length)]);
                 this.getServletContext().getRequestDispatcher("/jsp/post-page.jsp").forward(request, response);
             } else {

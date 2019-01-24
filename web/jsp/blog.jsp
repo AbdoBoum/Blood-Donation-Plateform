@@ -109,7 +109,7 @@
                 <div class="col-md-10 offset-1 mb-4">
 
                     <!--Card-->
-                    <div class="card" style="background: #AE1F23">
+                    <div class="card mb-5" style="background: #AE1F23">
 
                         <!--Card image-->
                         <div class="card-header pt-4" style="background: #AE1F23">
@@ -152,6 +152,5 @@
 </main>
 
 <%@include file="Footer.jsp" %>
-
 </body>
 </html>
