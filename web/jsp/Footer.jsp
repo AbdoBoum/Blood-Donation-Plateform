@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<footer class="page-footer text-center font-small mt-4 wow fadeIn bottom">
+<footer class="page-footer text-center font-small mt-4 wow fadeIn ">
     <div class="pb-4 pt-4">
 
         <div class="pb-4">

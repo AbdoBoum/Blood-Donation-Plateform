@@ -31,9 +31,9 @@
         <div class="row mb-4 mt-2">
             <div class="col-6">
                 <form class="form-inline md-form mr-auto " action="blog">
-                    <input class="form-control mr-sm-2 my-0" type="text" placeholder="Search" aria-label="Search"
+                    <input class="form-control mr-sm-2 my-0" type="text" value="${keyword}" placeholder="Search" aria-label="Search"
                            name="keyword" >
-                    <button class="btn btn-red btn-rounded btn-md my-0" type="submit">Search</button>
+                    <button class="btn btn-red btn-rounded btn-md my-0" type="submit" >Search</button>
                 </form>
             </div>
             <!--Search button-->
@@ -152,5 +152,7 @@
 </main>
 
 <%@include file="Footer.jsp" %>
+
 </body>
+
 </html>

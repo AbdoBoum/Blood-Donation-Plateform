@@ -151,7 +151,7 @@
                 <div class="col-md-4 mb-4">
 
                     <!--Card: Jumbotron-->
-                    <div class="card blue-gradient mb-4 wow fadeIn">
+                    <div class="card blue-gradient mb-5 wow fadeIn">
 
                         <!-- Content -->
                         <div class="card-body text-white text-center">
@@ -177,7 +177,7 @@
                     </div>
 
                     <!--Card-->
-                    <div class="card mb-4 wow fadeIn">
+                    <div class="card mb-4 wow fadeIn mt-0">
 
                         <div class="card-header">Related articles</div>
 

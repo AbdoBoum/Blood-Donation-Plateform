@@ -22,10 +22,10 @@
             <strong>Don’t let these misconceptions stop you from becoming a hero – one bag of blood can save three lives. </strong>
           </p>
 
-          <a  href="/login" class="btn btn-outline-white btn-lg ${not empty sessionScope.donnateur ? 'invisible': ''}">
+          <a  href="/login" class="btn btn-outline-white btn-lg ${(not empty sessionScope.donnateur) || (not empty sessionScope.centre) ? 'invisible': ''}">
             Sign in
           </a>
-          <a  href="/registre" class="btn btn-outline-white btn-lg ${not empty sessionScope.donnateur ? 'invisible': ''}">
+          <a  href="/registre" class="btn btn-outline-white btn-lg ${(not empty sessionScope.donnateur) || (not empty sessionScope.centre) ? 'invisible': ''}">
             Sign up
           </a>
         </div>
