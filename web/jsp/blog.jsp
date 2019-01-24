@@ -12,27 +12,39 @@
     <%@include file="Header.jsp" %>
 </head>
 
-<body>
-<%@include file="Navbar.jsp" %>
+<body class="grey lighten-3">
+
+<!--Main Navigation-->
+<header>
+
+    <!-- Navbar -->
+    <%@include file="Navbar.jsp" %>
+    <!-- Navbar -->
+
+</header>
+<!--Main Navigation-->
 
 <main>
     <div class="container">
         <br><br><br>
-        <div class="row mb-4 mt-3">
+        <!--Search button-->
+        <div class="row mb-4 mt-2">
             <div class="col-6">
-                <form class="form-inline md-form mr-auto d-none" action="blog">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"
-                           name="keyword">
+                <form class="form-inline md-form mr-auto " action="blog">
+                    <input class="form-control mr-sm-2 my-0" type="text" placeholder="Search" aria-label="Search"
+                           name="keyword" >
                     <button class="btn btn-red btn-rounded btn-md my-0" type="submit">Search</button>
                 </form>
             </div>
+            <!--Search button-->
 
-
+            <!--Add blog-->
             <div class="col-md-6 text-right mt-3">
 
                 <a class="btn btn-red ${empty sessionScope.donnateur ? 'invisible': ''}" href="addBlog">New Blog</a>
 
             </div>
+            <!--Add blog-->
 
         </div>
         <!--Section: Cards-->
@@ -55,7 +67,7 @@
                     <div class="col-lg-4 col-md-12 mb-3 ">
 
                         <!--Card-->
-                        <div class="card">
+                        <div class="card" >
 
                             <!--Card image-->
                             <div class="overlay">
@@ -69,10 +81,10 @@
                             <!--Card content-->
                             <div class="card-body ">
                                 <!--Title-->
-                                <h4 class="card-title">${blogs[i + j].getTitreBlog().substring(0, (blogs[i + j].getTitreBlog().length() < 48) ? blogs[i + j].getTitreBlog().length(): 48)}</h4>
+                                <h4 class="card-title" style="height: 80px">${blogs[i + j].getTitreBlog().substring(0, (blogs[i + j].getTitreBlog().length() < 48) ? blogs[i + j].getTitreBlog().length(): 48)}</h4>
                                 <!--Text-->
                                 <p class="card-text">${blogs[i + j].getContenueBlog().substring(0, (blogs[i + j].getContenueBlog().length() < 150) ? blogs[i + j].getContenueBlog().length(): 150)}</p>
-                                <a href="blog?id=${blogs[i + j].getIdBlog()}&article=${blogs[i + j].getTitreBlog().replace(" ", "_").toLowerCase()}" class="btn btn-red btn-md">Read More
+                                <a href="blog?id=${blogs[i + j].getIdBlog()}" class="btn btn-red btn-md">Read More
                                     <i class="fa fa-play ml-2"></i>
                                 </a>
                             </div>

@@ -155,6 +155,27 @@ public class BlogDaoImpl implements BlogDao {
     }
 
     @Override
+    public String getBlogAuthor(int id){
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        String name = "";
+
+        try {
+            connection = daoFactory.getConnection();
+            statement = connection.prepareStatement("SELECT nom_donnateur, prenom_donnateur FROM donnateur d, blog b where b.id_blog = ? and b.id_donnateur = d.id_donnateur");
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                name = resultSet.getString(1) + " " + resultSet.getString(2);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
+
+    @Override
     public boolean deleteBlog(int idBlog) {
         Connection connection = null;
         PreparedStatement statement = null;

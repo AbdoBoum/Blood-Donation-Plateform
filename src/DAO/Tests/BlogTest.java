@@ -23,7 +23,7 @@ public class BlogTest {
             //System.out.println(b.toString());
        //}
 
-            System.out.println(dao.CountBlogs());
+            System.out.println(dao.getBlogAuthor(2));
 //
 //        DAOFactory daoFactory=DAOFactory.getInstance();
 //        EvenementDao eventDao =daoFactory.getEvenementImpl();

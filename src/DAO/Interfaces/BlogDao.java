@@ -32,4 +32,7 @@ public interface BlogDao {
 
     /* to get number of blogs */
     public int CountBlogs();
+
+    /* to get author of the blog */
+    public String getBlogAuthor(int id);
 }
