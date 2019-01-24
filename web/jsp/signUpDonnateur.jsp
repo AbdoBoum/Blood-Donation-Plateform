@@ -104,8 +104,8 @@
                             </div>
                             <div class="row row-space">
                                 <div class="form-group required col-sm-6">
-                                    <label  for="groupeSang" class="mt-4">Blood Group</label>
-                                    <select class="browser-default custom-select form-control" name="groupeSang" id="groupeSang">
+                                    <label  for="groupSang" class="mt-4">Blood Group</label>
+                                    <select class="browser-default custom-select form-control" name="groupSang" id="groupSang">
                                         <option selected>Choisir groupe Sang</option>
                                         <c:forEach items="${sangs}" var="sang">
                                             <option value="<c:out value="${sang.idGroupe}"/> "> <c:out value="${sang.nameGroupe}"/>  </option>

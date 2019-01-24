@@ -1,6 +1,7 @@
 package Controllers;
 
 import Helper.ContactForm;
+import Helper.Utile;
 
 //import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -12,29 +13,22 @@ import java.io.IOException;
 
 @WebServlet(name = "ContactUs")
 public class Contact extends HttpServlet {
+
+    String isInserted;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String message = null;
-        String status = null;
-        if (request.getParameter("submit") != null) {
-            ContactForm javaEmail = new ContactForm();
-          //  javaEmail.setMailServerProperties();
-            String emailSubject = "";
-            String emailBody = "";
-
-            if (request.getParameter("name") != null) {
-                emailBody = "Sender Name: " + request.getParameter("name")
-                        + "<br>";
-            }
-            if (request.getParameter("email") != null) {
-                emailBody = emailBody + "Sender Email: "
-                        + request.getParameter("email") + "<br>";
-            }
-            if (request.getParameter("message") != null) {
-                emailBody = emailBody + "Message: " + request.getParameter("message")
-                        + "<br>";
-            }
-
+        String message = request.getParameter("message");
+        String subject = request.getParameter("subject");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        if (!message.isEmpty() && !subject.isEmpty() && !name.isEmpty() && !email.isEmpty()){
+            Runnable contact = new ContactForm(name, subject, email, message);
+            Thread thread = new Thread(contact);
+            thread.start();
+            isInserted = Utile.SUCCESS_MSG;
+            request.setAttribute("isInserted", isInserted);
+            this.getServletContext().getRequestDispatcher("/jsp/contactUs.jsp").forward(request, response);
         }
 
 

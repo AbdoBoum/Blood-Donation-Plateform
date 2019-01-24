@@ -28,7 +28,7 @@ public class SendSMS implements Runnable{
 
           for(Donnateur donnateur : donnateurList){
               SmsSubmissionResponse responses = client.getSmsClient().submitMessage(new TextMessage(
-                      "BLOOD DONATION",
+                      "BLOOD BROTHERS",
                       donnateur.getTeleDonnateur(),
                       message));
               for (SmsSubmissionResponseMessage response : responses.getMessages()) {

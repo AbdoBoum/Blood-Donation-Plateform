@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_4_0.xsd"
-           version="4">
+         version="4">
 
     <servlet>
         <servlet-name>Test</servlet-name>
@@ -25,6 +25,7 @@
         <url-pattern>/faq</url-pattern>
     </servlet-mapping>
 
+    <!--- Blog servlets -->
     <servlet>
         <servlet-name>BLOG</servlet-name>
         <servlet-class>Controllers.Blog.BlogServlet</servlet-class>
@@ -34,6 +35,17 @@
         <servlet-name>BLOG</servlet-name>
         <url-pattern>/blog</url-pattern>
     </servlet-mapping>
+    <!--- //// -->
+    <servlet>
+        <servlet-name>AddBlog</servlet-name>
+        <servlet-class>Controllers.Blog.AddBlog</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddBlog</servlet-name>
+        <url-pattern>/addBlog</url-pattern>
+    </servlet-mapping>
+    <!--- Blog servlet -->
 
 
     <!--- add request servlet -->
@@ -57,21 +69,12 @@
 
     <servlet-mapping>
         <servlet-name>requests</servlet-name>
-        <url-pattern>/request</url-pattern>
+        <url-pattern>/requests</url-pattern>
     </servlet-mapping>
 
     <!--- end of add get requests servlet -->
 
 
-    <servlet>
-        <servlet-name>AddBlog</servlet-name>
-        <servlet-class>Controllers.Blog.AddBlog</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>AddBlog</servlet-name>
-        <url-pattern>/addBlog</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>addEvent</servlet-name>
         <servlet-class>Controllers.Event.AddEvent</servlet-class>
@@ -100,14 +103,14 @@
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
-  <servlet>
-    <servlet-name>affEvent</servlet-name>
-    <servlet-class>Controllers.Event.AffEvent</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>affEvent</servlet-name>
-    <url-pattern>/agenda</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>affEvent</servlet-name>
+        <servlet-class>Controllers.Event.AffEvent</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>affEvent</servlet-name>
+        <url-pattern>/agenda</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>Contact</servlet-name>
@@ -119,17 +122,45 @@
         <url-pattern>/contact</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
-    <servlet-name>donnateurCrud</servlet-name>
-    <servlet-class>Controllers.Donnateur.DonnateurCrudServlet</servlet-class>
-</servlet>
+      <servlet-name>donnateurCrud</servlet-name>
+      <servlet-class>Controllers.Donnateur.DonnateurCrudServlet</servlet-class>
+  </servlet>
 
-<servlet-mapping>
-    <servlet-name>donnateurCrud</servlet-name>
-    <url-pattern>/addDonnateur</url-pattern>
-    <url-pattern>/updateDonnateur</url-pattern>
-    <url-pattern>/managementDonnateur</url-pattern>
-</servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>donnateurCrud</servlet-name>
+      <url-pattern>/managementDonnateur</url-pattern>
+  </servlet-mapping>
 
+      <servlet>
+          <servlet-name>addDonnateur</servlet-name>
+          <servlet-class>Controllers.Donnateur.AddDonnateur</servlet-class>
+      </servlet>
 
+      <servlet-mapping>
+          <servlet-name>addDonnateur</servlet-name>
+          <url-pattern>/addDonnateur</url-pattern>
+          <url-pattern>/registre</url-pattern>
+      </servlet-mapping>
+
+      <servlet>
+          <servlet-name>updateDonnateur</servlet-name>
+          <servlet-class>Controllers.Donnateur.UpdateDonnateur</servlet-class>
+      </servlet>
+
+    <servlet-mapping>
+        <servlet-name>updateDonnateur</servlet-name>
+        <url-pattern>/updateDonnateur</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteDonnateur</servlet-name>
+        <servlet-class>Controllers.Donnateur.DeleteDonnateur</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteDonnateur</servlet-name>
+        <url-pattern>/deleteDonnateur</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -25,7 +25,7 @@
                     <a class="nav-link" href="/blog">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/request">Requests</a>
+                    <a class="nav-link" href="/requests">Requests</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/agenda">Agenda</a>
@@ -54,7 +54,7 @@
                 </li>
 
                 <li class="nav-item ${(not empty sessionScope.donnateur) || (not empty sessionScope.centre)  ? 'd-none': ''}">
-                    <a href="/addDonnateur" class="nav-link border border-light rounded">
+                    <a href="/registre" class="nav-link border border-light rounded">
                         <i class="fas fa-user-plus"></i>Sign up
                     </a>
                 </li>

@@ -1,52 +1,60 @@
 package Helper;
-/*
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
+
+import javax.mail.*;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties; */
+import java.util.Properties;
 
-public class ContactForm {
-/*
-    Properties emailProperties;
-    Session mailSession;
-    MimeMessage emailMessage;
+public class ContactForm implements Runnable {
 
-    String emailHost = "smtp.gmail.com";
-    String emailPort = "587"; // SMTP port
-    String fromUser = "boum.abderrahim"; // your gmail id
-    String fromUserEmailPassword = "boumahdi98";
-    String[] toEmails = { "abderrahim_boumahdi@hotmail.com" };
+    private String name;
+    private String subject;
+    private String email;
+    private String msg;
 
-    public void setMailServerProperties() {
-        emailProperties = System.getProperties();
-        emailProperties.put("mail.smtp.port", emailPort);
-        emailProperties.put("mail.smtp.auth", "true");
-        emailProperties.put("mail.smtp.starttls.enable", "true");
+    public ContactForm(String name, String subject, String email, String msg) {
+        this.name = name;
+        this.subject = subject;
+        this.email = email;
+        this.msg = msg;
     }
 
-    public void createEmailMessage(String emailSubject, String emailBody)
-            throws AddressException, MessagingException {
-        mailSession = Session.getDefaultInstance(emailProperties, null);
-        emailMessage = new MimeMessage(mailSession);
-        for (int i = 0; i < toEmails.length; i++) {
-            emailMessage.addRecipient(Message.RecipientType.TO,
-                    new InternetAddress(toEmails[i]));
+    public void send() {
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+
+        Session session = Session.getDefaultInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication("boum.abderrahim", "boum@hdi98");
+                    }
+                });
+
+        try {
+
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(email));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("boum.abderrahim@gmail.com"));
+            message.setSubject(subject);
+
+            message.setText("From: " + name + "<br>" + "Email: " + email + "<br>" + msg,"utf-8", "html");
+
+            Transport.send(message);
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
         }
-        emailMessage.setSubject(emailSubject);
-        emailMessage.setContent(emailBody, "text/html");// for a html email
-
     }
 
-    public void sendEmail() throws AddressException, MessagingException {
-        Transport transport = mailSession.getTransport("smtp");
-        transport.connect(emailHost, fromUser, fromUserEmailPassword);
-        transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
-        transport.close();
+    @Override
+    public void run() {
+        send();
     }
-*/
-
 }
