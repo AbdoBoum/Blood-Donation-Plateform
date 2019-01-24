@@ -38,11 +38,11 @@ public class BlogServlet extends HttpServlet {
 
         id = (request.getParameter("id") != null) ? Integer.parseInt(request.getParameter("id")) : 0;
         String keyword = (request.getParameter("keyword") != null) ? request.getParameter("keyword") : "";
-
+        int CurrentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
+        List<Blog> blogs;
         //PAGINATION
         if (id == 0 && keyword.isEmpty()) {
-            int CurrentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
-            List<Blog> blogs = blog.getBlogByPagination((CurrentPage - 1) * 6, 6);
+            blogs = blog.getBlogByPagination((CurrentPage - 1) * 6, 6);
             request.setAttribute("blogs", blogs);
             pagination pg = new pagination(totalBlogs, 6, 5, CurrentPage);
             request.setAttribute("pg", pg);
@@ -52,7 +52,7 @@ public class BlogServlet extends HttpServlet {
         } else if (id != 0) {
             _blog = blog.fetchBlogById(id);
             if (_blog != null) {
-                List<Blog> blogs = blog.getBlogByPagination(1, 3);
+                blogs = blog.getBlogByPagination(1, 3);
                 request.setAttribute("blogs", blogs);
                 request.setAttribute("article", _blog);
                 request.setAttribute("author", !blog.getBlogAuthor(id).isEmpty() ? blog.getBlogAuthor(id).isEmpty() : "Author deleted");
@@ -62,7 +62,7 @@ public class BlogServlet extends HttpServlet {
                 this.getServletContext().getRequestDispatcher("/jsp/error404.jsp").forward(request, response);
             }
         } else if (!keyword.isEmpty()){
-            List<Blog> blogs = blog.FetchBlogByTitle(keyword);
+            blogs = blog.FetchBlogByTitle(keyword);
             request.setAttribute("blogs", blogs);
             this.getServletContext().getRequestDispatcher("/jsp/blog.jsp").forward(request, response);
         }
