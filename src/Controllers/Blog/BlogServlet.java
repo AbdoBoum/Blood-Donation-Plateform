@@ -64,6 +64,7 @@ public class BlogServlet extends HttpServlet {
         } else if (!keyword.isEmpty()){
             blogs = blog.FetchBlogByTitle(keyword);
             request.setAttribute("blogs", blogs);
+            request.setAttribute("keyword", keyword);
             this.getServletContext().getRequestDispatcher("/jsp/blog.jsp").forward(request, response);
         }
     }
