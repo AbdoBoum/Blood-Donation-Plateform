@@ -85,5 +85,6 @@
     </c:if>
 </div>
 <%@include file="Footer.jsp"%>
+<%@include file="Toastr.jsp"%>
 </body>
 </html>
