@@ -54,7 +54,7 @@
                 Learn about blood donation, FAQ, the donation process and more from BLOOD BROTHERS.
               </p>
               <a  href="/faq"
-                 class="btn btn-red btn-md">FAQ
+                 class="btn btn-red outline-white btn-lg" style="border: 2px solid white;">FAQ
                 <i class="fa fa-question-circle ml-1"></i>
               </a>
             </div>

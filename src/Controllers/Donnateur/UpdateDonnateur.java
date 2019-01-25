@@ -62,13 +62,13 @@ public class UpdateDonnateur extends HttpServlet {
 
 
                 if(request.getParameter("id").trim().isEmpty()){
-                    request.setAttribute("flashMessageFaild", "Choose identifiant !!");
+                    request.setAttribute("flashMessageFaild", "Choose identifier.");
                     this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                 }else{
 
                     String idDonnateur = request.getParameter("id");
                     String erreur="";
-                    erreur=validationChamp(idDonnateur,"^\\d+$","Identifiant must be number !!");
+                    erreur=validationChamp(idDonnateur,"^\\d+$","Identifier must be number.");
                     if(erreur!=""){
                         request.setAttribute("flashMessageFaild", erreur);
                         this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
@@ -83,7 +83,7 @@ public class UpdateDonnateur extends HttpServlet {
                             this.getServletContext().getRequestDispatcher("/jsp/Donnateur/updateDonnateur.jsp").forward(request, response);
 
                         } else {
-                            request.setAttribute("flashMessageFaild", "Wrong Identifiant!!");
+                            request.setAttribute("flashMessageFaild", "Wrong Identifier.");
                             this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 
                         }
@@ -131,11 +131,11 @@ public class UpdateDonnateur extends HttpServlet {
         boolean update=donnateurDao.updateDonnateur(donnateur);
 
         if(update){
-            String msg="Donnateur has been updated !!";
+            String msg="Donor has been updated.";
             request.setAttribute("flashMessageSuccess", msg);
             this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
         }else{
-            String msg="Donnateur updating failure !!";
+            String msg="Donor updating failure.";
             request.setAttribute("flashMessageFaild", msg);
             this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
         }
