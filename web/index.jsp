@@ -182,5 +182,6 @@
     </main>
 
     <%@ include file="jsp/Footer.jsp"%>
+    <%@include file="jsp/Toastr.jsp"%>
   </body>
 </html>

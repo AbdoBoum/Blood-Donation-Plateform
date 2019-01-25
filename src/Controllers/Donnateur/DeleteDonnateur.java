@@ -47,23 +47,23 @@ public class DeleteDonnateur extends HttpServlet {
                 System.out.println("in delete Donnateur");
                 if(!donnateurDao.findDonnateurByMail(email)){
                     request.setAttribute("flashMessageFaild", "Wrong email !!");
-                    this.getServletContext().getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+                    this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                 }else {
 
                     if (donnateurDao.removeDonnateur(email)) {
                         System.out.println("in success deleting");
                         request.setAttribute("flashMessageSuccess", "The donnateur has been deleted !!");
-                        this.getServletContext().getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+                        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                     } else {
                         System.out.println("echec deleting");
                         request.setAttribute("flashMessageFaild", "Erreur of deleting donnateur !!");
-                        this.getServletContext().getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+                        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                     }
                 }
 
             }else{
                 request.setAttribute("flashMessageFaild", "Email field must be complete!!");
-                this.getServletContext().getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+                this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             }
 
         }else{

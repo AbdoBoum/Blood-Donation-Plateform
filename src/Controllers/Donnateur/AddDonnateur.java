@@ -34,7 +34,7 @@ public class AddDonnateur extends HttpServlet {
         HttpSession session=request.getSession();
 
         if(session.getAttribute("centre")!=null) {
-            String jspLink="/jsp/Donnateur/addDonnateur.jsp";
+            String jspLink="/index.jsp";
             addDonnateur(jspLink, request, response);
         }else{
             String jspLink="/jsp/login.jsp";

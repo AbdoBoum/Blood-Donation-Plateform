@@ -20,6 +20,8 @@
 <link href="css/bootstrap-reboot.min.css" rel="stylesheet">
 <link href="css/mdb.min.css" rel="stylesheet">
 <link href="css/style.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
 <style type="text/css">
     @media (min-width: 800px) and (max-width: 850px) {
         .navbar:not(.top-nav-collapse) {
