@@ -20,7 +20,7 @@
         <br><br>
 
         <div class="section-title text-center wow zoomIn mt-5 font-weight-bold">
-            <h1>Les evenements dispo</h1>
+            <h1>Events & Activities</h1>
         </div>
     <div class="row">
         <div class="col-md-12">
