@@ -45,7 +45,8 @@ public class BlogServlet extends HttpServlet {
             blogs = blog.getBlogByPagination((CurrentPage - 1) * 6, 6);
             request.setAttribute("blogs", blogs);
             pagination pg = new pagination(totalBlogs, 6, 5, CurrentPage);
-            request.setAttribute("pg", pg);
+            String pag = pg.showPagination("blog");
+            request.setAttribute("pg", pag);
             this.getServletContext().getRequestDispatcher("/jsp/blog.jsp").forward(request, response);
 
             //READ ARTICLE
