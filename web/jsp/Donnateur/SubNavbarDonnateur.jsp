@@ -36,6 +36,9 @@
                             <a class="dropdown-item" href="#">Separated link</a>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="/addEvent" role="button" >Add Event</a>
+                    </li>
 
                 </ul>
 

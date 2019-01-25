@@ -2,15 +2,13 @@ package Controllers.Event;
 
 import DAO.DAOFactory;
 import DAO.Interfaces.EvenementDao;
+import Models.Centre;
 import Models.Evenement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 import java.io.*;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -37,7 +35,13 @@ public class AddEvent extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session=request.getSession();
+        if(session.getAttribute("centre")==null){
+            response.sendRedirect("/login.jsp");
+        }else{
 
+
+        // verification si les camps si sont vide
 
         String titreEvent = request.getParameter("title");
 
@@ -45,59 +49,84 @@ public class AddEvent extends HttpServlet {
 
         String dateString = request.getParameter("date");
 
-        System.out.println(titreEvent+"  "+dateString+"  "+descEvent);
-
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-
-        Date date= null;
-
-        try {
-            date = sdf.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        Timestamp tm=new Timestamp(date.getTime());
-
         Part part = request.getPart("imgInput");
+
         String fileName = extractFileName(part);
 
-        System.out.println(fileName);
-        if(!fileName.isEmpty() && fileName!=null){
-            ecrireFichier(part,fileName,"F:\\Projet\\Blood_Donation\\web\\img");
-        }
+        if(titreEvent.trim().isEmpty()||descEvent.trim().isEmpty()||dateString.trim().isEmpty()||fileName.trim().isEmpty()||fileName==null){
+            request.setAttribute("flashMessageFaild","Please complete all fields !! <br> Please choose the Event image cover again !!");
+            returnFormulaireAddEvent(request,response);
+        }else{
+            System.out.println(fileName);
+            String error="";
+            error=validationChamp(fileName,"[^\\s]+(\\.(?i)(jpg|png|gif|bmp))$","Please choose file with (.png, .jpg, .gif, .bmp) extension !!");
+
+            if(error!=""){
+                request.setAttribute("flashMessageFaild",error);
+            }else{
+
+                if(!fileName.isEmpty() && fileName!=null){
+                    ecrireFichier(part,fileName,"F:\\Projet\\BloodBrothers\\web\\img");
+                }
 
 
-        if (titreEvent.trim().isEmpty() || descEvent.trim().isEmpty() ) {
-            this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request, response);
-        }
-        else {
-            Evenement event=new Evenement();
-            event.setTitreEvenement(titreEvent);
-            event.setDateEvenement(tm);
-            event.setDesciptionEvenement(descEvent);
-            event.setImagePathEvenement("\\img\\"+fileName);
-            event.setIdCentre(1);
-            event.setIdVille(1);
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 
-            if (evenementDao.insertEvenement(event)== true) {
-                boolean isInserted = true;
-                request.setAttribute("isInserted", isInserted);
-//                this.getServletContext().getRequestDispatcher("/jsp/AffEvent.jsp").forward(request, response);
-                response.sendRedirect("affEvent");
+                Date date= null;
+
+                try {
+                    date = sdf.parse(dateString);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                Timestamp tm=new Timestamp(date.getTime());
+
+
+
+                if (titreEvent.trim().isEmpty() || descEvent.trim().isEmpty() ) {
+                    this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request, response);
+                }
+                else {
+                    Evenement event=new Evenement();
+                    event.setTitreEvenement(titreEvent);
+                    event.setDateEvenement(tm);
+                    event.setDesciptionEvenement(descEvent);
+                    event.setImagePathEvenement("\\img\\"+fileName);
+                    Centre centre=(Centre) session.getAttribute("centre");
+                    event.setIdCentre(centre.getIdCentre());
+                    event.setIdVille(centre.getIdVille());
+
+                    if (evenementDao.insertEvenement(event)== true) {
+                        boolean isInserted = true;
+                        request.setAttribute("flashMessageSuccess", "Event has been added.");
+                        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                    }
+                    else {
+                        boolean isInserted = false;
+                        request.setAttribute("flashMessageFaild", "Error adding event !!");
+                        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                    }
+
+                }
+
             }
-            else {
-                boolean isInserted = false;
-                request.setAttribute("isInserted", isInserted);
-                this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request, response);
-            }
 
+
+
+        }
         }
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request,response);
+        HttpSession session=request.getSession();
+        if(session.getAttribute("centre")==null){
+            response.sendRedirect("/login");
+        }else{
+
+            this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request,response);
+        }
 
     }
 
@@ -162,5 +191,25 @@ public class AddEvent extends HttpServlet {
 
         }
 
+    }
+
+
+    private String validationChamp(String field, String pattern,String erreur){
+        if(!field.matches(pattern)){
+            return erreur;
+        }
+        return "";
+    }
+
+    private void returnFormulaireAddEvent(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        String oldTitle = request.getParameter("title");
+        request.setAttribute("oldTitle",oldTitle);
+        String oldDescription = request.getParameter("description");
+        request.setAttribute("oldDescription",oldDescription);
+        String oldDate = request.getParameter("date");
+        request.setAttribute("oldDate",oldDate);
+
+        this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request,response);
     }
 }

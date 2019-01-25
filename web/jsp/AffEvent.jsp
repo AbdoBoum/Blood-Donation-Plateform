@@ -42,8 +42,21 @@
                     <td><c:out value="${event.titreEvenement}"/></td>
                     <td><c:out value="${event.desciptionEvenement}"/></td>
                     <td><c:out value="${event.dateEvenement}"/></td>
-                    <td><c:out value="${event.idCentre}"/></td>
-                    <td><c:out value="${event.idVille}"/></td>
+                    <td>
+                        <c:forEach items="${centres}" var="centre">
+                        <c:if test="${centre.idCentre eq event.idCentre}">
+                            <c:out value="${centre.nameCentre}"/>
+                        </c:if>
+                       </c:forEach>
+
+                    </td>
+                    <td>
+                        <c:forEach items="${villes}" var="ville">
+                            <c:if test="${ ville.idVille eq event.idVille }">
+                                <c:out value="${ville.nomVille}"/>
+                            </c:if>
+                        </c:forEach>
+                    </td>
                 </tr>
                 </c:forEach>
                 </tbody>

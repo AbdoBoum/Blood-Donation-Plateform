@@ -3,6 +3,20 @@
 <html>
   <head>
     <%@ include file="jsp/Header.jsp"%>
+    <style>
+      .form-group.required .control-label:after {
+        content:" *";
+        color:red;
+      }
+      .form-control:focus {
+        border-color: #AE1F23;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+      }
+      select option:hover {
+        background: #AE1F23;
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <%@ include file="jsp/NavbarIndex.jsp"%>
