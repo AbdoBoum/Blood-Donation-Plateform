@@ -35,4 +35,7 @@ public interface BlogDao {
 
     /* to get author of the blog */
     public String getBlogAuthor(int id);
+
+    /* get 6 blog by page*/
+    public List<Blog> getBlogByPaginationKeyword(int start, int total, String keyword);
 }

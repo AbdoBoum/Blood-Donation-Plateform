@@ -15,7 +15,7 @@
 
 <%@include file="Navbar.jsp" %>
 <br><br><br>
-<c:if test="${not empty sessionScope.donnateur}">
+<c:if test="${(not empty sessionScope.donnateur) || (not empty sessionScope.centre)}">
     <c:redirect url="/"></c:redirect>
 </c:if>
 <div class="container col-md-4 align-content-center mt-5 mb-5">

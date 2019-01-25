@@ -140,7 +140,7 @@
     </c:if>
     <!--Pagination-->
 
-    ${pg.showPagination("blog")}
+    ${pg}
 
     <!--Pagination-->
 

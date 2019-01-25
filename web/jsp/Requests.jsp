@@ -29,6 +29,7 @@
 <body>
 <%@include file="Navbar.jsp" %>
 <main>
+
     <div class="container">
         <br><br><br>
         <div class="row mb-4 mt-3">
@@ -55,7 +56,7 @@
                 <div class="well">
                     <div class="media">
                         <div class="pull-left col-xs-2 col-xs-3 text-center">
-                            <img class="media-object img-responsive img-rounded" src="${request.pathImgRequest.substring(25)}">
+                            <img class="media-object img-responsive img-rounded" src="${request.pathImgRequest.substring(55)}">
                         </div>
                         <div class="media-body">
                             <h2 class="media-heading">${request.titleRequest}</h2>
@@ -85,7 +86,7 @@
 
             <!--Pagination-->
 
-            ${pg.showPagination("request")}
+            ${pg.showPagination("requests")}
 
             <!--Pagination-->
         </section>

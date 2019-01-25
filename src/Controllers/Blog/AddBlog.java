@@ -23,7 +23,8 @@ public class AddBlog extends HttpServlet {
     private Blog _blog;
     private Donnateur donnateur;
 
-    private String isInserted;
+    private String flashMessageFaild="";
+    private String flashMessageSuccess="";
 
     @Override
     public void init() throws ServletException {
@@ -43,7 +44,8 @@ public class AddBlog extends HttpServlet {
 
 
         if (title.trim().isEmpty() || description.trim().isEmpty() || part.getSize() == 0) {
-            isInserted = Utile.EMPTY_FIELD;
+            flashMessageFaild = "Please complete all fields";
+            request.setAttribute("flashMessageFaild", flashMessageFaild);
         } else {
             String savePath = "C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img" + File.separator + fileName;
 
@@ -57,13 +59,13 @@ public class AddBlog extends HttpServlet {
             _blog.setDateBlog(new java.sql.Timestamp(new Date().getTime()));
 
             if (blog.insertBlog(_blog) != null) {
-                isInserted = Utile.SUCCESS_MSG;
+                flashMessageSuccess = "Blog inserted";
+                request.setAttribute("flashMessageSuccess", flashMessageSuccess);
             } else {
-                isInserted = Utile.FAILURE_MSG;
+                flashMessageFaild = "Something goes wrong";
+                request.setAttribute("flashMessageFaild", flashMessageFaild);
             }
-
         }
-        request.setAttribute("isInserted", isInserted);
         this.getServletContext().getRequestDispatcher("/jsp/AddBlog.jsp").forward(request, response);
     }
 

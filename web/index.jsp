@@ -53,28 +53,23 @@
           <div class="line-shape mb-5"></div>
           <div class="row">
             <div class="col-md-6 mb-4">
-              <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-main.jpg" class="img-fluid z-depth-1-half"
-                   alt="">
+              <img src="https://www.aub.edu.lb/fas/writing_center/PublishingImages/Pages/FAQ/faq%20(1).png" class="img-fluid z-depth-1-half"
+                   alt="faq">
             </div>
             <div class="col-md-6 mb-4">
-              <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
-              <p>This template is created with Material Design for Bootstrap (
-                <strong>MDB</strong> ) framework.</p>
-              <p>Read details below to learn more about MDB.</p>
+              <h3 class="h3 mb-3">Blood Donation</h3>
+              <p>Find out how often you can donate blood and answers to more frequently asked
+                questions about the <strong>blood donation</strong> process ...
+              </p>
+
               <hr>
               <p>
-                <strong>400+</strong> material UI elements,
-                <strong>600+</strong> material icons,
-                <strong>74</strong> CSS animations, SASS files, templates, tutorials and many more.
-                <strong>Free for personal and commercial use.</strong>
+                Giving blood is a quick, simple way to give back to your community.
+                Learn about blood donation, FAQ, the donation process and more from BLOOD BROTHERS.
               </p>
-              <a target="_blank" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-                 class="btn btn-grey btn-md">Download
-                <i class="fa fa-download ml-1"></i>
-              </a>
-              <a target="_blank" href="https://mdbootstrap.com/docs/jquery/components/" class="btn btn-grey btn-md">Live
-                demo
-                <i class="fa fa-image ml-1"></i>
+              <a  href="/faq"
+                 class="btn btn-red outline-white btn-lg" style="border: 2px solid white;">FAQ
+                <i class="fa fa-question-circle ml-1"></i>
               </a>
             </div>
           </div>

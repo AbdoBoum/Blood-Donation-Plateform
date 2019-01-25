@@ -25,27 +25,7 @@
     </div>
 
     <!-- Test if user is connected-->
-    <c:if test="${not empty sessionScope.donnateur}">
-        <c:if test="${not empty isInserted}">
-        <c:choose>
-            <c:when test="${isInserted == 'succes'}">
-                <h5 class='h5 text-center  mt-4'>
-                    <div class='alert alert-success'>Blog inserted</div>
-                </h5>
-            </c:when>
-            <c:when test="${isInserted == 'failure'}">
-                <h5 class="h5 text-center mt-4">
-                    <div class="alert alert-danger">Something goes wrong</div>
-                </h5>
-            </c:when>
-            <c:otherwise>
-                <h5 class="h5 text-center mt-4">
-                    <div class="alert alert-danger">Please complete all fields</div>
-                </h5>
-            </c:otherwise>
-        </c:choose>
-    </c:if>
-    </c:if>
+
     <c:if test="${empty sessionScope.donnateur}">
         <c:redirect url="login"></c:redirect>
     </c:if>
@@ -80,5 +60,8 @@
 </div>
 
 <%@include file="Footer.jsp" %>
+<c:if test="${not empty sessionScope.donnateur}">
+    <%@include file="Toastr.jsp" %>
+</c:if>
 </body>
 </html>

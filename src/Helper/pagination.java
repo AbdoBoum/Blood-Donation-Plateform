@@ -129,4 +129,74 @@ public class pagination {
         }
         return pagination;
     }
+    public String  showPagination(String link, String keyword){
+        String pagination = "";
+        String prev = "";
+        String next = "";
+        String listePages = "";
+
+        if(this.totalPages >= 1){
+            prev = "<li class=\"page-item disabled\">\n" +
+                    "   <a class=\"page-link\"  aria-label=\"Previous\">\n" +
+                    "       <span aria-hidden=\"true\">&laquo;</span>\n" +
+                    "       <span class=\"sr-only\">Previous</span>\n" +
+                    "   </a>\n" +
+                    "</li>";
+
+            if (this.currentPage > 1){
+                prev = "<li class=\"page-item \">\n" +
+                        "   <a class=\"page-link\" href=\"" + link + "?page=" + (this.currentPage - 1) + "&keyword=" + keyword + "\" aria-label=\"Previous\">\n" +
+                        "       <span aria-hidden=\"true\">&laquo;</span>\n" +
+                        "       <span class=\"sr-only\">Previous</span>\n" +
+                        "   </a>\n" +
+                        "</li>";
+            }
+            next = "<li class=\"page-item\">\n" +
+                    "   <a class=\"page-link\" aria-label=\"Next\">\n" +
+                    "       <span aria-hidden=\"true\">&raquo;</span>\n" +
+                    "       <span class=\"sr-only\">Next</span>\n" +
+                    "   </a>\n" +
+                    "</li>\n";
+            if (this.currentPage < this.totalPages){
+                next = "<li class=\"page-item\">\n" +
+                        "  <a class=\"page-link\" href=\"" + link + "?page=" + (this.currentPage + 1) + "&keyword=" + keyword + "\" aria-label=\"Next\">\n" +
+                        "     <span aria-hidden=\"true\">&raquo;</span>\n" +
+                        "     <span class=\"sr-only\">Next</span>\n" +
+                        "  </a>\n" +
+                        "</li>\n";
+            }
+            int startPage;
+            int endPage;
+            if (this.pageRange < this.totalPages) {
+                startPage = this.currentPage - (this.pageRange - 1) / 2;
+                endPage = this.currentPage + (this.pageRange - 1) / 2;
+                if (startPage < 1) {
+                    startPage = 1;
+                    endPage = this.pageRange;
+                } else if (endPage > this.totalPages) {
+                    startPage = this.totalPages - this.pageRange + 1;
+                    endPage = this.totalPages;
+                }
+            } else {
+                startPage = 1;
+                endPage = this.totalPages ;
+            }
+            for (int i = startPage; i <= endPage; i++) {
+                if (this.currentPage == i) {
+                    listePages += "<li class=\"page-item active\">" +
+                            " <a class=\"page-link\">" + i + "</a>" +
+                            "</li>";
+                } else {
+                    listePages += "<li class=\"page-item \">" +
+                            " <a class=\"page-link\" href=\"" + link + "?page=" + i + "&keyword=" + keyword  + "\">" + i + "</a>" +
+                            "</li>";
+                }
+            }
+            pagination = "<nav class=\"d-flex justify-content-center wow fadeIn\">" +
+                    "<ul class=\"pagination pg-red\">" + prev + listePages + next +
+                    "</ul>" +
+                    "</nav>";
+        }
+        return pagination;
+    }
 }

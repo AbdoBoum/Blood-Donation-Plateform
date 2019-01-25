@@ -70,7 +70,7 @@ public class Utile {
     }
 
     public static String createMessageFromDemand(Demande demande){
-        String message = "New blood demand have been added, ";
+        String message = "New blood request have been added, ";
         if(demande.isUrgent()){
             message+="and it's urgent, ";
         }
