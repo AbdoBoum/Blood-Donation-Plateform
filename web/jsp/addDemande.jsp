@@ -62,7 +62,7 @@
 
     <div class="row">
         <div class="col col-md-12">
-            <form action="addDemande" method="post" enctype="multipart/form-data">
+            <form action="addRequest" method="post" enctype="multipart/form-data">
                 <div class="form-group required">
                     <label for="titleInput" class='control-label'>Demand Title</label>
                     <input type="text" name="titleInput" class="form-control" id="titleInput" placeholder="">
