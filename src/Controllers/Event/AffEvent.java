@@ -44,8 +44,9 @@ public class AffEvent extends HttpServlet {
         List<Evenement> allEvents=evenementDao.getAllEvenement();
         List<Ville> villes=villeDao.getAllVille();
         List<Centre> centres=centreDao.getAllCentre();
-        if(allEvents==null){
-                this.getServletContext().getRequestDispatcher("/jsp/error404.jsp").forward(request, response);
+        int nbrEvents=evenementDao.countEvents();
+        if(nbrEvents==0){
+            this.getServletContext().getRequestDispatcher("/jsp/AffEvent.jsp").forward(request,response);
         }else{
 
             request.setAttribute("villes",villes);
