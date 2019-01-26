@@ -53,7 +53,7 @@
           <div class="line-shape mb-5"></div>
           <div class="row">
             <div class="col-md-6 mb-4">
-              <img src="https://www.aub.edu.lb/fas/writing_center/PublishingImages/Pages/FAQ/faq%20(1).png" class="img-fluid z-depth-1-half"
+              <img src="https://web.iit.edu/sites/web/files/departments/acaps/images/faq.png"
                    alt="faq">
             </div>
             <div class="col-md-6 mb-4">
