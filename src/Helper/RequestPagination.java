@@ -16,6 +16,15 @@ public class RequestPagination {
     private String titleRequest;
     private String centerName;
     private String nameVilleRequest;
+    private int idCentre;
+
+    public int getIdCentre() {
+        return idCentre;
+    }
+
+    public void setIdCentre(int idCentre) {
+        this.idCentre = idCentre;
+    }
 
     public int getIdRequest() {
         return idRequest;

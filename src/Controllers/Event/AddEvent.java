@@ -41,82 +41,82 @@ public class AddEvent extends HttpServlet {
         }else{
 
 
-        // verification si les camps si sont vide
+            // verification si les camps si sont vide
 
-        String titreEvent = request.getParameter("title");
+            String titreEvent = request.getParameter("title");
 
-        String descEvent = request.getParameter("description");
+            String descEvent = request.getParameter("description");
 
-        String dateString = request.getParameter("date");
+            String dateString = request.getParameter("date");
 
-        String time =request.getParameter("time");
+            String time =request.getParameter("time");
 
-        Part part = request.getPart("imgInput");
+            Part part = request.getPart("imgInput");
 
-        String fileName = extractFileName(part);
+            String fileName = extractFileName(part);
 
-        if(titreEvent.trim().isEmpty()||descEvent.trim().isEmpty()||dateString.trim().isEmpty()||fileName.trim().isEmpty()||fileName==null||time.trim().isEmpty()){
-            request.setAttribute("flashMessageFaild","Please complete all fields !! <br> Please choose the Event image cover again !!");
-            returnFormulaireAddEvent(request,response);
-        }else{
-            System.out.println(fileName);
-            String error="";
-            error=validationChamp(fileName,"[^\\s]+(\\.(?i)(jpg|png|gif|bmp))$","Please choose file with (.png, .jpg, .gif, .bmp) extension !!");
-
-            if(error!=""){
-                request.setAttribute("flashMessageFaild",error);
+            if(titreEvent.trim().isEmpty()||descEvent.trim().isEmpty()||dateString.trim().isEmpty()||fileName.trim().isEmpty()||fileName==null||time.trim().isEmpty()){
+                request.setAttribute("flashMessageFaild","Please complete all fields !! <br> Please choose the Event image cover again !!");
+                returnFormulaireAddEvent(request,response);
             }else{
+                System.out.println(fileName);
+                String error="";
+                error=validationChamp(fileName,"[^\\s]+(\\.(?i)(jpg|png|gif|bmp))$","Please choose file with (.png, .jpg, .gif, .bmp) extension !!");
 
-                if(!fileName.isEmpty() && fileName!=null){
-                    ecrireFichier(part,fileName,"F:\\Projet\\BloodBrothers\\web\\img");
-                }
+                if(error!=""){
+                    request.setAttribute("flashMessageFaild",error);
+                }else{
+
+                    if(!fileName.isEmpty() && fileName!=null){
+                        ecrireFichier(part,fileName,"F:\\Projet\\BloodBrothers\\web\\img");
+                    }
 
 
-                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
-                Date date= null;
+                    Date date= null;
 
-                try {
-                    date = sdf.parse(dateString+" "+time);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                    try {
+                        date = sdf.parse(dateString+" "+time);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
 
-                Timestamp tm=new Timestamp(date.getTime());
+                    Timestamp tm=new Timestamp(date.getTime());
 
-                System.out.println(date.getTime());
+                    System.out.println(date.getTime());
 
-                if (titreEvent.trim().isEmpty() || descEvent.trim().isEmpty() ) {
-                    this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request, response);
-                }
-                else {
-                    Evenement event=new Evenement();
-                    event.setTitreEvenement(titreEvent);
-                    event.setDateEvenement(tm);
-                    event.setDesciptionEvenement(descEvent);
-                    event.setImagePathEvenement("\\img\\"+fileName);
-                    Centre centre=(Centre) session.getAttribute("centre");
-                    event.setIdCentre(centre.getIdCentre());
-                    event.setIdVille(centre.getIdVille());
-
-                    if (evenementDao.insertEvenement(event)== true) {
-                        boolean isInserted = true;
-                        request.setAttribute("flashMessageSuccess", "Event has been added.");
-                        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                    if (titreEvent.trim().isEmpty() || descEvent.trim().isEmpty() ) {
+                        this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request, response);
                     }
                     else {
-                        boolean isInserted = false;
-                        request.setAttribute("flashMessageFaild", "Error adding event !!");
-                        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                        Evenement event=new Evenement();
+                        event.setTitreEvenement(titreEvent);
+                        event.setDateEvenement(tm);
+                        event.setDesciptionEvenement(descEvent);
+                        event.setImagePathEvenement("\\img\\"+fileName);
+                        Centre centre=(Centre) session.getAttribute("centre");
+                        event.setIdCentre(centre.getIdCentre());
+                        event.setIdVille(centre.getIdVille());
+
+                        if (evenementDao.insertEvenement(event)== true) {
+                            boolean isInserted = true;
+                            request.setAttribute("flashMessageSuccess", "Event has been added.");
+                            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                        }
+                        else {
+                            boolean isInserted = false;
+                            request.setAttribute("flashMessageFaild", "Error adding event !!");
+                            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                        }
+
                     }
 
                 }
 
+
+
             }
-
-
-
-        }
         }
 
     }
@@ -147,7 +147,7 @@ public class AddEvent extends HttpServlet {
 
     private void ecrireFichier( Part part, String nomFichier, String chemin ) throws IOException {
 
-        /* Prépare les flux. */
+        /* PrĂ©pare les flux. */
 
         BufferedInputStream entree = null;
 

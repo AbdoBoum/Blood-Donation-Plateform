@@ -99,7 +99,17 @@ public class DemandeDaoImpl implements DemandeDao {
     }
 
     @Override
-    public List<Demande> getRequestsByPagination(int start, int total) {
+    public List<Demande> getRequestsByPagination(int start, int total , int villeFilter, int groupeFilter) {
+
+        String query = "SELECT  * FROM demande WHERE isActive=1 order by date_demande DESC limit " + start  + "," + total;
+
+        if(groupeFilter == -1 && villeFilter != -1){
+            query = "SELECT  * FROM demande WHERE isActive=1 AND id_ville='"+villeFilter+"' order by date_demande DESC limit " + start  + "," + total;
+        }else if(villeFilter==-1 && groupeFilter != -1){
+            query = "SELECT * FROM demande AS D WHERE isActive=1 AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start  + "," + total;
+        } else if(villeFilter !=-1 && groupeFilter !=-1){
+            query = "SELECT * FROM demande AS D WHERE isActive=1 AND id_ville='"+villeFilter+"' AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start  + "," + total;
+        }
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -108,7 +118,7 @@ public class DemandeDaoImpl implements DemandeDao {
 
         try {
             connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("SELECT  * FROM demande order by date_demande DESC limit " + start  + "," + total);
+            preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             requests = exctractInfos(resultSet);
         }catch (Exception e){

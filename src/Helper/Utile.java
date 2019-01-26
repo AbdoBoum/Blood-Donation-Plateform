@@ -99,6 +99,7 @@ public class Utile {
         requestPagination.setPathImgRequest(demande.getPathImgDemande());
         requestPagination.setIdRequest(demande.getIdDemande());
         requestPagination.setUrgent(demande.isUrgent());
+        requestPagination.setIdCentre(demande.getIdCentre());
         requestPagination.setDescriptionRequest(demande.getDescriptionDemande());
         Centre centre = centreDao.getCentre(demande.getIdCentre());
         requestPagination.setNameVilleRequest(centre.getAdresseCentre()+", "+villeDao.getVilleById(demande.getIdVilleDemande()).getNomVille());
