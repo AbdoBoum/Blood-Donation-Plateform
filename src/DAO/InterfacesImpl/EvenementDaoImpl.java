@@ -144,7 +144,10 @@ public class EvenementDaoImpl implements EvenementDao {
             connection=daoFactory.getConnection();
             preparedStatement=connection.prepareStatement("SELECT * from evenement ORDER by date_evenement DESC");
             ResultSet rs=preparedStatement.executeQuery();
-            evenements=new ArrayList<>();
+            if(rs.next()){
+
+                evenements=new ArrayList<>();
+            }
             while(rs.next()){
                 Evenement evenement=new Evenement();
                 evenement.setIdEvenement(rs.getInt("id_evenement"));
@@ -160,6 +163,24 @@ public class EvenementDaoImpl implements EvenementDao {
             e.printStackTrace();
         }
         return evenements;
+    }
+
+    @Override
+    public int countEvents(){
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        try{
+            connection=daoFactory.getConnection();
+            preparedStatement=connection.prepareStatement("SELECT count(id_evenement) as count from evenement ");
+            ResultSet rs=preparedStatement.executeQuery();
+            if(rs.next()){
+                return rs.getInt("count");
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+            return 0;
+        }
+        return 0;
     }
 
     @Override

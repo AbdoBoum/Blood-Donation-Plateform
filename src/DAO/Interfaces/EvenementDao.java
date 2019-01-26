@@ -12,5 +12,6 @@ public interface EvenementDao {
     public Evenement getEvenementByTitle(String title);
     public boolean deleteEvenement(int idEvenement);
     public List<Evenement> getAllEvenement();
+    public int countEvents();
     public List<Evenement> getEvenementByPagination(int start, int total);
 }
