@@ -11,34 +11,40 @@
 
 <c:if test="${not empty sessionScope.centre}">
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark top-nav-collapse" style="position: absolute; top: 69px; background-color: transparent !important;">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark top-nav-collapse"
+         style="position: absolute; top: 69px; background-color: transparent !important;">
         <div class="container">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav" style="padding-left: 16%;">
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">Donor management</a>
                         <div class="dropdown-menu dropdown-secondary">
                             <a class="dropdown-item" href="/addDonnateur">Create Donor</a>
-                            <a href="" data-toggle="modal" data-target="#updateModal" class="dropdown-item">Update Donor</a>
-                            <a href="" data-toggle="modal" data-target="#deleteModel" class="dropdown-item">Delete Donor</a>
+                            <a href="" data-toggle="modal" data-target="#updateModal" class="dropdown-item">Update
+                                Donor</a>
+                            <a href="" data-toggle="modal" data-target="#deleteModel" class="dropdown-item">Delete
+                                Donor</a>
                         </div>
                     </li>
+
+                    <!--  STOCK MANAGEMENT  -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="true"
                            aria-expanded="false">Stock management</a>
                         <div class="dropdown-menu dropdown-secondary">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
+                            <a class="dropdown-item" href="#">Inventory</a>
+                            <a href="" data-toggle="modal" data-target="#addBlood" class="dropdown-item">Add</a>
+                            <a href="" data-toggle="modal" data-target="#deleteBlood" class="dropdown-item">Delete</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="/addEvent" role="button" >Add Event</a>
+                        <a class="nav-link " href="/addEvent" role="button">Add Event</a>
                     </li>
+                    <!--  STOCK MANAGEMENT  -->
 
                 </ul>
 
@@ -60,7 +66,8 @@
                         <div class="row ">
                             <div class="form-group required col-sm-12">
                                 <label for="id" class='control-label'>Id Donor</label>
-                                <input type="text" name="id" class="form-control" id="id" placeholder="Identifiant donnateur">
+                                <input type="text" name="id" class="form-control" id="id"
+                                       placeholder="Identifiant donnateur">
                                 <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                             </div>
                         </div>
@@ -68,12 +75,12 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
 
-                            <div class="col-sm-4">
-                                <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                        type="submit" style="border-color: #D92228 !important; color: #D92228 !important;">
-                                    update
-                                </button>
-                            </div>
+                        <div class="col-sm-4">
+                            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                    type="submit" style="border-color: #D92228 !important; color: #D92228 !important;">
+                                update
+                            </button>
+                        </div>
 
 
                     </div>
@@ -99,8 +106,8 @@
                             <label for="email" class="mt-4">Email Donor</label>
                             <input type="email" id="email" name="email" class="form-control "/>
                         </div>
-
                     </div>
+
                     <div class="modal-footer d-flex justify-content-center">
                         <div class="col-sm-4">
                             <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
@@ -115,82 +122,95 @@
     </div>
 
 
+    <!--  STOCK MANAGEMENT  -->
+
+    <div class="modal fade" id="addBlood" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">ADD</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="addstock">
+                    <div class="modal-body mx-3">
+                        <div class="form-group required">
+                            <!-- quantity -->
+                            <label for="quantity" class="control-label mt-4">Quantity to delete (by bags)</label>
+                            <input type="number" id="quantity" name="quantity" class="form-control "/>
+                            <!-- type -->
+                            <label for="groupSang" class="control-label mt-4">Blood type</label>
+                            <select class="browser-default custom-select form-control" name="groupSang" id="groupSang">
+                                <option selected value="">Choose blood type</option>
+                                    <option value="1">A+</option>
+                                    <option value="2">A-</option>
+                                    <option value="3">B+</option>
+                                    <option value="4">B-</option>
+                                    <option value="5">AB+</option>
+                                    <option value="6">AB-</option>
+                                    <option value="7">O+</option>
+                                    <option value="8">O-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <div class="col-sm-4">
+                            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                    type="submit" style="border-color: #D92228 !important; color: #D92228 !important;">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteBlood" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">DELETE</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="deletestock">
+                    <div class="modal-body mx-3">
+                        <div class="form-group required">
+                            <!-- quantity -->
+                            <label for="quantity2" class="control-label mt-4" >Quantity to delete (by bags)</label>
+                            <input type="number" id="quantity2" name="quantity" class="form-control "/>
+                            <!-- type -->
+                            <label for="groupSang2" class="control-label mt-4">Blood type</label>
+                            <select class="browser-default custom-select form-control" name="groupSang" id="groupSang2">
+                                <option selected value="">Choose blood type</option>
+                                <option value="1">A+</option>
+                                <option value="2">A-</option>
+                                <option value="3">B+</option>
+                                <option value="4">B-</option>
+                                <option value="5">AB+</option>
+                                <option value="6">AB-</option>
+                                <option value="7">O+</option>
+                                <option value="8">O-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <div class="col-sm-4">
+                            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                    type="submit" style="border-color: #D92228 !important; color: #D92228 !important;">
+                                DELETE
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </c:if>
-
-
-
-<%--<div class="modal fade show" id="deleteModel" tabindex="-1" aria-labelledby="myModalLabel" role="dialog" aria-labelledby="myModalLabel"--%>
-     <%--style="padding-right: 14px; display: block;">--%>
-    <%--<div class="modal-dialog" role="document">--%>
-        <%--<div class="modal-content">--%>
-            <%--<div class="modal-header text-center">--%>
-                <%--<h4 class="modal-title w-100 font-weight-bold">Delete Donor</h4>--%>
-                <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--%>
-                    <%--<span aria-hidden="true">&times;</span>--%>
-                <%--</button>--%>
-            <%--</div>--%>
-            <%--<form method="post" action="/deleteDonnateur">--%>
-                <%--<div class="modal-body mx-3">--%>
-                    <%--<div>--%>
-                        <%--<!-- Nom input -->--%>
-                        <%--<label for="email" class="mt-4">Email Donor</label>--%>
-                        <%--<input type="email" id="email" name="email" class="form-control "/>--%>
-                    <%--</div>--%>
-
-                <%--</div>--%>
-                <%--<div class="modal-footer d-flex justify-content-center">--%>
-                    <%--<div class="col-sm-4">--%>
-                        <%--<button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"--%>
-                                <%--type="submit" style="border-color: #D92228 !important; color: #D92228 !important;">--%>
-                            <%--Delete--%>
-                        <%--</button>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</form>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
-
-
-
-<%--<nav class="navbar navbar-expand-lg navbar-dark default-color">--%>
-    <%--<div class="container">--%>
-        <%--&lt;%&ndash;<a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<img src="img/logo.png" style="height: 38px; margin-top: -2px;" class="mr-4">&ndash;%&gt;--%>
-        <%--&lt;%&ndash;</a>&ndash;%&gt;--%>
-        <%--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"--%>
-                <%--aria-controls="navbarSupportedContent"--%>
-                <%--aria-expanded="false" aria-label="Toggle navigation">--%>
-            <%--<span class="navbar-toggler-icon"></span>--%>
-        <%--</button>--%>
-        <%--<div class="collapse navbar-collapse" id="navbarSupportedContent">--%>
-            <%--<ul class="navbar-nav mr-auto">--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link" href="/">Home</a>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link" href="/blog">Blog</a>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link" href="/requests">Requests</a>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link" href="/agenda">Agenda</a>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link" href="/faq">FAQ</a>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link" href="/about">About us</a>--%>
-                <%--</li>--%>
-                <%--<li class="nav-item">--%>
-                    <%--<a class="nav-link" href="/contact">Contact us</a>--%>
-                <%--</li>--%>
-            <%--</ul>--%>
-
-        <%--</div>--%>
-    <%--</div>--%>
-
-<%--</nav>--%>
 
 <!--Main Navigation-->

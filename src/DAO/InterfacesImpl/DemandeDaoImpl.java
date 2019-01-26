@@ -31,8 +31,8 @@ public class DemandeDaoImpl implements DemandeDao {
             prs.setBoolean(4, demande.isActive());
             prs.setBoolean(5, demande.isUrgent());
             prs.setInt(6, demande.getIdCentre());
-            prs.setString(7,demande.getTitleDemande());
-            prs.setInt(8,demande.getIdVilleDemande());
+            prs.setString(7, demande.getTitleDemande());
+            prs.setInt(8, demande.getIdVilleDemande());
 
             prs.execute();
             prs.close();
@@ -51,11 +51,11 @@ public class DemandeDaoImpl implements DemandeDao {
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement prs = connection.prepareStatement(query);
-            prs.setBoolean(1,true);
+            prs.setBoolean(1, true);
             ResultSet resultSet = prs.executeQuery();
             List<Demande> demandeList = exctractInfos(resultSet);
             return demandeList;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -77,17 +77,17 @@ public class DemandeDaoImpl implements DemandeDao {
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(editQuery);
-            preparedStatement.setTimestamp(1,demande.getDateDemande());
-            preparedStatement.setString(2,demande.getPathImgDemande());
-            preparedStatement.setString(3,demande.getDescriptionDemande());
-            preparedStatement.setBoolean(4,demande.isActive());
-            preparedStatement.setBoolean(5,demande.isUrgent());
-            preparedStatement.setString(6,demande.getTitleDemande());
-            preparedStatement.setInt(7,demande.getIdVilleDemande());
-            preparedStatement.setInt(8,demande.getIdDemande());
+            preparedStatement.setTimestamp(1, demande.getDateDemande());
+            preparedStatement.setString(2, demande.getPathImgDemande());
+            preparedStatement.setString(3, demande.getDescriptionDemande());
+            preparedStatement.setBoolean(4, demande.isActive());
+            preparedStatement.setBoolean(5, demande.isUrgent());
+            preparedStatement.setString(6, demande.getTitleDemande());
+            preparedStatement.setInt(7, demande.getIdVilleDemande());
+            preparedStatement.setInt(8, demande.getIdDemande());
             preparedStatement.execute();
             return true;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
@@ -111,16 +111,16 @@ public class DemandeDaoImpl implements DemandeDao {
     }
 
     @Override
-    public List<Demande> getRequestsByPagination(int start, int total , int villeFilter, int groupeFilter) {
+    public List<Demande> getRequestsByPagination(int start, int total, int villeFilter, int groupeFilter) {
 
-        String query = "SELECT  * FROM demande WHERE isActive=1 order by date_demande DESC limit " + start  + "," + total;
+        String query = "SELECT  * FROM demande WHERE isActive=1 order by date_demande DESC limit " + start + "," + total;
 
-        if(groupeFilter == -1 && villeFilter != -1){
-            query = "SELECT  * FROM demande WHERE isActive=1 AND id_ville='"+villeFilter+"' order by date_demande DESC limit " + start  + "," + total;
-        }else if(villeFilter==-1 && groupeFilter != -1){
-            query = "SELECT * FROM demande AS D WHERE isActive=1 AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start  + "," + total;
-        } else if(villeFilter !=-1 && groupeFilter !=-1){
-            query = "SELECT * FROM demande AS D WHERE isActive=1 AND id_ville='"+villeFilter+"' AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start  + "," + total;
+        if (groupeFilter == -1 && villeFilter != -1) {
+            query = "SELECT  * FROM demande WHERE isActive=1 AND id_ville='" + villeFilter + "' order by date_demande DESC limit " + start + "," + total;
+        } else if (villeFilter == -1 && groupeFilter != -1) {
+            query = "SELECT * FROM demande AS D WHERE isActive=1 AND " + groupeFilter + " IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start + "," + total;
+        } else if (villeFilter != -1 && groupeFilter != -1) {
+            query = "SELECT * FROM demande AS D WHERE isActive=1 AND id_ville='" + villeFilter + "' AND " + groupeFilter + " IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start + "," + total;
         }
 
         Connection connection = null;
@@ -133,16 +133,16 @@ public class DemandeDaoImpl implements DemandeDao {
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             requests = exctractInfos(resultSet);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return requests;
     }
 
-    private List<Demande> exctractInfos(ResultSet resultSet) throws SQLException{
+    private List<Demande> exctractInfos(ResultSet resultSet) throws SQLException {
         List<Demande> demandeList = new ArrayList<>();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             Demande demande = new Demande();
             demande.setIdDemande(resultSet.getInt("id_demande"));
             demande.setIdVilleDemande(resultSet.getInt("id_ville"));
@@ -177,10 +177,10 @@ public class DemandeDaoImpl implements DemandeDao {
             Connection connection = daoFactory.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 requestsCount = Integer.parseInt(resultSet.getString("nbrRequests"));
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return requestsCount;

@@ -163,4 +163,27 @@
         <servlet-name>deleteRequest</servlet-name>
         <url-pattern>/deleteRequest</url-pattern>
     </servlet-mapping>
+
+    <!-- stock management -->
+    <servlet>
+        <servlet-name>AddStock</servlet-name>
+        <servlet-class>Controllers.stock.AddStock</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddStock</servlet-name>
+        <url-pattern>/addstock</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteStock</servlet-name>
+        <servlet-class>Controllers.stock.deleteStock</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteStock</servlet-name>
+        <url-pattern>/deletestock</url-pattern>
+    </servlet-mapping>
+    <!-- stock management -->
+
 </web-app>

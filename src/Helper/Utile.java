@@ -102,7 +102,7 @@ public class Utile {
         requestPagination.setIdCentre(demande.getIdCentre());
         requestPagination.setDescriptionRequest(demande.getDescriptionDemande());
         Centre centre = centreDao.getCentre(demande.getIdCentre());
-        requestPagination.setNameVilleRequest(centre.getAdresseCentre()+", "+villeDao.getVilleById(demande.getIdVilleDemande()).getNomVille());
+        requestPagination.setNameVilleRequest(centre.getAdresseCentre() + ", " + villeDao.getVilleById(demande.getIdVilleDemande()).getNomVille());
         requestPagination.setCenterName(centre.getNameCentre());
         String s ="";
         for(ConcerneDemande concerneDemande : demande.getSangGroups()){

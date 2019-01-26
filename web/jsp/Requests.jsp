@@ -91,13 +91,13 @@
             <!--/.Card-->
             </div>
         </c:if>
-        <c:if test="${ !empty requests}">
+        <c:if test="${not empty requests}">
             <section>
                 <c:forEach items="${requests}" var="request">
                     <div class="well">
                         <div class="media">
                             <div class="pull-left col-xs-2 col-xs-3 text-center">
-                                <img class="media-object img-responsive img-rounded" src="${request.pathImgRequest.substring(25)}">
+                                <img class="media-object img-responsive img-rounded" src="${request.pathImgRequest.substring(55)}">
                             </div>
                             <div class="media-body">
                                 <h2 class="media-heading">${request.titleRequest}</h2>

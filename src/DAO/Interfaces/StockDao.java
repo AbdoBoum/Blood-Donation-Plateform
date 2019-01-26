@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface StockDao {
     // updates
-    public void insertStock(Stock stock);
-    public void updateStock(Stock stock);
-    public void deleteStock(Stock stock);
+    public boolean insertStock(Stock stock);
+    public boolean updateStock(Stock stock);
+    public boolean deleteStock(Stock stock);
     // selections
-    public Stock getStockById(int idGroupSang, int idCentre, Timestamp date);
+    public Stock getStockById(int idGroupSang, int idCentre);
     public List<Stock> getStockByIdGroupeSang(int idGroupeSang);
     public List<Stock> getStockByIdCentre(int idCentre);
     public List<Stock> getAllStock();

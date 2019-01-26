@@ -17,7 +17,7 @@ public class StockDaoImpl implements StockDao {
     }
 
     @Override
-    public void insertStock(Stock stock) {
+    public boolean insertStock(Stock stock) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
@@ -29,14 +29,16 @@ public class StockDaoImpl implements StockDao {
             preparedStatement.setInt(4,stock.getQuantiteStock());
 
             preparedStatement.executeUpdate();
+            return true;
 
         }catch (SQLException e){
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public void updateStock(Stock stock) {
+    public boolean updateStock(Stock stock) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
@@ -48,14 +50,16 @@ public class StockDaoImpl implements StockDao {
             preparedStatement.setTimestamp(4,stock.getDateStock());
 
             preparedStatement.executeUpdate();
+            return true;
 
         }catch (SQLException e){
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public void deleteStock(Stock stock) {
+    public boolean deleteStock(Stock stock) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
@@ -67,22 +71,23 @@ public class StockDaoImpl implements StockDao {
 
             preparedStatement.executeUpdate();
 
+            return true;
         }catch (SQLException e){
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public Stock getStockById(int idGroupeSang, int idCentre, Timestamp date) {
+    public Stock getStockById(int idGroupeSang, int idCentre) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         Stock stock=null;
         try{
             connection=daoFactory.getConnection();
-            preparedStatement=connection.prepareStatement("select * from stock WHERE id_groupeSang=? and id_centre=? and date_stock=?");
+            preparedStatement=connection.prepareStatement("select * from stock WHERE id_groupeSang=? and id_centre=?");
             preparedStatement.setInt(1,idGroupeSang);
             preparedStatement.setInt(2,idCentre);
-            preparedStatement.setTimestamp(3,date);
 
             ResultSet rs=preparedStatement.executeQuery();
             if(rs.next()){

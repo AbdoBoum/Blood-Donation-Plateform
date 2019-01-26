@@ -26,114 +26,113 @@ public class AddDonnateur extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        daoFactory=DAOFactory.getInstance();
-        donnateurDao=daoFactory.getDonnateurDaoImpl();
+        daoFactory = DAOFactory.getInstance();
+        donnateurDao = daoFactory.getDonnateurDaoImpl();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
 
-        if(session.getAttribute("centre")!=null) {
-            String jspLink="/index.jsp";
+        if (session.getAttribute("centre") != null) {
+            String jspLink = "/index.jsp";
             addDonnateur(jspLink, request, response);
-        }else{
-            String jspLink="/jsp/login.jsp";
+        } else {
+            String jspLink = "/jsp/login.jsp";
             addDonnateur(jspLink, request, response);
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session=request.getSession();
-        if(session.getAttribute("donnateur")==null){
-            VilleDao villeDao=daoFactory.getVilleDaoImpl();
-            List<Ville> villes=villeDao.getAllVille();
-            request.setAttribute("villes",villes);
-            GroupSangDao groupSangDao=daoFactory.getGroupSangDaoImpl();
-            List<GroupSang> groupeSangs=groupSangDao.getAllGroups();
+        HttpSession session = request.getSession();
+        if (session.getAttribute("donnateur") == null) {
+            VilleDao villeDao = daoFactory.getVilleDaoImpl();
+            List<Ville> villes = villeDao.getAllVille();
+            request.setAttribute("villes", villes);
+            GroupSangDao groupSangDao = daoFactory.getGroupSangDaoImpl();
+            List<GroupSang> groupeSangs = groupSangDao.getAllGroups();
             request.setAttribute("sangs", groupeSangs);
-            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/addDonnateur.jsp").forward(request,response);
-        }else{
+            this.getServletContext().getRequestDispatcher("/jsp/Donnateur/addDonnateur.jsp").forward(request, response);
+        } else {
             response.sendRedirect("/");
 
         }
     }
 
 
-
-    private void addDonnateur(String jspLink,HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+    private void addDonnateur(String jspLink, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         // verification si les champs sont remplis
 
-        if(request.getParameter("groupSang").trim().isEmpty()||request.getParameter("nom").trim().isEmpty()
-                ||request.getParameter("prenom").trim().isEmpty()||request.getParameter("cin").trim().isEmpty()
-                ||request.getParameter("email").trim().isEmpty()||request.getParameter("password").trim().isEmpty()
-                ||request.getParameter("tele").trim().isEmpty()||request.getParameter("ville").trim().isEmpty()){
-            String error="Please complete all fields!!";
-            request.setAttribute("flashMessageFaild",error);
-            returnAddFormulaire(request,response);
-        }else{
-        // verification de contenue des champs
-        String errorsFields="";
-        errorsFields+=validationChamp(request.getParameter("nom"),"^[a-zA-ZàâéèêôùûçÀÂÉÈÔÙÛÇ' ]{1,30}$","Firstname is not valid !!<br>");
-        errorsFields+=validationChamp(request.getParameter("prenom"),"^[a-zA-ZàâéèêôùûçÀÂÉÈÔÙÛÇ' ]{1,30}$","Lastname is not valid !!<br>");
-        errorsFields+=validationChamp(request.getParameter("cin"),"^[A-Z]{1,2}[0-9]{3,10}$","Cin is not valid !!<br>");
-        errorsFields+=validationChamp(request.getParameter("tele"),"^(\\+212|0)[0-9]{9}$","Phone number is not valid !!<br>");
-        errorsFields+=validationChamp(request.getParameter("email"),"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[a-z]{2,6}$","Email is not valid!!<br>");
-        errorsFields+=validationChamp(request.getParameter("password"),"^.{6,30}$","Password must has between 6 and 30 caracter!!<br>");
-        if (!errorsFields.equals("")){
-            request.setAttribute("flashMessageFaild",errorsFields);
-            returnAddFormulaire(request,response);
-        }else {
+        if (request.getParameter("groupSang").trim().isEmpty() || request.getParameter("nom").trim().isEmpty()
+                || request.getParameter("prenom").trim().isEmpty() || request.getParameter("cin").trim().isEmpty()
+                || request.getParameter("email").trim().isEmpty() || request.getParameter("password").trim().isEmpty()
+                || request.getParameter("tele").trim().isEmpty() || request.getParameter("ville").trim().isEmpty()) {
+            String error = "Please complete all fields!!";
+            request.setAttribute("flashMessageFaild", error);
+            returnAddFormulaire(request, response);
+        } else {
+            // verification de contenue des champs
+            String errorsFields = "";
+            errorsFields += validationChamp(request.getParameter("nom"), "^[a-zA-ZàâéèêôùûçÀÂÉÈÔÙÛÇ' ]{1,30}$", "Firstname is not valid !!<br>");
+            errorsFields += validationChamp(request.getParameter("prenom"), "^[a-zA-ZàâéèêôùûçÀÂÉÈÔÙÛÇ' ]{1,30}$", "Lastname is not valid !!<br>");
+            errorsFields += validationChamp(request.getParameter("cin"), "^[A-Z]{1,2}[0-9]{3,10}$", "Cin is not valid !!<br>");
+            errorsFields += validationChamp(request.getParameter("tele"), "^(\\+212|0)[0-9]{9}$", "Phone number is not valid !!<br>");
+            errorsFields += validationChamp(request.getParameter("email"), "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[a-z]{2,6}$", "Email is not valid!!<br>");
+            errorsFields += validationChamp(request.getParameter("password"), "^.{6,30}$", "Password must has between 6 and 30 caracter!!<br>");
+            if (!errorsFields.equals("")) {
+                request.setAttribute("flashMessageFaild", errorsFields);
+                returnAddFormulaire(request, response);
+            } else {
 
-        Donnateur donnateur=new Donnateur();
-        donnateur.setNomDonnateur(request.getParameter("nom"));
-        donnateur.setPrenomDonnateur(request.getParameter("prenom"));
-        donnateur.setCinDonnateur(request.getParameter("cin"));
-        donnateur.setEmailDonnateur(request.getParameter("email"));
-        donnateur.setPasswordDonnateur(Helper.Utile.stringToSha256(request.getParameter("password")));
-        donnateur.setTeleDonnateur(request.getParameter("tele"));
-        donnateur.setIdVilleDonnateur(Integer.parseInt(request.getParameter("ville").trim()));
-        donnateur.setIdGroupeSangDonnateur(Integer.parseInt(request.getParameter("groupSang").trim()));
+                Donnateur donnateur = new Donnateur();
+                donnateur.setNomDonnateur(request.getParameter("nom"));
+                donnateur.setPrenomDonnateur(request.getParameter("prenom"));
+                donnateur.setCinDonnateur(request.getParameter("cin"));
+                donnateur.setEmailDonnateur(request.getParameter("email"));
+                donnateur.setPasswordDonnateur(Helper.Utile.stringToSha256(request.getParameter("password")));
+                donnateur.setTeleDonnateur(request.getParameter("tele"));
+                donnateur.setIdVilleDonnateur(Integer.parseInt(request.getParameter("ville").trim()));
+                donnateur.setIdGroupeSangDonnateur(Integer.parseInt(request.getParameter("groupSang").trim()));
 
-        if(donnateurDao.addDonnateur(donnateur)){
-            System.out.println("donateur has been added ");
-            request.setAttribute("flashMessageSuccess", "Donor has been added.");
-            this.getServletContext().getRequestDispatcher(jspLink).forward(request,response);
-        }else{
-            request.setAttribute("flashMessageFaild", "Error adding Donor (the email is alredy in use)");
-            returnAddFormulaire(request,response);
+                if (donnateurDao.addDonnateur(donnateur)) {
+                    System.out.println("donateur has been added ");
+                    request.setAttribute("flashMessageSuccess", "Donor has been added.");
+                    this.getServletContext().getRequestDispatcher(jspLink).forward(request, response);
+                } else {
+                    request.setAttribute("flashMessageFaild", "Error adding Donor (the email is alredy in use)");
+                    returnAddFormulaire(request, response);
+                }
+            }
         }
     }
-        }
-    }
 
-    private String validationChamp(String field, String pattern,String erreur){
-        if(!field.matches(pattern)){
+    private String validationChamp(String field, String pattern, String erreur) {
+        if (!field.matches(pattern)) {
             return erreur;
         }
         return "";
     }
 
 
-    private void returnAddFormulaire(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+    private void returnAddFormulaire(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        VilleDao villeDao=daoFactory.getVilleDaoImpl();
-        List<Ville> villes=villeDao.getAllVille();
-        request.setAttribute("villes",villes);
-        GroupSangDao groupSangDao=daoFactory.getGroupSangDaoImpl();
-        List<GroupSang> groupeSangs=groupSangDao.getAllGroups();
+        VilleDao villeDao = daoFactory.getVilleDaoImpl();
+        List<Ville> villes = villeDao.getAllVille();
+        request.setAttribute("villes", villes);
+        GroupSangDao groupSangDao = daoFactory.getGroupSangDaoImpl();
+        List<GroupSang> groupeSangs = groupSangDao.getAllGroups();
         request.setAttribute("sangs", groupeSangs);
 
-        request.setAttribute("oldPrenom",request.getParameter("prenom"));
-        request.setAttribute("oldNom",request.getParameter("nom"));
-        request.setAttribute("oldTele",request.getParameter("tele"));
-        request.setAttribute("oldCin",request.getParameter("cin"));
-        request.setAttribute("oldEmail",request.getParameter("email"));
-        request.setAttribute("oldGroupe",request.getParameter("groupSang"));
-        request.setAttribute("oldVille",request.getParameter("ville"));
+        request.setAttribute("oldPrenom", request.getParameter("prenom"));
+        request.setAttribute("oldNom", request.getParameter("nom"));
+        request.setAttribute("oldTele", request.getParameter("tele"));
+        request.setAttribute("oldCin", request.getParameter("cin"));
+        request.setAttribute("oldEmail", request.getParameter("email"));
+        request.setAttribute("oldGroupe", request.getParameter("groupSang"));
+        request.setAttribute("oldVille", request.getParameter("ville"));
 
 
-        this.getServletContext().getRequestDispatcher("/jsp/Donnateur/addDonnateur.jsp").forward(request,response);
+        this.getServletContext().getRequestDispatcher("/jsp/Donnateur/addDonnateur.jsp").forward(request, response);
     }
 }
