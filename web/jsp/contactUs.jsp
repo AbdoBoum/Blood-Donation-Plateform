@@ -21,7 +21,10 @@
     <section class="mb-4">
 
         <!--Section heading-->
-        <h2 class="h1-responsive font-weight-bold text-center my-4">Get in touch with us</h2>
+        <div class="section-title text-center wow zoomIn mt-4">
+            <h1>Get in touch with us</h1>
+            <span></span>
+        </div>
         <!--Section description-->
         <p class="text-center w-responsive mx-auto ">Do you have any questions? Please do not hesitate to contact us
             directly. Our team will come back to you within

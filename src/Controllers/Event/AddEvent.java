@@ -68,7 +68,7 @@ public class AddEvent extends HttpServlet {
                 }else{
 
                     if(!fileName.isEmpty() && fileName!=null){
-                        ecrireFichier(part,fileName,"F:\\Projet\\BloodBrothers\\web\\img");
+                        ecrireFichier(part,fileName,"C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img");
                     }
 
 

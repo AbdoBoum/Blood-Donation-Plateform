@@ -30,10 +30,10 @@
 
 
         <!-- Title -->
-                <div class="section-title text-center wow zoomIn mt-5 font-weight-bold">
+                <div class="section-title text-center wow zoomIn mt-5 ">
                     <h1>Agenda</h1>
                 </div>
-                <section class="my-5">
+                <section class="my-3">
 
 
                     <ul class="list-group list-group-flush">
