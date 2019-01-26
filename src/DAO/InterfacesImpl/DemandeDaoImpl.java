@@ -162,11 +162,20 @@ public class DemandeDaoImpl implements DemandeDao {
     }
 
     @Override
-    public int countRequests() {
+    public int countRequests(int villeFilter, int groupeFilter) {
+        String query = "SELECT count(id_demande) AS nbrRequests FROM demande WHERE isActive=1";
+
+        if(groupeFilter == -1 && villeFilter != -1){
+            query = "SELECT count(id_demande) AS nbrRequests FROM demande WHERE isActive=1 AND id_ville='"+villeFilter+"' ";
+        }else if(villeFilter==-1 && groupeFilter != -1){
+            query = "SELECT count(id_demande) AS nbrRequests FROM demande AS D WHERE isActive=1 AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) ";
+        } else if(villeFilter !=-1 && groupeFilter !=-1){
+            query = "SELECT count(id_demande) AS nbrRequests FROM demande AS D WHERE isActive=1 AND id_ville='"+villeFilter+"' AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) ";
+        }
         int requestsCount = 0;
         try {
             Connection connection = daoFactory.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT  count(id_demande) AS nbrRequests FROM demande");
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 requestsCount = Integer.parseInt(resultSet.getString("nbrRequests"));

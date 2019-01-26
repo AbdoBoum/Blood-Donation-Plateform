@@ -21,7 +21,7 @@ public interface DemandeDao {
 
     List<Demande> getRequestsByPagination(int start , int total , int villeFilter, int groupeFilter);
 
-    int countRequests();
+    int countRequests(int villeFilter, int groupeFilter);
 
     Demande getRequestById(int id);
 

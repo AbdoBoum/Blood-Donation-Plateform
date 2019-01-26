@@ -63,7 +63,7 @@ public class RequestsServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        totalRequests = demandeDao.countRequests();
+        totalRequests = demandeDao.countRequests(villeFilter,groupeFilter);
         int CurrentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
         List<Demande> demandes = demandeDao.getRequestsByPagination((CurrentPage - 1) * 5, 5,villeFilter,groupeFilter);
         demandes = demandes == null ? new ArrayList<>() : demandes ;
