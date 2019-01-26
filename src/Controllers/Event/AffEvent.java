@@ -44,12 +44,17 @@ public class AffEvent extends HttpServlet {
         List<Evenement> allEvents=evenementDao.getAllEvenement();
         List<Ville> villes=villeDao.getAllVille();
         List<Centre> centres=centreDao.getAllCentre();
-        request.setAttribute("villes",villes);
-        request.setAttribute("events", events);
-        request.setAttribute("centres", centres);
-        pagination pn=new pagination(allEvents.size(),6,5,currentPage);
-        String pag=pn.showPagination("/agenda");
-        request.setAttribute("pg",pag);
-        this.getServletContext().getRequestDispatcher("/jsp/AffEvent.jsp").forward(request,response);
+        if(allEvents==null){
+                this.getServletContext().getRequestDispatcher("/jsp/error404.jsp").forward(request, response);
+        }else{
+
+            request.setAttribute("villes",villes);
+            request.setAttribute("events", events);
+            request.setAttribute("centres", centres);
+            pagination pn=new pagination(allEvents.size(),6,5,currentPage);
+            String pag=pn.showPagination("/agenda");
+            request.setAttribute("pg",pag);
+            this.getServletContext().getRequestDispatcher("/jsp/AffEvent.jsp").forward(request,response);
+        }
     }
 }
