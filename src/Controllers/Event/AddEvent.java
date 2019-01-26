@@ -49,11 +49,13 @@ public class AddEvent extends HttpServlet {
 
         String dateString = request.getParameter("date");
 
+        String time =request.getParameter("time");
+
         Part part = request.getPart("imgInput");
 
         String fileName = extractFileName(part);
 
-        if(titreEvent.trim().isEmpty()||descEvent.trim().isEmpty()||dateString.trim().isEmpty()||fileName.trim().isEmpty()||fileName==null){
+        if(titreEvent.trim().isEmpty()||descEvent.trim().isEmpty()||dateString.trim().isEmpty()||fileName.trim().isEmpty()||fileName==null||time.trim().isEmpty()){
             request.setAttribute("flashMessageFaild","Please complete all fields !! <br> Please choose the Event image cover again !!");
             returnFormulaireAddEvent(request,response);
         }else{
@@ -70,19 +72,19 @@ public class AddEvent extends HttpServlet {
                 }
 
 
-                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
                 Date date= null;
 
                 try {
-                    date = sdf.parse(dateString);
+                    date = sdf.parse(dateString+" "+time);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
                 Timestamp tm=new Timestamp(date.getTime());
 
-
+                System.out.println(date.getTime());
 
                 if (titreEvent.trim().isEmpty() || descEvent.trim().isEmpty() ) {
                     this.getServletContext().getRequestDispatcher("/jsp/agenda.jsp").forward(request, response);

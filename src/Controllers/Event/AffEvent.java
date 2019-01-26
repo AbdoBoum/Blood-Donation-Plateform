@@ -4,6 +4,7 @@ import DAO.DAOFactory;
 import DAO.Interfaces.CentreDao;
 import DAO.Interfaces.EvenementDao;
 import DAO.Interfaces.VilleDao;
+import Helper.pagination;
 import Models.Centre;
 import Models.Evenement;
 import Models.Ville;
@@ -36,12 +37,19 @@ public class AffEvent extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Evenement> events=evenementDao.getAllEvenement();
+
+        int currentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
+
+        List<Evenement> events=evenementDao.getEvenementByPagination((currentPage - 1)*6,6);
+        List<Evenement> allEvents=evenementDao.getAllEvenement();
         List<Ville> villes=villeDao.getAllVille();
         List<Centre> centres=centreDao.getAllCentre();
         request.setAttribute("villes",villes);
         request.setAttribute("events", events);
         request.setAttribute("centres", centres);
+        pagination pn=new pagination(allEvents.size(),6,5,currentPage);
+        String pag=pn.showPagination("/agenda");
+        request.setAttribute("pg",pag);
         this.getServletContext().getRequestDispatcher("/jsp/AffEvent.jsp").forward(request,response);
     }
 }

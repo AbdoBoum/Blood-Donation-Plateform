@@ -77,6 +77,13 @@
                                     <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                                 </div>
                             </div>
+                            <div class="row ">
+                                <div class="form-group required col-sm-12">
+                                    <label for="time" class='control-label'>Event time</label>
+                                    <input type="time" name="time" class="form-control" id="time" <c:if test="${oldTime ne null}"> value="${oldTime}" </c:if>>
+                                    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                                </div>
+                            </div>
                             <%--<div class="row">--%>
                                 <%--<div class="form-group required col-sm-12">--%>
                                     <%--<div class="custom-file">--%>

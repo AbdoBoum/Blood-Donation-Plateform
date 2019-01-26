@@ -161,4 +161,34 @@ public class EvenementDaoImpl implements EvenementDao {
         }
         return evenements;
     }
+
+    @Override
+    public List<Evenement> getEvenementByPagination(int start, int total) {
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        List<Evenement> evenements=null;
+        try{
+            connection=daoFactory.getConnection();
+            preparedStatement=connection.prepareStatement("SELECT * from evenement ORDER by date_evenement DESC limit ?,?");
+            preparedStatement.setInt(1,start);
+            preparedStatement.setInt(2,total);
+            ResultSet rs=preparedStatement.executeQuery();
+
+            evenements=new ArrayList<>();
+            while(rs.next()){
+                Evenement evenement=new Evenement();
+                evenement.setIdEvenement(rs.getInt("id_evenement"));
+                evenement.setTitreEvenement(rs.getString("titre_evenement"));
+                evenement.setDesciptionEvenement(rs.getString("description_evenement"));
+                evenement.setDateEvenement(rs.getTimestamp("date_evenement"));
+                evenement.setImagePathEvenement(rs.getString("imagePath_evenement"));
+                evenement.setIdVille(rs.getInt("id_ville"));
+                evenement.setIdCentre(rs.getInt("id_centre"));
+                evenements.add(evenement);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return evenements;
+    }
 }

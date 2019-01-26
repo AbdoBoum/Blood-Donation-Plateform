@@ -19,50 +19,80 @@
     <div class="container">
         <br><br>
 
-        <div class="section-title text-center wow zoomIn mt-5 font-weight-bold">
-            <h1>Les evenements dispo</h1>
-        </div>
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Identifiant d'evenement</th>
-                    <th scope="col">Titre d'evenement</th>
-                    <th scope="col">Desciption d'evenement</th>
-                    <th scope="col">Date d'evenement</th>
-                    <th scope="col">Centre</th>
-                    <th scope="col">Ville</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${events}" var="event">
-                <tr>
-                    <th scope="row"><c:out value="${event.idEvenement}"></c:out></th>
-                    <td><c:out value="${event.titreEvenement}"/></td>
-                    <td><c:out value="${event.desciptionEvenement}"/></td>
-                    <td><c:out value="${event.dateEvenement}"/></td>
-                    <td>
-                        <c:forEach items="${centres}" var="centre">
-                        <c:if test="${centre.idCentre eq event.idCentre}">
-                            <c:out value="${centre.nameCentre}"/>
-                        </c:if>
-                       </c:forEach>
 
-                    </td>
-                    <td>
-                        <c:forEach items="${villes}" var="ville">
-                            <c:if test="${ ville.idVille eq event.idVille }">
-                                <c:out value="${ville.nomVille}"/>
-                            </c:if>
+
+
+            <!-- Card -->
+            <div class="card card-cascade wider reverse">
+
+            <!-- Card content -->
+            <div class="card-body card-body-cascade">
+
+            <!-- Title -->
+            <div class="section-title text-center wow zoomIn mt-5 font-weight-bold">
+            <h1>Agenda</h1>
+            </div>
+                <section class="my-5">
+
+
+                    <ul class="list-group list-group-flush">
+                        <c:forEach items="${events}" var="event">
+
+
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="media mt-4 px-1">
+                                            <img class="card-img-100 d-flex z-depth-1 mr-3" src="<c:out value="${event.imagePathEvenement}"/>"
+                                                 alt="Generic placeholder image">
+                                            <div class="media-body">
+                                                <h6 class="font-weight-bold mt-0">
+                                                    <c:out value="${event.titreEvenement}"/>
+                                                </h6>
+                                                <c:out value="${event.desciptionEvenement}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="media mt-4 px-1">
+                                            <ul class="list-unstyled  mb-0">
+                                                <li class="list-item">
+                                                    <i class="fas fa-calendar mr-1 mt-2"></i>
+                                                        ${event.dateEvenement}
+                                                </li>
+                                                <li class="list-item">
+                                                    <i class="fas fa-home mr-1 mt-2"></i>
+                                                    <c:forEach items="${centres}" var="centre">
+                                                        <c:if test="${centre.idCentre eq event.idCentre}">
+                                                            <c:out value="${centre.nameCentre}"/>
+                                                        </c:if>
+                                                    </c:forEach></li>
+                                                <li class="list-item"><i class="fas fa-map-marker mr-1 mt-2"></i>
+                                                    <c:forEach items="${villes}" var="ville">
+                                                    <c:if test="${ ville.idVille eq event.idVille }">
+                                                        <c:out value="${ville.nomVille}"/>
+                                                    </c:if>
+                                                    </c:forEach>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
                         </c:forEach>
-                    </td>
-                </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
+
+                    </ul>
+
+
+
+                </section>
+                <!--Pagination-->
+                ${pg}
+
+                <!--Pagination-->
+            </div>
+
+            </div>
+            <!-- Card -->
     </div>
     <%@include file="Footer.jsp"%>
     <script type="text/javascript" src="js/addons/datatables-select.min.js"></script>
