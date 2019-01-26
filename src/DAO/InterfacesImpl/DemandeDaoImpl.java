@@ -95,6 +95,18 @@ public class DemandeDaoImpl implements DemandeDao {
 
     @Override
     public boolean deleteDemande(int idDemande) {
+        String query = "DELETE FROM demande WHERE id_demande=?";
+        try {
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement prs = connection.prepareStatement(query);
+            prs.setInt(1,idDemande);
+            prs.execute();
+            if(getRequestById(idDemande)==null){
+                return true;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -163,6 +175,23 @@ public class DemandeDaoImpl implements DemandeDao {
             e.printStackTrace();
         }
         return requestsCount;
+    }
+
+    @Override
+    public Demande getRequestById(int id) {
+        String query = "SELECT * FROM demande WHERE id_demande="+id;
+        try {
+            Connection connection = daoFactory.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            List<Demande> demandeList = exctractInfos(resultSet);
+            if(demandeList != null && demandeList.size()!=0)
+                return demandeList.get(0);
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

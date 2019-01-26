@@ -23,4 +23,6 @@ public interface DemandeDao {
 
     int countRequests();
 
+    Demande getRequestById(int id);
+
 }

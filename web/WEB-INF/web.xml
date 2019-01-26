@@ -153,4 +153,14 @@
         <servlet-name>deleteDonnateur</servlet-name>
         <url-pattern>/deleteDonnateur</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteRequest</servlet-name>
+        <servlet-class>Controllers.Demandes.DeleteRequest</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteRequest</servlet-name>
+        <url-pattern>/deleteRequest</url-pattern>
+    </servlet-mapping>
 </web-app>

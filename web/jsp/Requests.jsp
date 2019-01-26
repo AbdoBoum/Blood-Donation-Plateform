@@ -108,7 +108,7 @@
                                         <div class="dropdown-menu" aria-labelledby="dropdownmenu">
                                             <a class="dropdown-item" href="#">Update</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Delete</a>
+                                            <a class="dropdown-item" href="deleteRequest?id=${request.idRequest}">Delete</a>
                                         </div>
                                     </div>
                                 </c:if>
