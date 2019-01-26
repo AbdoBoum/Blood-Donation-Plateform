@@ -103,7 +103,7 @@
                                 <h2 class="media-heading">${request.titleRequest}</h2>
                                 <c:if test="${sessionScope.centre.idCentre == request.idCentre}">
                                     <div class="dropdown">
-                                        <button class="btn btn-info dropdown-toggle" style="font-size: 15px;" type="button" id="dropdownmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn btn-info btn-red dropdown-toggle" style="font-size: 15px; background: #AE1F23; color: white;" type="button" id="dropdownmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownmenu">
                                             <a class="dropdown-item" href="#">Update</a>
