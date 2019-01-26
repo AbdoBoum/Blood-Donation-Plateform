@@ -4,6 +4,7 @@ import DAO.DAOFactory;
 import DAO.Interfaces.BlogDao;
 import Models.Blog;
 
+import javax.servlet.annotation.MultipartConfig;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -107,6 +108,26 @@ public class BlogDaoImpl implements BlogDao {
         return null;
     }
 
+
+    @Override
+    public List<Blog> getBlogByPaginationKeyword(int start, int total, String keyword){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Blog> blogs = new ArrayList<>();
+
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = connection.prepareStatement("SELECT  * FROM blog where titre_blog like ? order by date_blog DESC limit " + start  + "," + total);
+            preparedStatement.setString(1, "%" + keyword + "%");
+            resultSet = preparedStatement.executeQuery();
+            exctractInfos(blogs, resultSet);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return blogs;
+    }
     @Override
     public List<Blog> getAllBlogs() {
         Connection connection = null;

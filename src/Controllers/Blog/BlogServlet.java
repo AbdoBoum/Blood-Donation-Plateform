@@ -45,7 +45,8 @@ public class BlogServlet extends HttpServlet {
             blogs = blog.getBlogByPagination((CurrentPage - 1) * 6, 6);
             request.setAttribute("blogs", blogs);
             pagination pg = new pagination(totalBlogs, 6, 5, CurrentPage);
-            request.setAttribute("pg", pg);
+            String pag = pg.showPagination("blog");
+            request.setAttribute("pg", pag);
             this.getServletContext().getRequestDispatcher("/jsp/blog.jsp").forward(request, response);
 
             //READ ARTICLE
@@ -61,10 +62,14 @@ public class BlogServlet extends HttpServlet {
             } else {
                 this.getServletContext().getRequestDispatcher("/jsp/error404.jsp").forward(request, response);
             }
-        } else if (!keyword.isEmpty()){
-            blogs = blog.FetchBlogByTitle(keyword);
+            //Recherche article
+        } else if (!keyword.isEmpty() && id == 0){
+            blogs = blog.getBlogByPaginationKeyword((CurrentPage - 1) * 6, 6, keyword);
+            pagination pg = new pagination(blog.FetchBlogByTitle(keyword).size(), 6, 5, CurrentPage);
+            String pag = pg.showPagination("blog", keyword);
             request.setAttribute("blogs", blogs);
             request.setAttribute("keyword", keyword);
+            request.setAttribute("pg", pag);
             this.getServletContext().getRequestDispatcher("/jsp/blog.jsp").forward(request, response);
         }
     }

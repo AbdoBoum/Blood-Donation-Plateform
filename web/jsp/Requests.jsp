@@ -29,6 +29,7 @@
 <body class="grey lighten-5">
 <%@include file="Navbar.jsp" %>
 <main>
+
     <div class="container">
         <br><br><br>
         <div class="row mb-4 mt-3">
@@ -138,12 +139,9 @@
                 <!--Pagination-->
 
                     ${pg.showPagination("requests")}
-
                 <!--Pagination-->
             </section>
         </c:if>
-
-
     </div>
 </main>
 

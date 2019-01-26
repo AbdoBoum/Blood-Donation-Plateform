@@ -8,7 +8,7 @@
 
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
     <div class="container">
-        <a class="navbar-brand" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
+        <a class="navbar-brand" href="/">
             <img src="img/logo.png" style="height: 38px; margin-top: -2px;" class="mr-4">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

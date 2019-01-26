@@ -123,16 +123,6 @@
     </servlet-mapping>
 
 
-    <servlet>
-      <servlet-name>donnateurCrud</servlet-name>
-      <servlet-class>Controllers.Donnateur.DonnateurCrudServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-      <servlet-name>donnateurCrud</servlet-name>
-      <url-pattern>/managementDonnateur</url-pattern>
-  </servlet-mapping>
-
       <servlet>
           <servlet-name>addDonnateur</servlet-name>
           <servlet-class>Controllers.Donnateur.AddDonnateur</servlet-class>

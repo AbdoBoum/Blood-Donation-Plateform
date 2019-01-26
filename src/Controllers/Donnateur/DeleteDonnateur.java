@@ -15,7 +15,6 @@ import java.io.IOException;
 public class DeleteDonnateur extends HttpServlet {
     private DAOFactory daoFactory;
     private DonnateurDao donnateurDao;
-    private final String managementLink="/managementDonnateur";
 
     @Override
     public void init() throws ServletException {
@@ -47,24 +46,24 @@ public class DeleteDonnateur extends HttpServlet {
 
                 System.out.println("in delete Donnateur");
                 if(!donnateurDao.findDonnateurByMail(email)){
-                    request.setAttribute("flashMessageFaild", "Wrong email !!");
-                    this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request, response);
+                    request.setAttribute("flashMessageFaild", "Wrong email.");
+                    this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                 }else {
 
                     if (donnateurDao.removeDonnateur(email)) {
                         System.out.println("in success deleting");
-                        request.setAttribute("flashMessageSuccess", "The donnateur has been deleted !!");
-                        this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request, response);
+                        request.setAttribute("flashMessageSuccess", "Donor has been deleted.");
+                        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                     } else {
                         System.out.println("echec deleting");
-                        request.setAttribute("flashMessageFaild", "Erreur of deleting donnateur !!");
-                        this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request, response);
+                        request.setAttribute("flashMessageFaild", "Erreur of deleting Donor.");
+                        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                     }
                 }
 
             }else{
-                request.setAttribute("flashMessageFaild", "Email field must be complete!!");
-                this.getServletContext().getRequestDispatcher("/jsp/Donnateur/managementDonnateur.jsp").forward(request, response);
+                request.setAttribute("flashMessageFaild", "Email field must be complete");
+                this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             }
 
         }else{
