@@ -22,11 +22,10 @@ public class StockDaoImpl implements StockDao {
         PreparedStatement preparedStatement=null;
         try{
             connection=daoFactory.getConnection();
-            preparedStatement=connection.prepareStatement("insert into stock(id_groupeSang, id_centre, date_stock, quantite_stock) VALUES(?,?,?,?) ");
+            preparedStatement=connection.prepareStatement("insert into stock(id_groupeSang, id_centre, quantite_stock) VALUES(?,?,?) ");
             preparedStatement.setInt(1,stock.getIdGroupeSang());
             preparedStatement.setInt(2,stock.getIdCentre());
-            preparedStatement.setTimestamp(3,stock.getDateStock());
-            preparedStatement.setInt(4,stock.getQuantiteStock());
+            preparedStatement.setInt(3,stock.getQuantiteStock());
 
             preparedStatement.executeUpdate();
             return true;
@@ -43,11 +42,10 @@ public class StockDaoImpl implements StockDao {
         PreparedStatement preparedStatement=null;
         try{
             connection=daoFactory.getConnection();
-            preparedStatement=connection.prepareStatement("UPDATE stock set quantite_stock=? WHERE id_groupeSang=? and id_centre=? and date_stock=?");
+            preparedStatement=connection.prepareStatement("UPDATE stock set quantite_stock=? WHERE id_groupeSang=? and id_centre=?");
             preparedStatement.setInt(1,stock.getQuantiteStock());
             preparedStatement.setInt(2,stock.getIdGroupeSang());
             preparedStatement.setInt(3,stock.getIdCentre());
-            preparedStatement.setTimestamp(4,stock.getDateStock());
 
             preparedStatement.executeUpdate();
             return true;
@@ -64,10 +62,9 @@ public class StockDaoImpl implements StockDao {
         PreparedStatement preparedStatement=null;
         try{
             connection=daoFactory.getConnection();
-            preparedStatement=connection.prepareStatement("delete from stock WHERE id_groupeSang=? and id_centre=? and date_stock=?");
+            preparedStatement=connection.prepareStatement("delete from stock WHERE id_groupeSang=? and id_centre=?");
             preparedStatement.setInt(1,stock.getIdGroupeSang());
             preparedStatement.setInt(2,stock.getIdCentre());
-            preparedStatement.setTimestamp(3,stock.getDateStock());
 
             preparedStatement.executeUpdate();
 
@@ -92,7 +89,6 @@ public class StockDaoImpl implements StockDao {
             ResultSet rs=preparedStatement.executeQuery();
             if(rs.next()){
                 stock=new Stock();
-                stock.setDateStock(rs.getTimestamp("date_stock"));
                 stock.setIdCentre(rs.getInt("id_centre"));
                 stock.setIdGroupeSang(rs.getInt("id_groupeSang"));
                 stock.setQuantiteStock(rs.getInt("quantite_stock"));
@@ -118,7 +114,6 @@ public class StockDaoImpl implements StockDao {
             stocks=new ArrayList<>();
             while (rs.next()){
                 Stock stock=new Stock();
-                stock.setDateStock(rs.getTimestamp("date_stock"));
                 stock.setIdCentre(rs.getInt("id_centre"));
                 stock.setIdGroupeSang(rs.getInt("id_groupeSang"));
                 stock.setQuantiteStock(rs.getInt("quantite_stock"));
@@ -147,7 +142,6 @@ public class StockDaoImpl implements StockDao {
                 Stock stock=new Stock();
                 stock.setIdGroupeSang(rs.getInt("id_groupeSang"));
                 stock.setIdCentre(rs.getInt("id_centre"));
-                stock.setDateStock(rs.getTimestamp("date_stock"));
                 stock.setQuantiteStock(rs.getInt("quantite_stock"));
                 stocks.add(stock);
             }
@@ -171,10 +165,9 @@ public class StockDaoImpl implements StockDao {
 
             while (rs.next()){
                 Stock stock=new Stock();
+                stock.setQuantiteStock(rs.getInt("quantite_stock"));
                 stock.setIdCentre(rs.getInt("id_centre"));
                 stock.setIdGroupeSang(rs.getInt("id_groupeSang"));
-                stock.setDateStock(rs.getTimestamp("date_stock"));
-                stock.setQuantiteStock(rs.getInt("quantite_stock"));
                 stocks.add(stock);
             }
 

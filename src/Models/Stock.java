@@ -7,7 +7,6 @@ public class Stock implements Serializable {
 
     private int idGroupeSang;
     private int idCentre;
-    private Timestamp dateStock;
     private int quantiteStock;
 
     public int getIdGroupeSang() {
@@ -18,19 +17,14 @@ public class Stock implements Serializable {
         super();
     }
 
-    public Stock(int idGroupeSang, int idCentre, Timestamp dateStock, int quantiteStock) {
+    public Stock(int idGroupeSang, int idCentre, int quantiteStock) {
         this.idGroupeSang = idGroupeSang;
         this.idCentre = idCentre;
-        this.dateStock = dateStock;
         this.quantiteStock = quantiteStock;
     }
 
     public int getIdCentre() {
         return idCentre;
-    }
-
-    public Timestamp getDateStock() {
-        return dateStock;
     }
 
     public int getQuantiteStock() {
@@ -43,10 +37,6 @@ public class Stock implements Serializable {
 
     public void setIdCentre(int idCentre) {
         this.idCentre = idCentre;
-    }
-
-    public void setDateStock(Timestamp dateStock) {
-        this.dateStock = dateStock;
     }
 
     public void setQuantiteStock(int quantiteStock) {

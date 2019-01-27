@@ -47,6 +47,9 @@ public class AddStock extends HttpServlet {
         quantity = (quantity >= 0) ? quantity : 0;
         String[] groupSang = request.getParameterValues("groupSang");
         int idgroupSang;
+        session = request.getSession();
+        centre = (Centre) session.getAttribute("centre");
+        idCentre = centre.getIdCentre();
 
         if (quantity == 0 ) {
             if (groupSang[0].isEmpty()) {
@@ -66,7 +69,6 @@ public class AddStock extends HttpServlet {
                 stock.setQuantiteStock(quantity);
                 stock.setIdCentre(idCentre);
                 stock.setIdGroupeSang(idgroupSang);
-                stock.setDateStock(new Timestamp(System.currentTimeMillis()));
                 if (stockDao.insertStock(stock)){
                     flashMessageSuccess = "Quantity added";
                     request.setAttribute("flashMessageSuccess", flashMessageSuccess);
@@ -93,9 +95,6 @@ public class AddStock extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        session = request.getSession();
-        centre = (Centre) session.getAttribute("centre");
-        idCentre = centre.getIdCentre();
         this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }

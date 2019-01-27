@@ -43,8 +43,12 @@ public class deleteStock extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int quantity = !request.getParameter("quantity").isEmpty() ? Integer.parseInt(request.getParameter("quantity")) : 0;
         quantity = (quantity >= 0) ? quantity : 0;
-        String[] groupSang = request.getParameterValues("groupSang");
         int idgroupSang;
+        session = request.getSession();
+        centre = (Centre) session.getAttribute("centre");
+        idCentre = centre.getIdCentre();
+        String[] groupSang = request.getParameterValues("groupSang");
+
 
         if (quantity == 0 ) {
             if (groupSang[0].isEmpty()) {
@@ -87,9 +91,7 @@ public class deleteStock extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        session = request.getSession();
-        centre = (Centre) session.getAttribute("centre");
-        idCentre = centre.getIdCentre();
+
         this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
     }
 }
