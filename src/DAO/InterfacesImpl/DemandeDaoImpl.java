@@ -3,7 +3,6 @@ package DAO.InterfacesImpl;
 import DAO.DAOFactory;
 import DAO.Interfaces.ConcerneDemandeDao;
 import DAO.Interfaces.DemandeDao;
-import Models.ConcerneDemande;
 import Models.Demande;
 
 import java.sql.*;
@@ -31,8 +30,8 @@ public class DemandeDaoImpl implements DemandeDao {
             prs.setBoolean(4, demande.isActive());
             prs.setBoolean(5, demande.isUrgent());
             prs.setInt(6, demande.getIdCentre());
-            prs.setString(7,demande.getTitleDemande());
-            prs.setInt(8,demande.getIdVilleDemande());
+            prs.setString(7, demande.getTitleDemande());
+            prs.setInt(8, demande.getIdVilleDemande());
 
             prs.execute();
             prs.close();
@@ -51,11 +50,11 @@ public class DemandeDaoImpl implements DemandeDao {
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement prs = connection.prepareStatement(query);
-            prs.setBoolean(1,true);
+            prs.setBoolean(1, true);
             ResultSet resultSet = prs.executeQuery();
             List<Demande> demandeList = exctractInfos(resultSet);
             return demandeList;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -77,16 +76,16 @@ public class DemandeDaoImpl implements DemandeDao {
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(editQuery);
-            preparedStatement.setString(1,demande.getPathImgDemande());
-            preparedStatement.setString(2,demande.getDescriptionDemande());
-            preparedStatement.setBoolean(3,demande.isActive());
-            preparedStatement.setBoolean(4,demande.isUrgent());
-            preparedStatement.setString(5,demande.getTitleDemande());
-            preparedStatement.setInt(6,demande.getIdVilleDemande());
-            preparedStatement.setInt(7,demande.getIdDemande());
+            preparedStatement.setString(1, demande.getPathImgDemande());
+            preparedStatement.setString(2, demande.getDescriptionDemande());
+            preparedStatement.setBoolean(3, demande.isActive());
+            preparedStatement.setBoolean(4, demande.isUrgent());
+            preparedStatement.setString(5, demande.getTitleDemande());
+            preparedStatement.setInt(6, demande.getIdVilleDemande());
+            preparedStatement.setInt(7, demande.getIdDemande());
             preparedStatement.execute();
             return true;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
@@ -99,16 +98,16 @@ public class DemandeDaoImpl implements DemandeDao {
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(concernequery);
-            preparedStatement.setInt(1,idDemande);
+            preparedStatement.setInt(1, idDemande);
             preparedStatement.execute();
             preparedStatement.close();
             PreparedStatement prs = connection.prepareStatement(query);
-            prs.setInt(1,idDemande);
+            prs.setInt(1, idDemande);
             prs.execute();
-            if(getRequestById(idDemande)==null){
+            if (getRequestById(idDemande) == null) {
                 return true;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
@@ -117,36 +116,36 @@ public class DemandeDaoImpl implements DemandeDao {
     @Override
     public boolean closeDemande(int idDemande) {
         String editQuery = "UPDATE demande SET isActive=? WHERE id_demande=?;";
-        String query = "SELECT isActive FROM demande WHERE id_demande="+idDemande;
+        String query = "SELECT isActive FROM demande WHERE id_demande=" + idDemande;
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(editQuery);
-            preparedStatement.setBoolean(1,false);
-            preparedStatement.setInt(2,idDemande);
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, idDemande);
             preparedStatement.execute();
             preparedStatement.close();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
-            if(resultSet.next()){
+            if (resultSet.next()) {
                 return resultSet.getBoolean("isActive");
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
     @Override
-    public List<Demande> getRequestsByPagination(int start, int total , int villeFilter, int groupeFilter) {
+    public List<Demande> getRequestsByPagination(int start, int total, int villeFilter, int groupeFilter) {
 
-        String query = "SELECT  * FROM demande WHERE isActive=1 order by date_demande DESC limit " + start  + "," + total;
+        String query = "SELECT  * FROM demande WHERE isActive=1 order by date_demande DESC limit " + start + "," + total;
 
-        if(groupeFilter == -1 && villeFilter != -1){
-            query = "SELECT  * FROM demande WHERE isActive=1 AND id_ville='"+villeFilter+"' order by date_demande DESC limit " + start  + "," + total;
-        }else if(villeFilter==-1 && groupeFilter != -1){
-            query = "SELECT * FROM demande AS D WHERE isActive=1 AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start  + "," + total;
-        } else if(villeFilter !=-1 && groupeFilter !=-1){
-            query = "SELECT * FROM demande AS D WHERE isActive=1 AND id_ville='"+villeFilter+"' AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start  + "," + total;
+        if (groupeFilter == -1 && villeFilter != -1) {
+            query = "SELECT  * FROM demande WHERE isActive=1 AND id_ville='" + villeFilter + "' order by date_demande DESC limit " + start + "," + total;
+        } else if (villeFilter == -1 && groupeFilter != -1) {
+            query = "SELECT * FROM demande AS D WHERE isActive=1 AND " + groupeFilter + " IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start + "," + total;
+        } else if (villeFilter != -1 && groupeFilter != -1) {
+            query = "SELECT * FROM demande AS D WHERE isActive=1 AND id_ville='" + villeFilter + "' AND " + groupeFilter + " IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) order by date_demande DESC limit " + start + "," + total;
         }
 
         Connection connection = null;
@@ -159,16 +158,16 @@ public class DemandeDaoImpl implements DemandeDao {
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             requests = exctractInfos(resultSet);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return requests;
     }
 
-    private List<Demande> exctractInfos(ResultSet resultSet) throws SQLException{
+    private List<Demande> exctractInfos(ResultSet resultSet) throws SQLException {
         List<Demande> demandeList = new ArrayList<>();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             Demande demande = new Demande();
             demande.setIdDemande(resultSet.getInt("id_demande"));
             demande.setIdVilleDemande(resultSet.getInt("id_ville"));
@@ -191,22 +190,22 @@ public class DemandeDaoImpl implements DemandeDao {
     public int countRequests(int villeFilter, int groupeFilter) {
         String query = "SELECT count(id_demande) AS nbrRequests FROM demande WHERE isActive=1";
 
-        if(groupeFilter == -1 && villeFilter != -1){
-            query = "SELECT count(id_demande) AS nbrRequests FROM demande WHERE isActive=1 AND id_ville='"+villeFilter+"' ";
-        }else if(villeFilter==-1 && groupeFilter != -1){
-            query = "SELECT count(id_demande) AS nbrRequests FROM demande AS D WHERE isActive=1 AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) ";
-        } else if(villeFilter !=-1 && groupeFilter !=-1){
-            query = "SELECT count(id_demande) AS nbrRequests FROM demande AS D WHERE isActive=1 AND id_ville='"+villeFilter+"' AND "+groupeFilter+" IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) ";
+        if (groupeFilter == -1 && villeFilter != -1) {
+            query = "SELECT count(id_demande) AS nbrRequests FROM demande WHERE isActive=1 AND id_ville='" + villeFilter + "' ";
+        } else if (villeFilter == -1 && groupeFilter != -1) {
+            query = "SELECT count(id_demande) AS nbrRequests FROM demande AS D WHERE isActive=1 AND " + groupeFilter + " IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) ";
+        } else if (villeFilter != -1 && groupeFilter != -1) {
+            query = "SELECT count(id_demande) AS nbrRequests FROM demande AS D WHERE isActive=1 AND id_ville='" + villeFilter + "' AND " + groupeFilter + " IN (SELECT id_groupeSang FROM concerne_demande AS C WHERE C.id_demande=D.id_demande) ";
         }
         int requestsCount = 0;
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 requestsCount = Integer.parseInt(resultSet.getString("nbrRequests"));
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return requestsCount;
@@ -214,16 +213,16 @@ public class DemandeDaoImpl implements DemandeDao {
 
     @Override
     public Demande getRequestById(int id) {
-        String query = "SELECT * FROM demande WHERE id_demande="+id;
+        String query = "SELECT * FROM demande WHERE id_demande=" + id;
         try {
             Connection connection = daoFactory.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             List<Demande> demandeList = exctractInfos(resultSet);
-            if(demandeList != null && demandeList.size()!=0)
+            if (demandeList != null && demandeList.size() != 0)
                 return demandeList.get(0);
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;

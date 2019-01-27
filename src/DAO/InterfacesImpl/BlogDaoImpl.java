@@ -236,16 +236,12 @@ public class BlogDaoImpl implements BlogDao {
 
     @Override
     public int CountBlogs() {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
         int countBlogs = 0;
 
         try {
-            connection = daoFactory.getConnection();
-            preparedStatement = connection.prepareStatement("SELECT  count(id_blog) AS NBLOGS FROM blog");
-            resultSet = preparedStatement.executeQuery();
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT  count(id_blog) AS NBLOGS FROM blog");
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 countBlogs = Integer.parseInt(resultSet.getString("NBLOGS"));
             }

@@ -56,19 +56,19 @@ public class AddEvent extends HttpServlet {
             String fileName = extractFileName(part);
 
             if(titreEvent.trim().isEmpty()||descEvent.trim().isEmpty()||dateString.trim().isEmpty()||fileName.trim().isEmpty()||fileName==null||time.trim().isEmpty()){
-                request.setAttribute("flashMessageFaild","Please complete all fields !! <br> Please choose the Event image cover again !!");
+                request.setAttribute("flashMessageFaild","Please complete all fields !! <br> Please choose the Event image cover again.");
                 returnFormulaireAddEvent(request,response);
             }else{
                 System.out.println(fileName);
                 String error="";
-                error=validationChamp(fileName,"[^\\s]+(\\.(?i)(jpg|png|gif|bmp))$","Please choose file with (.png, .jpg, .gif, .bmp) extension !!");
+                error=validationChamp(fileName,"[^\\s]+(\\.(?i)(jpg|png|gif|bmp))$","Please choose file with (.png, .jpg, .gif, .bmp) extension.");
 
                 if(error!=""){
                     request.setAttribute("flashMessageFaild",error);
                 }else{
 
                     if(!fileName.isEmpty() && fileName!=null){
-                        ecrireFichier(part,fileName,"F:\\Projet\\BloodBrothers\\web\\img");
+                        ecrireFichier(part,fileName,"C:\\Users\\ABDERRAHIM\\IdeaProjects\\JEE2019_Groupe4-3\\web\\img");
                     }
 
 

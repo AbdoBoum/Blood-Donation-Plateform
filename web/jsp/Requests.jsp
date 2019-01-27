@@ -91,7 +91,7 @@
             <!--/.Card-->
             </div>
         </c:if>
-        <c:if test="${ !empty requests}">
+        <c:if test="${not empty requests}">
             <section>
                 <c:forEach items="${requests}" var="request">
                     <div class="well">

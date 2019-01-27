@@ -8,7 +8,7 @@ import com.nexmo.client.sms.messages.TextMessage;
 
 import java.util.List;
 
-public class SendSMS implements Runnable{
+public class SendSMS implements Runnable {
     private List<Donnateur> donnateurList;
     private String message;
 
@@ -18,27 +18,26 @@ public class SendSMS implements Runnable{
     }
 
     private void sendSMS() throws Exception {
-          String API_KEY = "f3357b4e";
-          String API_SECRET = "nr95Yg4Q4QKCAZ14";
+        String API_KEY = "f3357b4e";
+        String API_SECRET = "nr95Yg4Q4QKCAZ14";
 
-          NexmoClient client = new NexmoClient.Builder()
-                  .apiKey(API_KEY)
-                  .apiSecret(API_SECRET)
-                  .build();
+        NexmoClient client = new NexmoClient.Builder()
+                .apiKey(API_KEY)
+                .apiSecret(API_SECRET)
+                .build();
 
-          for(Donnateur donnateur : donnateurList){
-              SmsSubmissionResponse responses = client.getSmsClient().submitMessage(new TextMessage(
-                      "BLOOD BROTHERS",
-                      donnateur.getTeleDonnateur(),
-                      message));
-              for (SmsSubmissionResponseMessage response : responses.getMessages()) {
-                  System.out.println(response);
-              }
-          }
+        for (Donnateur donnateur : donnateurList) {
+            SmsSubmissionResponse responses = client.getSmsClient().submitMessage(new TextMessage(
+                    "BLOOD BROTHERS",
+                    donnateur.getTeleDonnateur(),
+                    message));
+            for (SmsSubmissionResponseMessage response : responses.getMessages()) {
+                System.out.println(response);
+            }
+        }
 
 
-
-      }
+    }
 
     @Override
     public void run() {

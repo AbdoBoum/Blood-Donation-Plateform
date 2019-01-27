@@ -39,7 +39,7 @@
             <div class="wrapper wrapper--w790">
                 <div class="card">
                     <h5 class="card-header white-text text-center py-4" style="background-color: #8B191C;">
-                        <strong><c:choose><c:when test="${not empty sessionScope.centre}">Create Donnateur</c:when><c:otherwise>Sign Up</c:otherwise></c:choose></strong>
+                        <strong><c:choose><c:when test="${not empty sessionScope.centre}">Create Donor</c:when><c:otherwise>Sign Up</c:otherwise></c:choose></strong>
                     </h5>
                     <div class="card-body">
                             <c:if test="${flashMessageFaild ne null}">
@@ -92,7 +92,7 @@
                                 <div class="form-group required col-sm-6">
                                     <label  for="groupSang" class="mt-4">Blood Group</label>
                                     <select class="browser-default custom-select form-control" name="groupSang" id="groupSang">
-                                        <option selected value="">Choisir groupe Sang</option>
+                                        <option selected value="">Choose blood type</option>
                                         <c:forEach items="${sangs}" var="sang">
                                             <option value="<c:out value="${sang.idGroupe}"/>" <c:if test="${oldGroupe eq sang.idGroupe}"> selected="" </c:if> ><c:out value="${sang.nameGroupe}"/></option>
                                         </c:forEach>

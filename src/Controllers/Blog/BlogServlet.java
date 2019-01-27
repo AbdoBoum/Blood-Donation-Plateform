@@ -31,11 +31,10 @@ public class BlogServlet extends HttpServlet {
         super.init();
         daoFactory = DAOFactory.getInstance();
         blog = daoFactory.getBlogDaoImpl();
-        totalBlogs = blog.CountBlogs();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        totalBlogs = blog.CountBlogs();
         id = (request.getParameter("id") != null) ? Integer.parseInt(request.getParameter("id")) : 0;
         String keyword = (request.getParameter("keyword") != null) ? request.getParameter("keyword") : "";
         int CurrentPage = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
