@@ -106,7 +106,7 @@
                                         <button class="btn btn-info btn-red dropdown-toggle" style="font-size: 15px; background: #AE1F23; color: white;" type="button" id="dropdownmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownmenu">
-                                            <a class="dropdown-item" href="#">Update</a>
+                                            <a class="dropdown-item" href="closeRequest?id=${request.idRequest}">Close</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="deleteRequest?id=${request.idRequest}">Delete</a>
                                         </div>

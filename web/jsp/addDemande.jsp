@@ -37,14 +37,14 @@
 <div class="container col-md-8" style="margin-top: 100px;">
 
     <div class="section-title text-center wow zoomIn mt-5 font-weight-bold">
-        <h1 class="h1-responsive">Create a Demand</h1>
+        <h1 class="h1-responsive">Create a Request</h1>
     </div>
 
     <c:if test="${not empty isInserted}">
         <c:choose>
             <c:when test="${isInserted == 'succes'}">
                 <h5 class='h5 text-center  mt-4'>
-                    <div class='alert alert-success'>Demand inserted</div>
+                    <div class='alert alert-success'>Request inserted</div>
                 </h5>
             </c:when>
             <c:when test="${isInserted == 'failure'}">
@@ -64,7 +64,7 @@
         <div class="col col-md-12">
             <form action="addRequest" method="post" enctype="multipart/form-data">
                 <div class="form-group required">
-                    <label for="titleInput" class='control-label'>Demand Title</label>
+                    <label for="titleInput" class='control-label'>Request Title</label>
                     <input type="text" name="titleInput" class="form-control" id="titleInput" placeholder="">
                     <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                 </div>
@@ -92,7 +92,7 @@
                     </select>
                 </div>
                 <div class="form-group required">
-                    <label for="description" class='control-label'>Demand Description</label>
+                    <label for="description" class='control-label'>Request Description</label>
                     <textarea class="form-control" id="description" rows="7" name="description"></textarea>
                 </div>
 

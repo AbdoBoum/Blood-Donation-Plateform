@@ -163,4 +163,14 @@
         <servlet-name>deleteRequest</servlet-name>
         <url-pattern>/deleteRequest</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>closeRequest</servlet-name>
+        <servlet-class>Controllers.Demandes.CloseRequest</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>closeRequest</servlet-name>
+        <url-pattern>/closeRequest</url-pattern>
+    </servlet-mapping>
 </web-app>

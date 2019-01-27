@@ -73,18 +73,17 @@ public class DemandeDaoImpl implements DemandeDao {
 
     @Override
     public boolean editDemande(Demande demande) {
-        String editQuery = "UPDATE demande SET date_demande=?, imagePath_demande=?, description_demande=?, isActive=?, is_urgent=?, titre_demande=?, id_ville=? WHERE id_demande=?;";
+        String editQuery = "UPDATE demande SET imagePath_demande=?, description_demande=?, isActive=?, is_urgent=?, titre_demande=?, id_ville=? WHERE id_demande=?;";
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(editQuery);
-            preparedStatement.setTimestamp(1,demande.getDateDemande());
-            preparedStatement.setString(2,demande.getPathImgDemande());
-            preparedStatement.setString(3,demande.getDescriptionDemande());
-            preparedStatement.setBoolean(4,demande.isActive());
-            preparedStatement.setBoolean(5,demande.isUrgent());
-            preparedStatement.setString(6,demande.getTitleDemande());
-            preparedStatement.setInt(7,demande.getIdVilleDemande());
-            preparedStatement.setInt(8,demande.getIdDemande());
+            preparedStatement.setString(1,demande.getPathImgDemande());
+            preparedStatement.setString(2,demande.getDescriptionDemande());
+            preparedStatement.setBoolean(3,demande.isActive());
+            preparedStatement.setBoolean(4,demande.isUrgent());
+            preparedStatement.setString(5,demande.getTitleDemande());
+            preparedStatement.setInt(6,demande.getIdVilleDemande());
+            preparedStatement.setInt(7,demande.getIdDemande());
             preparedStatement.execute();
             return true;
         }catch (SQLException e){
@@ -96,13 +95,40 @@ public class DemandeDaoImpl implements DemandeDao {
     @Override
     public boolean deleteDemande(int idDemande) {
         String query = "DELETE FROM demande WHERE id_demande=?";
+        String concernequery = "DELETE FROM concerne_demande WHERE id_demande=?";
         try {
             Connection connection = daoFactory.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(concernequery);
+            preparedStatement.setInt(1,idDemande);
+            preparedStatement.execute();
+            preparedStatement.close();
             PreparedStatement prs = connection.prepareStatement(query);
             prs.setInt(1,idDemande);
             prs.execute();
             if(getRequestById(idDemande)==null){
                 return true;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean closeDemande(int idDemande) {
+        String editQuery = "UPDATE demande SET isActive=? WHERE id_demande=?;";
+        String query = "SELECT isActive FROM demande WHERE id_demande="+idDemande;
+        try {
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(editQuery);
+            preparedStatement.setBoolean(1,false);
+            preparedStatement.setInt(2,idDemande);
+            preparedStatement.execute();
+            preparedStatement.close();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            if(resultSet.next()){
+                return resultSet.getBoolean("isActive");
             }
         }catch (SQLException e){
             e.printStackTrace();
