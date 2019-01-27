@@ -40,7 +40,7 @@ public class LoginAdmin extends HttpServlet {
         if (admin == null) {
             flashMessageFaild = "Invalid informations";
             request.setAttribute("flashMessageFaild", flashMessageFaild);
-            this.getServletContext().getRequestDispatcher("/jsp/LoginAdmin.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/jsp/admin/LoginAdmin.jsp").forward(request, response);
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("admin", admin);
@@ -49,6 +49,6 @@ public class LoginAdmin extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/jsp/LoginAdmin.jsp").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/jsp/admin/LoginAdmin.jsp").forward(request, response);
     }
 }
