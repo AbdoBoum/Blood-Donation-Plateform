@@ -59,7 +59,7 @@
                     <!--Featured Image-->
                     <div class="card mb-4 wow fadeIn">
 
-                        <img src="${article.getPathImgBlog().substring(25)}" style="width:100%; height: 300px;"
+                        <img src="${article.getPathImgBlog().substring(55)}" style="width:100%; height: 300px;"
                              class="img-fluid" alt="blood donor">
 
                     </div>
@@ -190,7 +190,7 @@
                                 <c:if test="${not empty blog}">
                                 <li class="media mt-3">
                                     <img class="d-flex mr-3" style="width:100px; height: 100px;"
-                                         src="${blog.getPathImgBlog().substring(25)}"
+                                         src="${blog.getPathImgBlog().substring(55)}"
                                          alt="Generic placeholder image">
                                     <div class="media-body">
                                         <a href="blog?id=${blog.getIdBlog()}">
