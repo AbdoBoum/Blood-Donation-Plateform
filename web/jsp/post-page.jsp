@@ -3,14 +3,12 @@
   User: ABDERRAHIM
   Date: 23/01/2019
   Time: 13:38
-  To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <%@include file="Header.jsp" %>
 </head>
-<body class="grey lighten-3">
+<body class="grey lighten-5">
 
 <!--Main Navigation-->
 <header>
@@ -186,25 +184,25 @@
 
                             <ul class="list-unstyled">
                                 <c:if test="${not empty blogs}">
-                                <c:forEach items="${blogs}" var="blog">
-                                <c:if test="${not empty blog}">
-                                <li class="media mt-3">
-                                    <img class="d-flex mr-3" style="width:100px; height: 100px;"
-                                         src="${blog.getPathImgBlog().substring(55)}"
-                                         alt="Generic placeholder image">
-                                    <div class="media-body">
-                                        <a href="blog?id=${blog.getIdBlog()}">
-                                            <h6 class="mt-0 mb-1 font-weight-bold">${blog.getTitreBlog().substring(0, (blog.getTitreBlog().length() < 23) ? blogs[i + j].getTitreBlog().length(): 23)}...</h6>
-                                        </a>
-                                            ${blog.getContenueBlog().substring(0, (blog.getContenueBlog().length() < 40) ? blog.getContenueBlog().length(): 40)}
-                                        (...)
-                                    </div>
-                                </li>
-
+                                    <c:forEach items="${blogs}" var="blog">
+                                        <c:if test="${not empty blog}">
+                                            <li class="media mt-3">
+                                                <img class="d-flex mr-3" style="width:100px; height: 100px;"
+                                                     src="${blog.getPathImgBlog().substring(55)}"
+                                                     alt="Generic placeholder image">
+                                                <div class="media-body">
+                                                    <a href="blog?id=${blog.getIdBlog()}">
+                                                        <h6 class="mt-0 mb-1 font-weight-bold">${blog.getTitreBlog().substring(0, (blog.getTitreBlog().length() < 23) ? blogs[i + j].getTitreBlog().length(): 23)}...</h6>
+                                                    </a>
+                                                        ${blog.getContenueBlog().substring(0, (blog.getContenueBlog().length() < 40) ? blog.getContenueBlog().length(): 40)}
+                                                    (...)
+                                                </div>
+                                            </li>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:if>
                             </ul>
-                            </c:if>
-                            </c:forEach>
-                            </c:if>
+
 
                         </div>
 

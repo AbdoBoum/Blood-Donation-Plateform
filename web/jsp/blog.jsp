@@ -12,7 +12,7 @@ Time: 20:18
     <%@include file="Header.jsp" %>
 </head>
 
-<body class="grey lighten-3">
+<body class="grey lighten-5">
 
 <!--Main Navigation-->
 <header>

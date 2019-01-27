@@ -138,7 +138,7 @@
                     <div class="modal-body mx-3">
                         <div class="form-group required">
                             <!-- quantity -->
-                            <label for="quantity" class="control-label mt-4">Quantity to delete (by bags)</label>
+                            <label for="quantity" class="control-label mt-4">Quantity to add (by bags)</label>
                             <input type="number" id="quantity" name="quantity" class="form-control "/>
                             <!-- type -->
                             <label for="groupSang" class="control-label mt-4">Blood type</label>

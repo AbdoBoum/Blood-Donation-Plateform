@@ -103,6 +103,17 @@
         <servlet-name>Logout</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginAdmin</servlet-name>
+        <servlet-class>Controllers.Login.LoginAdmin</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginAdmin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>affEvent</servlet-name>
         <servlet-class>Controllers.Event.AffEvent</servlet-class>

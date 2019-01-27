@@ -57,14 +57,15 @@ public class AdminDaoImpl implements AdminDao {
 
 
     @Override
-    public Admin getAdmin(int idAdmin) {
+    public Admin getAdmin(String email, String password) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         Admin admin=null;
         try{
             connection=this.daoFactory.getConnection();
-            preparedStatement=connection.prepareStatement("select * from admin where id_admin=?");
-            preparedStatement.setInt(1,idAdmin);
+            preparedStatement=connection.prepareStatement("select * from admin where email_admin = ? and password_admin = ?");
+            preparedStatement.setString(1,email);
+            preparedStatement.setString(2, password);
             ResultSet rs=preparedStatement.executeQuery();
             if(rs.next()){
                 admin=new Admin();
@@ -72,7 +73,7 @@ public class AdminDaoImpl implements AdminDao {
                 admin.setNomAdmin(rs.getString("nom_admin"));
                 admin.setPrenomAdmin(rs.getString("prenom_admin"));
                 admin.setEmailAdmin(rs.getString("email_admin"));
-                admin.setPasswordAdmin(rs.getNString("password_admin"));
+                admin.setPasswordAdmin(rs.getString("password_admin"));
             }
 
         }catch(SQLException e){

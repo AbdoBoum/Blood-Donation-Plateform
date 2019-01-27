@@ -49,7 +49,7 @@ public class BlogServlet extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/jsp/blog.jsp").forward(request, response);
 
             //READ ARTICLE
-        } else if (id != 0) {
+        } else if (id != 0 && keyword.isEmpty()) {
             _blog = blog.fetchBlogById(id);
             if (_blog != null) {
                 blogs = blog.getBlogByPagination(1, 3);
