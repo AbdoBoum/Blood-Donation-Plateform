@@ -65,7 +65,7 @@
                         <i class="fas fa-user"></i> ${not empty sessionScope.donnateur.getNomDonnateur() ?
                             sessionScope.donnateur.getNomDonnateur() : sessionScope.centre.getNameCentre()} </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                        <a class="dropdown-item" href="#">My account</a>
+                        <a class="dropdown-item ${(empty sessionScope.donnateur) ? 'd-none': ''}" href="profile">My account</a>
                         <a class="dropdown-item" href="logout">Log out</a>
                     </div>
                 </li>

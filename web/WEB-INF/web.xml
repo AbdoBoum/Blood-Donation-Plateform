@@ -115,6 +115,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Profile</servlet-name>
+        <servlet-class>Controllers.Donnateur.ProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>affEvent</servlet-name>
         <servlet-class>Controllers.Event.AffEvent</servlet-class>
     </servlet>

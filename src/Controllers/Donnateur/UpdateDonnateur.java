@@ -55,20 +55,20 @@ public class UpdateDonnateur extends HttpServlet {
             request.setAttribute("sangs", groupeSangs);
 
             if (!request.getParameterMap().containsKey("id")) {
-                request.setAttribute("flashMessageFaild", "Link Error !!");
+                request.setAttribute("flashMessageFaild", "Link Error");
                 this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 
             } else {
 
 
                 if(request.getParameter("id").trim().isEmpty()){
-                    request.setAttribute("flashMessageFaild", "Choose identifier.");
+                    request.setAttribute("flashMessageFaild", "Choose an identifier");
                     this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                 }else{
 
                     String idDonnateur = request.getParameter("id");
                     String erreur="";
-                    erreur=validationChamp(idDonnateur,"^\\d+$","Identifier must be number.");
+                    erreur=validationChamp(idDonnateur,"^\\d+$","Identifier must be a number");
                     if(erreur!=""){
                         request.setAttribute("flashMessageFaild", erreur);
                         this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
@@ -99,7 +99,7 @@ public class UpdateDonnateur extends HttpServlet {
     private void updateDonnateur(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
 
         int id=Integer.parseInt(request.getParameter("id").trim());
-        Donnateur donnateur=donnateurDao.getDonnateur(id);
+        Donnateur donnateur = donnateurDao.getDonnateur(id);
         request.setAttribute("donnateur", donnateur);
 
         // verification si les champs sont remplis
@@ -111,8 +111,8 @@ public class UpdateDonnateur extends HttpServlet {
         }else {
         // verification de contenue des champs
         String errorsFields="";
-        errorsFields+=validationChamp(request.getParameter("tele"),"^(\\+212|0)[0-9]{9}$","Phone number is not valid !!<br> ");
-        errorsFields+=validationChamp(request.getParameter("email"),"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[a-z]{2,6}$","Email is not valid!!<br>");
+        errorsFields+=validationChamp(request.getParameter("tele"),"^(\\+212|0)[0-9]{9}$","Phone number is not valid<br> ");
+        errorsFields+=validationChamp(request.getParameter("email"),"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[a-z]{2,6}$","Email is not valid<br>");
 
         if (!errorsFields.equals("")){
             request.setAttribute("flashMessageFaild",errorsFields);

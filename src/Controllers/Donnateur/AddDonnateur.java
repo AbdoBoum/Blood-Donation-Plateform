@@ -68,18 +68,18 @@ public class AddDonnateur extends HttpServlet {
                 || request.getParameter("prenom").trim().isEmpty() || request.getParameter("cin").trim().isEmpty()
                 || request.getParameter("email").trim().isEmpty() || request.getParameter("password").trim().isEmpty()
                 || request.getParameter("tele").trim().isEmpty() || request.getParameter("ville").trim().isEmpty()) {
-            String error = "Please complete all fields!!";
+            String error = "Please complete all fields";
             request.setAttribute("flashMessageFaild", error);
             returnAddFormulaire(request, response);
         } else {
             // verification de contenue des champs
             String errorsFields = "";
-            errorsFields += validationChamp(request.getParameter("nom"), "^[a-zA-ZàâéèêôùûçÀÂÉÈÔÙÛÇ' ]{1,30}$", "Firstname is not valid !!<br>");
-            errorsFields += validationChamp(request.getParameter("prenom"), "^[a-zA-ZàâéèêôùûçÀÂÉÈÔÙÛÇ' ]{1,30}$", "Lastname is not valid !!<br>");
+            errorsFields += validationChamp(request.getParameter("nom"), "^[a-zA-ZàâéèêôùûçÀÂÉÈÔÙÛÇ' ]{1,30}$", "Firstname is not valid<br>");
+            errorsFields += validationChamp(request.getParameter("prenom"), "^[a-zA-ZàâéèêôùûçÀÂÉÈÔÙÛÇ' ]{1,30}$", "Lastname is not valid<br>");
             errorsFields += validationChamp(request.getParameter("cin"), "^[A-Z]{1,2}[0-9]{3,10}$", "Cin is not valid !!<br>");
             errorsFields += validationChamp(request.getParameter("tele"), "^(\\+212|0)[0-9]{9}$", "Phone number is not valid !!<br>");
-            errorsFields += validationChamp(request.getParameter("email"), "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[a-z]{2,6}$", "Email is not valid!!<br>");
-            errorsFields += validationChamp(request.getParameter("password"), "^.{6,30}$", "Password must has between 6 and 30 caracter!!<br>");
+            errorsFields += validationChamp(request.getParameter("email"), "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[a-z]{2,6}$", "Email is not valid<br>");
+            errorsFields += validationChamp(request.getParameter("password"), "^.{6,30}$", "Password must has between 6 and 30 caracter<br>");
             if (!errorsFields.equals("")) {
                 request.setAttribute("flashMessageFaild", errorsFields);
                 returnAddFormulaire(request, response);
@@ -96,11 +96,11 @@ public class AddDonnateur extends HttpServlet {
                 donnateur.setIdGroupeSangDonnateur(Integer.parseInt(request.getParameter("groupSang").trim()));
 
                 if (donnateurDao.addDonnateur(donnateur)) {
-                    System.out.println("donateur has been added ");
-                    request.setAttribute("flashMessageSuccess", "Donor has been added.");
+                    System.out.println("Donor has been added ");
+                    request.setAttribute("flashMessageSuccess", "Donor has been added");
                     this.getServletContext().getRequestDispatcher(jspLink).forward(request, response);
                 } else {
-                    request.setAttribute("flashMessageFaild", "Error adding Donor (the email is alredy in use)");
+                    request.setAttribute("flashMessageFaild", "Error adding Donor (the email is already in use)");
                     returnAddFormulaire(request, response);
                 }
             }
