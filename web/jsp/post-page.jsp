@@ -158,7 +158,7 @@
                                 <strong>Giving blood saves lives</strong>
                             </h4>
                             <p>
-                                <strong>But it’s always in high demand.</strong>
+                                <strong>But it's always in high demand.</strong>
                             </p>
                             <p class="mb-4">
                                 <strong>You can be a hero by saving someone's life. You can check the need for blood
@@ -192,7 +192,7 @@
                                                      alt="Generic placeholder image">
                                                 <div class="media-body">
                                                     <a href="blog?id=${blog.getIdBlog()}">
-                                                        <h6 class="mt-0 mb-1 font-weight-bold">${blog.getTitreBlog().substring(0, (blog.getTitreBlog().length() < 23) ? blogs[i + j].getTitreBlog().length(): 23)}...</h6>
+                                                        <h6 class="mt-0 mb-1 font-weight-bold">${blog.getTitreBlog().substring(0, (blog.getTitreBlog().length() < 23) ? blog.getTitreBlog().length(): 23)}...</h6>
                                                     </a>
                                                         ${blog.getContenueBlog().substring(0, (blog.getContenueBlog().length() < 40) ? blog.getContenueBlog().length(): 40)}
                                                     (...)
