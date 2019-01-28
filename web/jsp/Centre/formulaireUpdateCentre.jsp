@@ -25,8 +25,12 @@
     </style>
 </head>
 <body>
-
-<%@include file="../Navbar.jsp"%>
+<c:if test="${sessionScope.admin ne null}">
+    <%@include file="../adminNavBar.jsp"%>
+</c:if>
+<c:if test="${sessionScope.admin eq null}">
+    <%@include file="../Navbar.jsp"%>
+</c:if>
 <!--- Contenue -->
 <div class="container col-md-8" style="margin-top: 100px;">
 

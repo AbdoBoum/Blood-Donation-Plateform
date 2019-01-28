@@ -55,6 +55,8 @@ public class DeleteCentre extends HttpServlet {
                         this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
                     }else{
                         centreDao.deleteCentreByEmail(email);
+                        if(isCenter)
+                            request.getSession().invalidate();
                         request.setAttribute("flashMessageSuccess", "Centre id deleted.");
                         this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
                     }
