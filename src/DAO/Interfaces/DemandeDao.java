@@ -25,6 +25,8 @@ public interface DemandeDao {
 
     int countRequests(int villeFilter, int groupeFilter);
 
+    int countRequestsPerCenter(int idCentre);
+
     Demande getRequestById(int id);
 
 }

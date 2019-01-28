@@ -207,4 +207,17 @@
     </servlet-mapping>
     <!-- stock management -->
 
+    <!-- statistics -->
+    <servlet>
+        <servlet-name>Statistics</servlet-name>
+        <servlet-class>Controllers.Statistics</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Statistics</servlet-name>
+        <url-pattern>/statistics</url-pattern>
+    </servlet-mapping>
+
+    <!-- end of statistics -->
+
 </web-app>
