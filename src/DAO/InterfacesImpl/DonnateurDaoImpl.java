@@ -182,17 +182,16 @@ public class DonnateurDaoImpl implements DonnateurDao {
     public boolean updateDonnateur(Donnateur donnateur) {
         try {
             Connection connection=daoFactory.getConnection();
-            PreparedStatement preparedStatement=connection.prepareStatement("UPDATE donnateur SET email_donnateur=?, password_donnateur=?, tele_donnateur=?, id_ville=?, " +
+            PreparedStatement preparedStatement=connection.prepareStatement("UPDATE donnateur SET email_donnateur=?, tele_donnateur=?, id_ville=?, " +
                     "id_groupeSang=?, cin_donnateur=?, nom_donnateur=?, prenom_donnateur=? WHERE id_donnateur=?");
             preparedStatement.setString(1,donnateur.getEmailDonnateur());
-            preparedStatement.setString(2,donnateur.getPasswordDonnateur());
-            preparedStatement.setString(3,donnateur.getTeleDonnateur());
-            preparedStatement.setInt(4,donnateur.getIdVilleDonnateur());
-            preparedStatement.setInt(5,donnateur.getIdGroupeSangDonnateur());
-            preparedStatement.setString(6, donnateur.getCinDonnateur());
-            preparedStatement.setString(7, donnateur.getNomDonnateur());
-            preparedStatement.setString(8, donnateur.getPrenomDonnateur());
-            preparedStatement.setInt(9,donnateur.getIdDonnateur());
+            preparedStatement.setString(2,donnateur.getTeleDonnateur());
+            preparedStatement.setInt(3,donnateur.getIdVilleDonnateur());
+            preparedStatement.setInt(4,donnateur.getIdGroupeSangDonnateur());
+            preparedStatement.setString(5, donnateur.getCinDonnateur());
+            preparedStatement.setString(6, donnateur.getNomDonnateur());
+            preparedStatement.setString(7, donnateur.getPrenomDonnateur());
+            preparedStatement.setInt(8,donnateur.getIdDonnateur());
             preparedStatement.executeUpdate();
             return true;
         }catch (SQLException e){

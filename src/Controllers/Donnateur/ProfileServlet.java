@@ -58,16 +58,25 @@ public class ProfileServlet extends HttpServlet {
             request.setAttribute("flashMessageFaild", flashMessageFaild);
             doGet(request, response);
         } else {
-            donnateur.setIdDonnateur(donnateur.getIdDonnateur());
-            donnateur.setNomDonnateur(nom); donnateur.setPrenomDonnateur(prenom); donnateur.setCinDonnateur(cin);
-            donnateur.setEmailDonnateur(email); donnateur.setPasswordDonnateur(donnateur.getPasswordDonnateur());donnateur.setTeleDonnateur(phone);
-            donnateur.setIdGroupeSangDonnateur(Integer.parseInt(blood)); donnateur.setIdVilleDonnateur(Integer.parseInt(city));
-            if (donnateurDao.updateDonnateur(donnateur)){
-                flashMessageSuccess = "Profile Updated";
-                request.setAttribute("flashMessageSuccess", flashMessageSuccess);
-                doGet(request, response);
+            if (Utile.stringToSha256(password).equals(donnateurDao.getDonnateur(donnateur.getIdDonnateur()).getPasswordDonnateur())) {
+                donnateur.setNomDonnateur(nom);
+                donnateur.setPrenomDonnateur(prenom);
+                donnateur.setCinDonnateur(cin);
+                donnateur.setEmailDonnateur(email);
+                donnateur.setTeleDonnateur(phone);
+                donnateur.setIdGroupeSangDonnateur(Integer.parseInt(blood));
+                donnateur.setIdVilleDonnateur(Integer.parseInt(city));
+                if (donnateurDao.updateDonnateur(donnateur)) {
+                    flashMessageSuccess = "Profile Updated";
+                    request.setAttribute("flashMessageSuccess", flashMessageSuccess);
+                    doGet(request, response);
+                } else {
+                    flashMessageFaild = "Something goes wrong";
+                    request.setAttribute("flashMessageFaild", flashMessageFaild);
+                    doGet(request, response);
+                }
             } else {
-                flashMessageFaild = "Something goes wrong";
+                flashMessageFaild = "Wrong password";
                 request.setAttribute("flashMessageFaild", flashMessageFaild);
                 doGet(request, response);
             }
