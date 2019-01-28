@@ -32,9 +32,11 @@ public class Delete extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        donnateur = (Donnateur) request.getSession().getAttribute("donnateur");
         String expassword = request.getParameter("expassword");
-        String password = donnateur.getPasswordDonnateur();
+        String password = donnateurDao.getDonnateur(donnateur.getIdDonnateur()).getPasswordDonnateur();
+        System.out.println("expassword :"+Utile.stringToSha256(expassword)+";");
+        System.out.println("password :"+password+";");
         if (Utile.stringToSha256(expassword).equals(password)){
             if (donnateurDao.removeDonnateur(donnateur.getEmailDonnateur())){
                 request.getSession().invalidate();
@@ -52,7 +54,6 @@ public class Delete extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        donnateur = (Donnateur) request.getSession().getAttribute("donnateur");
         this.getServletContext().getRequestDispatcher("/jsp/profile.jsp").forward(request, response);
     }
 }
