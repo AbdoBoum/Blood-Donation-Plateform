@@ -68,6 +68,7 @@
                             <a class="dropdown-item" href="/updateCentre?update=${sessionScope.centre.idCentre}">Update information</a>
                             <a href="" data-toggle="modal" data-target="#deleteModel" class="dropdown-item">Delete center</a>
                         </c:if>
+
                         <a class="dropdown-item" href="logout">Log out</a>
                     </div>
                 </li>

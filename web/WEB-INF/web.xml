@@ -115,6 +115,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Profile</servlet-name>
+        <servlet-class>Controllers.Donnateur.ProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>affEvent</servlet-name>
         <servlet-class>Controllers.Event.AffEvent</servlet-class>
     </servlet>
@@ -163,6 +173,16 @@
     <servlet-mapping>
         <servlet-name>deleteDonnateur</servlet-name>
         <url-pattern>/deleteDonnateur</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteProfile</servlet-name>
+        <servlet-class>Controllers.Donnateur.Delete</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteProfile</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -247,5 +267,18 @@
     </servlet-mapping>
     <!--dashBoardAdmin-->
 
+
+    <!-- statistics -->
+    <servlet>
+        <servlet-name>Statistics</servlet-name>
+        <servlet-class>Controllers.Statistics</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Statistics</servlet-name>
+        <url-pattern>/statistics</url-pattern>
+    </servlet-mapping>
+
+    <!-- end of statistics -->
 
 </web-app>

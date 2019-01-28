@@ -13,6 +13,6 @@ public interface DonnateurDao {
     boolean removeDonnateur(String email);
     List<Donnateur> getAllDonnateurs();
     List<Donnateur> getDonnateursByCity(int idVille);
-
+    int CountDonorsPerCity(int idVille);
     boolean updateDonnateur(Donnateur donnateur);
 }
