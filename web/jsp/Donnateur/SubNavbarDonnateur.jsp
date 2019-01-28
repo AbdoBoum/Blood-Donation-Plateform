@@ -11,8 +11,8 @@
 
 <c:if test="${not empty sessionScope.centre}">
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark top-nav-collapse"
-         style="position: absolute; top: 69px; background-color: transparent !important;">
+    <nav class=" fixed-top navbar-expand-lg navbar-dark"
+         style="position: absolute; top: 75px; background-color: transparent !important;">
         <div class="container">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav" style="padding-left: 16%;">
@@ -25,8 +25,7 @@
                             <a class="dropdown-item" href="/addDonnateur">Create Donor</a>
                             <a href="" data-toggle="modal" data-target="#updateModal" class="dropdown-item">Update
                                 Donor</a>
-                            <a href="" data-toggle="modal" data-target="#deleteModel" class="dropdown-item">Delete
-                                Donor</a>
+
                         </div>
                     </li>
 
@@ -46,11 +45,14 @@
                     </li>
                     <!--  STOCK MANAGEMENT  -->
 
+
                 </ul>
 
             </div>
         </div>
     </nav>
+
+
     <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -94,29 +96,35 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Delete Donor</h4>
+                    <h4 class="modal-title w-100 font-weight-bold">Delete center</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="/deleteDonnateur">
+
                     <div class="modal-body mx-3">
                         <div>
                             <!-- Nom input -->
-                            <label for="email" class="mt-4">Email Donor</label>
-                            <input type="email" id="email" name="email" class="form-control "/>
+                            <h3>Do you want to delete the current center ?</h3>
                         </div>
                     </div>
 
                     <div class="modal-footer d-flex justify-content-center">
                         <div class="col-sm-4">
                             <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                    type="submit" >
+                                Cancel
+                            </button>
+                            <form method="post" action="/deleteCentre">
+                                <input type="hidden" value="${sessionScope.centre.emailCentre}" name="email">
+                            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
                                     type="submit" style="border-color: #D92228 !important; color: #D92228 !important;">
                                 Delete
                             </button>
+                            </form>
                         </div>
                     </div>
-                </form>
+
             </div>
         </div>
     </div>

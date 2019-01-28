@@ -23,14 +23,14 @@
 
 
     <!-- Card -->
-    <div class="card card-cascade wider reverse">
+    <div class="card card-cascade wider reverse mt-5">
         <div class="card-body card-body-cascade">
         <!-- Card content -->
             <c:if test="${events ne null}">
 
 
         <!-- Title -->
-                <div class="section-title text-center wow zoomIn mt-5 ">
+                <div class="section-title text-center wow zoomIn mt-2">
                     <h1>Agenda</h1>
                 </div>
                 <section class="my-3">

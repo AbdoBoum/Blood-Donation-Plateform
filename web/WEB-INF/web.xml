@@ -206,5 +206,46 @@
         <url-pattern>/deletestock</url-pattern>
     </servlet-mapping>
     <!-- stock management -->
+    
+    <!--crud Centre-->
+    <servlet>
+        <servlet-name>addCentre</servlet-name>
+        <servlet-class>Controllers.Centre.AddCentre</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addCentre</servlet-name>
+        <url-pattern>/addCentre</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>updateCentre</servlet-name>
+        <servlet-class>Controllers.Centre.UpdateCentre</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateCentre</servlet-name>
+        <url-pattern>/updateCentre</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>deleteCentre</servlet-name>
+        <servlet-class>Controllers.Centre.DeleteCentre</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteCentre</servlet-name>
+        <url-pattern>/deleteCentre</url-pattern>
+    </servlet-mapping>
+    <!--crud Centre-->
+    
+    <!--dashBoardAdmin-->
+    <servlet>
+        <servlet-name>dashBoardAdmin</servlet-name>
+        <servlet-class>Controllers.Admin.DashBoardAdmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dashBoardAdmin</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+    <!--dashBoardAdmin-->
+
 
 </web-app>

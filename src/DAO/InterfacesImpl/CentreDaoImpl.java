@@ -74,7 +74,7 @@ public class CentreDaoImpl implements CentreDao {
     }
 
     @Override
-    public void insertCentre(Centre centre) {
+    public boolean insertCentre(Centre centre) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
@@ -89,14 +89,16 @@ public class CentreDaoImpl implements CentreDao {
             preparedStatement.setInt(6,centre.getIdVille());
             preparedStatement.setString(7,centre.getTeleCentre());
             preparedStatement.executeUpdate();
+            return true;
 
         }catch (SQLException e){
             e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public void updateCentre(Centre centre) {
+    public boolean updateCentre(Centre centre) {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
@@ -111,14 +113,53 @@ public class CentreDaoImpl implements CentreDao {
             preparedStatement.setString(7,centre.getTeleCentre());
             preparedStatement.setInt(8,centre.getIdCentre());
             preparedStatement.executeUpdate();
+            return true;
         }catch(SQLException e){
             e.printStackTrace();
+            return false;
         }
 
     }
 
     @Override
-    public void deleteCentre(int idCentre){
+    public boolean deleteCentreByEmail(String email) {
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        try{
+            connection=daoFactory.getConnection();
+            preparedStatement=connection.prepareStatement("delete from centre WHERE email_centre=?");
+//            preparedStatement.setInt(1,idCentre);
+            preparedStatement.setString(1,email);
+            preparedStatement.executeUpdate();
+            return true;
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean searchCentreByEmail(String email) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Centre centre = null;
+        try{
+            connection=daoFactory.getConnection();
+            preparedStatement=connection.prepareStatement("SELECT * from centre WHERE email_centre=?");
+            preparedStatement.setString(1,email);
+            ResultSet rs=preparedStatement.executeQuery();
+            if(rs.next()){
+                return true;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteCentre(int idCentre){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         try{
@@ -126,9 +167,11 @@ public class CentreDaoImpl implements CentreDao {
             preparedStatement=connection.prepareStatement("delete from centre WHERE id_centre=?");
             preparedStatement.setInt(1,idCentre);
             preparedStatement.executeUpdate();
+            return true;
 
         }catch(SQLException e){
             e.printStackTrace();
+            return false;
         }
     }
 

@@ -64,7 +64,10 @@
                         <i class="fas fa-user"></i> ${not empty sessionScope.donnateur.getNomDonnateur() ?
                             sessionScope.donnateur.getNomDonnateur() : sessionScope.centre.getNameCentre()} </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                        <a class="dropdown-item" href="#">My account</a>
+                        <c:if test="${not empty sessionScope.centre}">
+                            <a class="dropdown-item" href="/updateCentre?update=${sessionScope.centre.idCentre}">Update information</a>
+                            <a href="" data-toggle="modal" data-target="#deleteModel" class="dropdown-item">Delete center</a>
+                        </c:if>
                         <a class="dropdown-item" href="logout">Log out</a>
                     </div>
                 </li>

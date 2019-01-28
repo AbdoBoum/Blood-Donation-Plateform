@@ -31,10 +31,11 @@ public class LoginAdmin extends HttpServlet {
         adminDao = daoFactory.getAdminDaoImpl();
     }
 
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-
+        System.out.println(email+" "+Utile.stringToSha256(password));
         admin = adminDao.getAdmin(email, Utile.stringToSha256(password));
 
         if (admin == null) {
@@ -44,7 +45,7 @@ public class LoginAdmin extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
             session.setAttribute("admin", admin);
-            response.sendRedirect("/");
+            response.sendRedirect("/dashboard");
         }
     }
 
