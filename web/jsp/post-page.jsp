@@ -8,7 +8,7 @@
 <head>
     <%@include file="Header.jsp" %>
 </head>
-<body class="grey lighten-5">
+<body class="white">
 
 <!--Main Navigation-->
 <header>
@@ -158,7 +158,7 @@
                                 <strong>Giving blood saves lives</strong>
                             </h4>
                             <p>
-                                <strong>But it’s always in high demand.</strong>
+                                <strong>But it's always in high demand.</strong>
                             </p>
                             <p class="mb-4">
                                 <strong>You can be a hero by saving someone's life. You can check the need for blood
