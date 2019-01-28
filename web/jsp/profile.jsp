@@ -34,6 +34,48 @@
 <!--- Contenue -->
 <div class="container col-md-8" style="margin-top: 100px;">
 
+    <!--- MODAL UPDATE -->
+
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Confirm</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="/delete">
+                    <div class="modal-body mx-3">
+                        <div class="form-group required">
+                            <!-- actual password -->
+                            <label for="expassword" class="control-label mt-4">Your actual password:</label>
+                            <input type="password" id="expassword" name="expassword" class="form-control "/>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <div class="col-sm-4">
+                            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                    type="sumbit" style="border-color: #D92228 !important; color: #D92228 !important;">
+                                Delete
+                            </button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                    type="button" data-dismiss="modal"  style="border-color: #D92228 !important; color: #D92228 !important;">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--- MODAL UPDATE-->
+
+
     <div class="section-title text-center wow zoomIn mt-5 font-weight-bold">
         <h1 class="h1-responsive">Profile</h1>
     </div>
@@ -91,9 +133,8 @@
                     </select>
                 </div>
                 <div class="form-group required">
-                    <label for="password" class='control-label'>Password</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder=""
-                           value="${sessionScope.donnateur.passwordDonnateur}">
+                    <label for="password" class='control-label'>Enter Password To Confirm</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="">
                 </div>
 
                 <!-- Update button -->
@@ -106,8 +147,8 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <button class="btn btn-outline-red btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                href="#">
+                        <button type="button" class="btn btn-outline-red btn-rounded btn-block z-depth-0 my-4 waves-effect"
+                                data-toggle="modal" data-target="#delete">
                             Delete
                         </button>
                     </div>

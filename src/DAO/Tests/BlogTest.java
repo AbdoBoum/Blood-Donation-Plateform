@@ -23,7 +23,7 @@ public class BlogTest {
             //System.out.println(b.toString());
        //}
 
-            System.out.println(Utile.stringToSha256("test"));
+            System.out.println(Utile.stringToSha256("jasmin75"));
 //
 //        DAOFactory daoFactory=DAOFactory.getInstance();
 //        EvenementDao eventDao =daoFactory.getEvenementImpl();

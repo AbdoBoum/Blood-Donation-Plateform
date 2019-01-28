@@ -114,21 +114,16 @@ public class DonnateurDaoImpl implements DonnateurDao {
     @Override
     public boolean removeDonnateur(String email) {
         String query = "DELETE FROM donnateur WHERE email_donnateur=? ;";
-        boolean result = false;
         try {
             Connection connection = daoFactory.getConnection();
             PreparedStatement prs = connection.prepareStatement(query);
             prs.setString(1, email);
             prs.executeUpdate();
-            //testing if delete operation done successfully
-            Statement exist = connection.createStatement();
-            ResultSet existResult = exist.executeQuery("SELECT EXISTS( SELECT * FROM donnateur WHERE email_donnateur='" + email + "' ) AS user_exist;");
-            existResult.next();
-            result = existResult.getBoolean("user_exist") ? false : true;
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        return result;
     }
 
     @Override
@@ -187,13 +182,17 @@ public class DonnateurDaoImpl implements DonnateurDao {
     public boolean updateDonnateur(Donnateur donnateur) {
         try {
             Connection connection=daoFactory.getConnection();
-            PreparedStatement preparedStatement=connection.prepareStatement("UPDATE donnateur SET email_donnateur=?, password_donnateur=?, tele_donnateur=?, id_ville=?, id_groupeSang=? WHERE id_donnateur=?");
+            PreparedStatement preparedStatement=connection.prepareStatement("UPDATE donnateur SET email_donnateur=?, password_donnateur=?, tele_donnateur=?, id_ville=?, " +
+                    "id_groupeSang=?, cin_donnateur=?, nom_donnateur=?, prenom_donnateur=? WHERE id_donnateur=?");
             preparedStatement.setString(1,donnateur.getEmailDonnateur());
             preparedStatement.setString(2,donnateur.getPasswordDonnateur());
             preparedStatement.setString(3,donnateur.getTeleDonnateur());
             preparedStatement.setInt(4,donnateur.getIdVilleDonnateur());
             preparedStatement.setInt(5,donnateur.getIdGroupeSangDonnateur());
-            preparedStatement.setInt(6,donnateur.getIdDonnateur());
+            preparedStatement.setString(6, donnateur.getCinDonnateur());
+            preparedStatement.setString(7, donnateur.getNomDonnateur());
+            preparedStatement.setString(8, donnateur.getPrenomDonnateur());
+            preparedStatement.setInt(9,donnateur.getIdDonnateur());
             preparedStatement.executeUpdate();
             return true;
         }catch (SQLException e){

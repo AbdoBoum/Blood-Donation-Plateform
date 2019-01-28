@@ -52,14 +52,15 @@ public class ProfileServlet extends HttpServlet {
         String blood = request.getParameter("groupSangSelect");
 
         if (prenom.isEmpty() || nom.isEmpty() || cin.isEmpty() || email.isEmpty() ||
-            password.isEmpty() || phone.isEmpty() || city.isEmpty() || blood.isEmpty()){
+                password.isEmpty() || phone.isEmpty() || city.isEmpty() || blood.isEmpty()){
 
             flashMessageFaild = "Please complete all fields";
             request.setAttribute("flashMessageFaild", flashMessageFaild);
             doGet(request, response);
         } else {
+            donnateur.setIdDonnateur(donnateur.getIdDonnateur());
             donnateur.setNomDonnateur(nom); donnateur.setPrenomDonnateur(prenom); donnateur.setCinDonnateur(cin);
-            donnateur.setEmailDonnateur(email); donnateur.setPasswordDonnateur(Utile.stringToSha256(password)); donnateur.setTeleDonnateur(phone);
+            donnateur.setEmailDonnateur(email); donnateur.setPasswordDonnateur(donnateur.getPasswordDonnateur());donnateur.setTeleDonnateur(phone);
             donnateur.setIdGroupeSangDonnateur(Integer.parseInt(blood)); donnateur.setIdVilleDonnateur(Integer.parseInt(city));
             if (donnateurDao.updateDonnateur(donnateur)){
                 flashMessageSuccess = "Profile Updated";

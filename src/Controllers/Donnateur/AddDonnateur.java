@@ -98,7 +98,7 @@ public class AddDonnateur extends HttpServlet {
                 if (donnateurDao.addDonnateur(donnateur)) {
                     System.out.println("Donor has been added ");
                     request.setAttribute("flashMessageSuccess", "Donor has been added");
-                    this.getServletContext().getRequestDispatcher(jspLink).forward(request, response);
+                    response.sendRedirect("/login");
                 } else {
                     request.setAttribute("flashMessageFaild", "Error adding Donor (the email is already in use)");
                     returnAddFormulaire(request, response);

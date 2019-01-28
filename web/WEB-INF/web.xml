@@ -176,6 +176,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>DeleteProfile</servlet-name>
+        <servlet-class>Controllers.Donnateur.Delete</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteProfile</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>deleteRequest</servlet-name>
         <servlet-class>Controllers.Demandes.DeleteRequest</servlet-class>
     </servlet>
