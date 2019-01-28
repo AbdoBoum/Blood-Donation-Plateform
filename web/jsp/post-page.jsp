@@ -8,7 +8,7 @@
 <head>
     <%@include file="Header.jsp" %>
 </head>
-<body class="grey lighten-5">
+<body class="white">
 
 <!--Main Navigation-->
 <header>
