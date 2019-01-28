@@ -201,4 +201,22 @@ public class DonnateurDaoImpl implements DonnateurDao {
         }
     }
 
+    @Override
+    public int CountDonorsPerCity( int idVille) {
+        int countDonors = 0;
+
+        try {
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT  count(id_donnateur) AS nbDonors FROM donnateur WHERE id_ville='"+idVille+"'");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                countDonors = Integer.parseInt(resultSet.getString("nbDonors"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return countDonors;
+    }
+
 }

@@ -212,4 +212,20 @@ public class EvenementDaoImpl implements EvenementDao {
         }
         return evenements;
     }
+
+    @Override
+    public int countEventsPerCity(int idVille) {
+        int eventsCount = 0;
+        try {
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT count(id_evenement) AS nbrEvents FROM evenement WHERE id_ville="+idVille);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                eventsCount = Integer.parseInt(resultSet.getString("nbrRequests"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return eventsCount;
+    }
 }

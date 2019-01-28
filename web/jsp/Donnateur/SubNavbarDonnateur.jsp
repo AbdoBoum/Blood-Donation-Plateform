@@ -36,7 +36,7 @@
                            aria-haspopup="true"
                            aria-expanded="false">Stock management</a>
                         <div class="dropdown-menu dropdown-secondary">
-                            <a class="dropdown-item" href="#">Inventory</a>
+                            <a class="dropdown-item" href="/statistics">Statistics</a>
                             <a href="" data-toggle="modal" data-target="#addBlood" class="dropdown-item">Add</a>
                             <a href="" data-toggle="modal" data-target="#deleteBlood" class="dropdown-item">Delete</a>
                         </div>

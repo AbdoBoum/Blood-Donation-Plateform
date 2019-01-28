@@ -212,6 +212,22 @@ public class DemandeDaoImpl implements DemandeDao {
     }
 
     @Override
+    public int countRequestsPerCenter(int idCentre) {
+        int requestsCount = 0;
+        try {
+            Connection connection = daoFactory.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT count(id_demande) AS nbrRequests FROM demande WHERE id_centre="+idCentre);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                requestsCount = Integer.parseInt(resultSet.getString("nbrRequests"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return requestsCount;
+    }
+
+    @Override
     public Demande getRequestById(int id) {
         String query = "SELECT * FROM demande WHERE id_demande=" + id;
         try {
