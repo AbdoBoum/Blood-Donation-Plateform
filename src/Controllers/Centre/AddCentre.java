@@ -71,8 +71,7 @@ public class AddCentre extends HttpServlet {
                     centre.setIdAdmin(admin.getIdAdmin());
                     centre.setIdVille(Integer.parseInt(strIdVille));
                     centre.setTeleCentre(gsm);
-                    System.out.println("hallo");
-                    if(!centreDao.searchCentreByEmail(centre.getAdresseCentre())){
+                    if(!centreDao.searchCentreByEmail(emailCentre.trim())){
                         if (centreDao.insertCentre(centre)){
                             request.setAttribute("flashMessageSuccess","Centre has been added");
                             response.sendRedirect("/dashboard");
