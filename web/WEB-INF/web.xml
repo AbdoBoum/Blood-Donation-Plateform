@@ -281,4 +281,17 @@
 
     <!-- end of statistics -->
 
+    <!-- About Us -->
+    <servlet>
+        <servlet-name>aboutUs</servlet-name>
+        <servlet-class>Controllers.AboutUs</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>aboutUs</servlet-name>
+        <url-pattern>/about</url-pattern>
+    </servlet-mapping>
+
+    <!-- end of ABout Us -->
+
 </web-app>
