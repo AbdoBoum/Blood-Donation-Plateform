@@ -1,6 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%--
 User: ABDERRAHIM
 Date: 17/01/2019
@@ -29,7 +26,7 @@ Time: 20:18
         <br><br><br>
         <!--Search button-->
         <div class="row mb-4 mt-2">
-            <div class="col-6">
+            <div class="col-6 mt-4">
                 <form class="form-inline  mr-auto " action="blog">
                     <input class="form-control mr-sm-2 my-0" type="text" value="${keyword}" placeholder="Search"
                            aria-label="Search"
@@ -40,7 +37,7 @@ Time: 20:18
             <!--Search button-->
 
             <!--Add blog-->
-            <div class="col-md-6 text-right mt-3">
+            <div class="col-md-6 text-right mt-2">
 
                 <a class="btn btn-red ${empty sessionScope.donnateur ? 'invisible': ''}" href="addBlog">New Blog</a>
 

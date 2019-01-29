@@ -114,7 +114,7 @@
                             <!-- type -->
                             <label for="groupSang" class="control-label mt-4">Blood type</label>
                             <select class="browser-default custom-select form-control" name="groupSang" id="groupSang">
-                                <option selected value="">Choose blood type</option>
+                                <option selected value="-1">Choose blood type</option>
                                     <option value="1">A+</option>
                                     <option value="2">A-</option>
                                     <option value="3">B+</option>
@@ -157,7 +157,7 @@
                             <!-- type -->
                             <label for="groupSang2" class="control-label mt-4">Blood type</label>
                             <select class="browser-default custom-select form-control" name="groupSang" id="groupSang2">
-                                <option selected value="">Choose blood type</option>
+                                <option selected value="-1">Choose blood type</option>
                                 <option value="1">A+</option>
                                 <option value="2">A-</option>
                                 <option value="3">B+</option>

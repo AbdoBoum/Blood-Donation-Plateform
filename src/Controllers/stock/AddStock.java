@@ -50,19 +50,16 @@ public class AddStock extends HttpServlet {
         session = request.getSession();
         centre = (Centre) session.getAttribute("centre");
         idCentre = centre.getIdCentre();
-
-        if (quantity == 0 ) {
-            if (groupSang[0].isEmpty()) {
+        idgroupSang = Integer.parseInt(groupSang[0]);
+        if (idgroupSang == -1 || quantity == 0 ) {
                 flashMessageFaild = "Please complete all fields";
                 request.setAttribute("flashMessageFaild", flashMessageFaild);
                 this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            }else {
+        }else if (idgroupSang != -1 && quantity < 0){
                 flashMessageFaild = "Quantity must be positive";
                 request.setAttribute("flashMessageFaild" , flashMessageFaild);
                 this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            }
-        } else {
-            idgroupSang = Integer.parseInt(groupSang[0]);
+        } else if (idgroupSang != -1 && quantity > 0){
             stock = stockDao.getStockById(idgroupSang, idCentre);
             if (stock == null){
                 stock = new Stock();

@@ -27,8 +27,8 @@ public class deleteStock extends HttpServlet {
 
     Stock stock;
 
-    private String flashMessageFaild="";
-    private String flashMessageSuccess="";
+    private String flashMessageFaild = "";
+    private String flashMessageSuccess = "";
 
     private int idCentre;
 
@@ -48,25 +48,22 @@ public class deleteStock extends HttpServlet {
         centre = (Centre) session.getAttribute("centre");
         idCentre = centre.getIdCentre();
         String[] groupSang = request.getParameterValues("groupSang");
+        idgroupSang = Integer.parseInt(groupSang[0]);
 
-
-        if (quantity == 0 ) {
-            if (groupSang[0].isEmpty()) {
-                flashMessageFaild = "Please complete all fields.";
+        if (idgroupSang == -1 || quantity == 0) {
+            flashMessageFaild = "Please complete all fields.";
+            request.setAttribute("flashMessageFaild", flashMessageFaild);
+            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        } else if (idgroupSang != -1 && quantity < 0) {
+            flashMessageFaild = "Quantity to delete must be positive";
+            request.setAttribute("flashMessageFaild", flashMessageFaild);
+            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        } else if (idgroupSang != -1 && quantity > 0){
+            stock = stockDao.getStockById(idgroupSang, idCentre);
+            if (stock == null) {
+                flashMessageFaild = "Blood Type not available.";
                 request.setAttribute("flashMessageFaild", flashMessageFaild);
                 this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            }else {
-                flashMessageFaild = "Quantity to delete must be positive";
-                request.setAttribute("flashMessageFaild" , flashMessageFaild);
-                this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            }
-        } else {
-            idgroupSang = Integer.parseInt(groupSang[0]);
-            stock = stockDao.getStockById(idgroupSang, idCentre);
-            if (stock == null){
-                    flashMessageFaild = "Blood Type not available.";
-                    request.setAttribute("flashMessageFaild", flashMessageFaild);
-                    this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
             } else {
                 if (stock.getQuantiteStock() >= quantity) {
                     stock.setQuantiteStock(stock.getQuantiteStock() - quantity);
@@ -79,7 +76,7 @@ public class deleteStock extends HttpServlet {
                         request.setAttribute("flashMessageFaild", flashMessageFaild);
                         this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
                     }
-                }else {
+                } else {
                     flashMessageFaild = "Quantity to deleted is greater than quantity available.";
                     request.setAttribute("flashMessageFaild", flashMessageFaild);
                     this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
