@@ -72,13 +72,21 @@ public class AddCentre extends HttpServlet {
                     centre.setIdVille(Integer.parseInt(strIdVille));
                     centre.setTeleCentre(gsm);
                     System.out.println("hallo");
-                    if(centreDao.insertCentre(centre)){
-                        System.out.println("hallo2");
-                        request.setAttribute("flashMessageSuccess","Centre has been added");
-                        this.getServletContext().getRequestDispatcher("/jsp/adminDashBoard.jsp").forward(request,response);
+                    if(!centreDao.searchCentreByEmail(centre.getAdresseCentre())){
+                        if (centreDao.insertCentre(centre)){
+                            request.setAttribute("flashMessageSuccess","Centre has been added");
+                            response.sendRedirect("/dashboard");
+                        }else{
+                            request.setAttribute("flashMessageFaild", "Error adding Centre");
+//                        this.getServletContext().getRequestDispatcher("/jsp/adminDashBoard.jsp").forward(request, response);
+                            response.sendRedirect("/dashboard");
+                        }
+
+//                        this.getServletContext().getRequestDispatcher("/jsp/adminDashBoard.jsp").forward(request,response);
                     }else {
-                        request.setAttribute("flashMessageFaild", "Error adding Centre");
-                        this.getServletContext().getRequestDispatcher("/jsp/adminDashBoard.jsp").forward(request, response);
+                        request.setAttribute("flashMessageFaild", "Mail is already exist");
+//                        this.getServletContext().getRequestDispatcher("/jsp/adminDashBoard.jsp").forward(request, response);
+                        response.sendRedirect("/dashboard");
                     }
 
                 }
