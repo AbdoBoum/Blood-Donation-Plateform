@@ -4,6 +4,8 @@ import DAO.DAOFactory;
 import DAO.Interfaces.AdminDao;
 import Helper.Utile;
 import Models.Admin;
+import Models.Centre;
+import Models.Donnateur;
 
 import javax.rmi.CORBA.Util;
 import javax.servlet.ServletException;
@@ -50,6 +52,14 @@ public class LoginAdmin extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/jsp/admin/LoginAdmin.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        if((Admin)session.getAttribute("admin") == null && (Centre)session.getAttribute("centre") == null && (Donnateur)session.getAttribute("donnateur") == null)
+            this.getServletContext().getRequestDispatcher("/jsp/admin/LoginAdmin.jsp").forward(request, response);
+        else if((Admin)session.getAttribute("admin") != null){
+            response.sendRedirect("/dashboard");
+        }
+        else{
+            response.sendRedirect("/");
+        }
     }
 }

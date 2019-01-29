@@ -5,6 +5,7 @@ import DAO.Interfaces.BlogDao;
 import DAO.Interfaces.CentreDao;
 import DAO.Interfaces.DonnateurDao;
 import Helper.Utile;
+import Models.Admin;
 import Models.Blog;
 import Models.Centre;
 import Models.Donnateur;
@@ -60,7 +61,14 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        this.getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        if((Admin)session.getAttribute("admin") == null && (Centre)session.getAttribute("centre") == null && (Donnateur)session.getAttribute("donnateur") == null)
+            this.getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+        else if((Admin)session.getAttribute("admin") != null){
+            response.sendRedirect("/dashboard");
+        }
+        else{
+            response.sendRedirect("/");
+        }
     }
 }

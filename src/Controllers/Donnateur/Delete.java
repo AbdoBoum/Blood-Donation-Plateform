@@ -35,8 +35,6 @@ public class Delete extends HttpServlet {
         donnateur = (Donnateur) request.getSession().getAttribute("donnateur");
         String expassword = request.getParameter("expassword");
         String password = donnateurDao.getDonnateur(donnateur.getIdDonnateur()).getPasswordDonnateur();
-        System.out.println("expassword :"+Utile.stringToSha256(expassword)+";");
-        System.out.println("password :"+password+";");
         if (Utile.stringToSha256(expassword).equals(password)){
             if (donnateurDao.removeDonnateur(donnateur.getEmailDonnateur())){
                 request.getSession().invalidate();
