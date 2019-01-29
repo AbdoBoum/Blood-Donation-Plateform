@@ -67,7 +67,7 @@
                         <c:if test="${not empty sessionScope.centre}">
                             <a class="dropdown-item" href="/updateCentre?update=${sessionScope.centre.idCentre}">Update information</a>
                         </c:if>
-
+                        <a class="dropdown-item ${(empty sessionScope.donnateur) ? 'd-none': ''}" href="profile">My account</a>
                         <a class="dropdown-item" href="logout">Log out</a>
                     </div>
                 </li>
