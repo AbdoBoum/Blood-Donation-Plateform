@@ -221,7 +221,7 @@ public class EvenementDaoImpl implements EvenementDao {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT count(id_evenement) AS nbrEvents FROM evenement WHERE id_ville="+idVille);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                eventsCount = Integer.parseInt(resultSet.getString("nbrRequests"));
+                eventsCount = Integer.parseInt(resultSet.getString("nbrEvents"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

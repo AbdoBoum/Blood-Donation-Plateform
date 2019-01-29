@@ -30,11 +30,11 @@ Time: 20:18
         <!--Search button-->
         <div class="row mb-4 mt-2">
             <div class="col-6">
-                <form class="form-inline md-form mr-auto " action="blog">
+                <form class="form-inline  mr-auto " action="blog">
                     <input class="form-control mr-sm-2 my-0" type="text" value="${keyword}" placeholder="Search"
                            aria-label="Search"
                            name="keyword">
-                    <button class="btn btn-red btn-rounded btn-md my-0" type="submit">Search</button>
+                    <button class="btn btn-red btn-rounded btn-md my-0" style="margin-left : -8px; border-radius : 3px;" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
             <!--Search button-->
@@ -72,7 +72,7 @@ Time: 20:18
                                 <div class="overlay">
                                     <div class="embed-responsive embed-responsive-16by9 rounded-top">
                                         <img class="embed-responsive-item"
-                                             src="${blogs[i + j].getPathImgBlog().substring(25)}" allowfullscreen/>
+                                             src="${blogs[i + j].getPathImgBlog().substring(55)}" allowfullscreen/>
                                     </div>
                                 </div>
                                 <!--Card content-->

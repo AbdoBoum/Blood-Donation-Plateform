@@ -92,6 +92,6 @@ public class deleteStock extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+        response.sendRedirect("/");
     }
 }
