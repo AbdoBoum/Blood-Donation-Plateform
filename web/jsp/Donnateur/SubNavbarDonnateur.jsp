@@ -91,43 +91,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Delete center</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                    <div class="modal-body mx-3">
-                        <div>
-                            <!-- Nom input -->
-                            <h3>Do you want to delete the current center ?</h3>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer d-flex justify-content-center">
-                        <div class="col-sm-4">
-                            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                    type="submit" >
-                                Cancel
-                            </button>
-                            <form method="post" action="/deleteCentre">
-                                <input type="hidden" value="${sessionScope.centre.emailCentre}" name="email">
-                            <button class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
-                                    type="submit" style="border-color: #D92228 !important; color: #D92228 !important;">
-                                Delete
-                            </button>
-                            </form>
-                        </div>
-                    </div>
-
-            </div>
-        </div>
-    </div>
 
 
     <!--  STOCK MANAGEMENT  -->

@@ -27,15 +27,16 @@ public class DeleteCentre extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         session=request.getSession();
-        if(session.getAttribute("admin")==null&&session.getAttribute("centre")==null){
+        if(session.getAttribute("admin")==null){
             response.sendRedirect("/login");
         }else{
             //varification email
             String email=request.getParameter("email");
-            Boolean isCenter=(session.getAttribute("centre")==null)?false:true;
             if(email.trim().isEmpty()){
                 request.setAttribute("flashMessageFaild", "please complete email field.");
-                this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
+                response.sendRedirect("/dashboard");
+//                this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
+
             }else{
                 //validation email
                 String error="";
@@ -44,7 +45,8 @@ public class DeleteCentre extends HttpServlet {
                 if(!error.equals("")){
 
                     request.setAttribute("flashMessageFaild", error);
-                    this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
+                    response.sendRedirect("/dashboard");
+//                    this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
                 }else{
                     System.out.println("no error");
                     if(!centreDao.searchCentreByEmail(email)){
@@ -52,13 +54,15 @@ public class DeleteCentre extends HttpServlet {
                         request.setAttribute("flashMessageFaild", "Error deleting centre, Wrong mail.");
 //                        request.setAttribute("flashMessageFaild", "Error updating centre");
                         System.out.println("wrong mail");
-                        this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
+                        response.sendRedirect("/dashboard");
+
+//                        this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
                     }else{
                         centreDao.deleteCentreByEmail(email);
-                        if(isCenter)
                             request.getSession().invalidate();
                         request.setAttribute("flashMessageSuccess", "Centre id deleted.");
-                        this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
+                        response.sendRedirect("/dashboard");
+//                        this.getServletContext().getRequestDispatcher(isCenter?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
                     }
                 }
             }
@@ -67,7 +71,7 @@ public class DeleteCentre extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/admin");
+        response.sendRedirect("/dashboard");
     }
 
     private String validationField(String field,String pattern,String erreur){

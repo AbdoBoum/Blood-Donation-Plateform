@@ -102,11 +102,18 @@ public class UpdateCentre extends HttpServlet {
                         if(isCentre){
                             centre=centreDao.getCentre(Integer.parseInt(idCentre));
                             session.setAttribute("centre", centre);
+                            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
                         }
-                        this.getServletContext().getRequestDispatcher(isCentre?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request,response);
+                       response.sendRedirect("/dashboard");
                     }else {
                         request.setAttribute("flashMessageFaild", "Error updating centre");
-                        this.getServletContext().getRequestDispatcher(isCentre?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request, response);
+                        if(isCentre){
+                            centre=centreDao.getCentre(Integer.parseInt(idCentre));
+                            session.setAttribute("centre", centre);
+                            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
+                        }
+                        response.sendRedirect("/dashboard");
+//                        this.getServletContext().getRequestDispatcher(isCentre?"/index.jsp":"/jsp/adminDashBoard.jsp").forward(request, response);
                     }
 
                 }
