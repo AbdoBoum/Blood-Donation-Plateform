@@ -2,8 +2,10 @@ package Controllers.Admin;
 
 import DAO.DAOFactory;
 import DAO.Interfaces.CentreDao;
+import DAO.Interfaces.VilleDao;
 import Models.Admin;
 import Models.Centre;
+import Models.Ville;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,8 +30,11 @@ public class DashBoardAdmin extends HttpServlet {
         }else{
             DAOFactory daoFactory=DAOFactory.getInstance();
             CentreDao centreDao=daoFactory.getCentreDaoImpl();
+            VilleDao villeDao=daoFactory.getVilleDaoImpl();
             List<Centre> centres=centreDao.getAllCentre();
             request.setAttribute("centres",centres);
+            List<Ville> villes=villeDao.getAllVille();
+            request.setAttribute("villes",villes);
             request.getServletContext().getRequestDispatcher("/jsp/adminDashBoard.jsp").forward(request,response);
         }
     }

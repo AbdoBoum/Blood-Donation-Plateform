@@ -88,7 +88,13 @@
                             <th scope="row"><c:out value="${centre.emailCentre}"/></th>
                             <th scope="row"><c:out value="${centre.teleCentre}"/></th>
                             <th scope="row"><c:out value="${centre.adresseCentre}"/></th>
-                            <th scope="row"><c:out value="${centre.idVille}"/></th>
+                            <th scope="row">
+                            <c:forEach items="${villes}" var="ville">
+                                <c:if test="${ville.idVille eq centre.idVille}">
+                                    <c:out value="${ville.nomVille}"/>
+                                </c:if>
+                            </c:forEach>
+                            </th>
 
                         </tr>
                     </c:forEach>
