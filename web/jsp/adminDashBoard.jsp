@@ -153,6 +153,8 @@
                         <!-- Nom input -->
                         <label for="email" class="mt-4">Email Centre</label>
                         <input type="email" id="email" name="email" class="form-control "/>
+                        <label for="expassword" class="control-label mt-4">Your actual password:</label>
+                        <input type="password" id="expassword" name="expassword" class="form-control "/>
                     </div>
 
                 </div>
