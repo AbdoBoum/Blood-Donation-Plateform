@@ -60,7 +60,7 @@
                     <!--Featured Image-->
                     <div class="card mb-4 wow fadeIn">
 
-                        <img src="${article.getPathImgBlog().substring(25)}" style="width:100%; height: 300px;"
+                        <img src="${article.getPathImgBlog().substring(55)}" style="width:100%; height: 300px;"
                              class="img-fluid" alt="blood donor">
 
                     </div>

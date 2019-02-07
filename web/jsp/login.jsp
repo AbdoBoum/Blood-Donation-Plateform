@@ -52,7 +52,7 @@
 
                 <!-- Register -->
                 <p>Not a member?
-                    <a href="">Register</a>
+                    <a href="/registre">Register</a>
                 </p>
 
                 <!--

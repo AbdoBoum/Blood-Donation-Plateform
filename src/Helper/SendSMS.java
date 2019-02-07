@@ -18,8 +18,8 @@ public class SendSMS implements Runnable {
     }
 
     private void sendSMS() throws Exception {
-        String API_KEY = "f3357b4e";
-        String API_SECRET = "nr95Yg4Q4QKCAZ14";
+        String API_KEY = "00257dec";
+        String API_SECRET = "NcQ8tFu6aRvGwZ55";
 
         NexmoClient client = new NexmoClient.Builder()
                 .apiKey(API_KEY)
@@ -27,6 +27,7 @@ public class SendSMS implements Runnable {
                 .build();
 
         for (Donnateur donnateur : donnateurList) {
+
             SmsSubmissionResponse responses = client.getSmsClient().submitMessage(new TextMessage(
                     "BLOOD BROTHERS",
                     donnateur.getTeleDonnateur(),

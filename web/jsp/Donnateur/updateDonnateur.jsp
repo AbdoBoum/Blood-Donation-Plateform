@@ -38,7 +38,7 @@
             <div class="wrapper wrapper--w790">
                 <div class="card">
                     <h5 class="card-header white-text text-center py-4" style="background-color: #8B191C;">
-                        <strong>Update Donnateur</strong>
+                        <strong>Update Donor</strong>
                     </h5>
                     <div class="card-body">
                         <c:if test="${flashMessageFaild ne null}">

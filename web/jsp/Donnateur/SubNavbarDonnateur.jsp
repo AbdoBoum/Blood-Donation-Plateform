@@ -66,10 +66,10 @@
                 <form method="get" action="/updateDonnateur">
                     <div class="modal-body mx-3">
                         <div class="row ">
-                            <div class="form-group required col-sm-12">
+                            <div class="form-group required col-sm-12 ">
                                 <label for="id" class='control-label'>Id Donor</label>
-                                <input type="text" name="id" class="form-control" id="id"
-                                       placeholder="Identifiant donnateur">
+                                <input type="number" name="id" class="form-control" id="id"
+                                       placeholder="Id donor" required>
                                 <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                             </div>
                         </div>

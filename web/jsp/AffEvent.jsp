@@ -44,7 +44,7 @@
                                 <div class="row">
                                     <div class="col-md-9">
                                         <div class="media mt-4 px-1">
-                                            <img class="card-img-100 d-flex z-depth-1 mr-3" src="<c:out value="${event.imagePathEvenement}"/>"
+                                            <img class="card-img-100 d-flex z-depth-1 mr-3" src="<c:out value="${event.imagePathEvenement.substring(1)}"/>"
                                                  alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h6 class="font-weight-bold mt-0">
