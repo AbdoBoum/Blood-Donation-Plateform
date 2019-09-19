@@ -22,13 +22,29 @@ Supervised by:
 <br><br>
 About the project: 
 <h2>BLOOD BROTHERS</h2>
-<p>
-The Blood Brothers web application answers people's frequently asked questions about blood donation in a FAQ area, blood centers can express their needs and manage their inventory and visualize them through graphs and report alarms of lack of stock of blood that will be broadcast to others blood centers and also sent to users of the platform.
 
-Users have a space where they can write articles, share their experiences with blood donation, give feedback that will ban stereotypes and reinforce the spirit of belonging. At most volunteers we will operate charity clubs in schools that are numerous as well as volunteer groups on social networks.
+## Objectif du projet
+L’objectif de ce projet est de créer une application web pour encourager plus de jeunes à faire don de leur sang et aussi permettre aux centres de donation de sang de bien gérer et visualiser leur stock.
 
-</p>
+## Diagramme de cas d’utilisation
+![Capture](https://user-images.githubusercontent.com/41730760/65274623-09b9fc00-db24-11e9-8a82-5ec64d56b5e8.PNG)
+
+## Diagramme de classe
+![class](https://user-images.githubusercontent.com/41730760/65274773-67e6df00-db24-11e9-8436-57e37cd70831.png)
+
+## Interfaces de l'application
+Ci-dessous, quelques interfaces de l'application.
+
+![index](https://user-images.githubusercontent.com/41730760/65274864-9a90d780-db24-11e9-8d76-5517a2af9027.png)
+
+![blog](https://user-images.githubusercontent.com/41730760/65274903-b4cab580-db24-11e9-8db3-b276dda3aa42.png)
+
+![login](https://user-images.githubusercontent.com/41730760/65274957-d330b100-db24-11e9-9cc4-6b1d826a00e1.png)
+
+![stock](https://user-images.githubusercontent.com/41730760/65274960-d461de00-db24-11e9-902e-7966bbbef251.png)
+
+![requests](https://user-images.githubusercontent.com/41730760/65274979-e04da000-db24-11e9-9b55-e3d63053965d.png)
+
 
 ## Rest API
-
-we have released a rest api for this project. You can take a look at it <a href="https://github.com/AbdoBoum/blood-brothers-spring-boot">here</a>
+Nous avons développé un backend Rest pour cette applicatio que vous trouverez <a href="https://github.com/AbdoBoum/blood-brothers-spring-boot">ici</a>
