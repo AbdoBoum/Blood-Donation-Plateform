@@ -19,7 +19,11 @@ Supervised by:
 	</li>
 </ul>
 
-<br><br>
+<br>
+
+## Rest API
+Nous avons développé un backend Rest pour cette application que vous trouverez <a href="https://github.com/AbdoBoum/blood-brothers-spring-boot">ici</a>
+
 About the project: 
 <h2>BLOOD BROTHERS</h2>
 
@@ -45,6 +49,3 @@ Ci-dessous, quelques interfaces de l'application.
 
 ![requests](https://user-images.githubusercontent.com/41730760/65274979-e04da000-db24-11e9-9b55-e3d63053965d.png)
 
-
-## Rest API
-Nous avons développé un backend Rest pour cette applicatio que vous trouverez <a href="https://github.com/AbdoBoum/blood-brothers-spring-boot">ici</a>
